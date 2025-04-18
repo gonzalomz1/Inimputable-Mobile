@@ -1,0 +1,40 @@
+# ========== UNITY PROJECT ========== #
+
+# Trata todos los archivos de texto como texto normal
+* text=auto
+
+# Fuerza a que los archivos de texto usen LF como terminador de línea
+*.cs     text eol=lf
+*.shader text eol=lf
+*.cginc  text eol=lf
+*.compute text eol=lf
+*.json   text eol=lf
+*.xml    text eol=lf
+*.txt    text eol=lf
+*.md     text eol=lf
+*.asmdef text eol=lf
+*.rsp    text eol=lf
+*.yaml   text eol=lf
+*.yml    text eol=lf
+
+# Binary files (no tocar línea)
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.psd    binary
+*.mp3    binary
+*.wav    binary
+*.ogg    binary
+*.fbx    binary
+*.prefab binary
+*.unity  binary
+*.mat    binary
+*.asset  binary
+
+# Ignore unity local cache files
+[Ll]ibrary/** -text
+
+# Ignore VS-specific binaries
+*.dll    binary
+*.exe    binary
+*.pdb    binary
