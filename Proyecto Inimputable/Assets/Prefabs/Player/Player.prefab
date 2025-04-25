@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1195318202985907532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6468754305405227472}
+  m_Layer: 0
+  m_Name: ViewPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6468754305405227472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195318202985907532}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1525988118108738103}
+  m_Father: {fileID: 523609283000912811}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2971773787988049539
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,12 +59,12 @@ Transform:
   m_GameObject: {fileID: 2971773787988049539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.795, z: 0.224}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5340965683215998768}
-  m_Father: {fileID: 523609283000912811}
+  m_Father: {fileID: 6468754305405227472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8667345271685684534
 Camera:
@@ -136,9 +168,8 @@ GameObject:
   - component: {fileID: 523609283000912811}
   - component: {fileID: 5034280837744541756}
   - component: {fileID: 2207369697536394543}
-  - component: {fileID: 6499231376362341338}
   - component: {fileID: 1347549399685000526}
-  - component: {fileID: 4657692432114258187}
+  - component: {fileID: 7977105031984791709}
   - component: {fileID: 6926591215005817557}
   - component: {fileID: 3580276877223024558}
   m_Layer: 0
@@ -161,7 +192,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1525988118108738103}
+  - {fileID: 6468754305405227472}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -103.639, z: 0}
 --- !u!136 &5034280837744541756
@@ -214,14 +245,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
---- !u!33 &6499231376362341338
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6543466717250864283}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1347549399685000526
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -229,7 +252,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6543466717250864283}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -264,7 +287,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4657692432114258187
+--- !u!114 &7977105031984791709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,6 +301,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   currentMoveInput: {x: 0, y: 0}
+  lookSensitivity: 0.1
+  cameraPitch: 0
+  currentYaw: 0
+  currentPitch: 0
 --- !u!114 &6926591215005817557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2207369697536394543}
+  cameraPivot: {fileID: 6468754305405227472}
+  cam: {fileID: 1525988118108738103}
 --- !u!114 &3580276877223024558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,8 +334,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystickSize: {x: 300, y: 300}
   joystick: {fileID: 0}
-  playerModel: {fileID: 4657692432114258187}
   playerView: {fileID: 6926591215005817557}
+  playerData: {fileID: 7977105031984791709}
+  deadZoneThreshold: 5
+  rotationSmoothSpeed: 10
 --- !u!1 &8081708864662529074
 GameObject:
   m_ObjectHideFlags: 0

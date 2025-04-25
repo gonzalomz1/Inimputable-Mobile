@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 public class GunFlash : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GunFlash : MonoBehaviour
     void Update()
     {
         // Disparar con click izquierdo
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             Fire();
@@ -24,6 +26,7 @@ public class GunFlash : MonoBehaviour
                 muzzleFlashLight.enabled = false;
             }
         }
+        */
     }
 
     void Fire()

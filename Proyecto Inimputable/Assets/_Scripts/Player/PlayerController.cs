@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
@@ -6,18 +7,25 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Vector2 joystickSize = new Vector2(300, 300);
     [SerializeField] private FloatingJoystick joystick;
-
-    [SerializeField] private PlayerModel playerModel;
     [SerializeField] private PlayerView playerView;
+    [SerializeField] private PlayerData playerData;
 
     private Finger movementFinger;
     private Finger aimFinger;
     private Vector2 movementAmount;
 
+    [SerializeField] private float deadZoneThreshold = 5f;
+    [SerializeField] private float rotationSmoothSpeed = 10f;
+
+    private float targetYaw;
+    private float targetPitch;
+
     private void Awake()
     {
-        if (!playerModel) playerModel = GetComponent<PlayerModel>();
+        if (!playerData) playerData = GetComponent<PlayerData>();
         if (!playerView) playerView = GetComponent<PlayerView>();
+
+        playerData.cameraPitch = playerView.cameraPivot.localEulerAngles.x;
     }
 
     private void OnEnable()
@@ -38,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleFingerDown(Finger touchedFinger)
     {
-        if (movementFinger == null && touchedFinger.screenPosition.x <= Screen.width / 2f)
+        if (movementFinger == null && IsTouchingLeftSide(touchedFinger))
         {
             movementFinger = touchedFinger;
             movementAmount = Vector2.zero;
@@ -46,6 +54,10 @@ public class PlayerController : MonoBehaviour
             joystick.gameObject.SetActive(true);
             joystick.RectTransform.sizeDelta = joystickSize;
             joystick.RectTransform.anchoredPosition = ClampStartPosition(touchedFinger.screenPosition);
+        }
+        else if (aimFinger == null && !IsTouchingLeftSide(touchedFinger))
+        {
+            aimFinger = touchedFinger;
         }
     }
 
@@ -55,10 +67,34 @@ public class PlayerController : MonoBehaviour
         {
             float maxMovement = joystickSize.x / 2f;
             Vector2 difference = movedFinger.currentTouch.screenPosition - joystick.RectTransform.anchoredPosition;
-
             movementAmount = Vector2.ClampMagnitude(difference / maxMovement, 1f);
-
             joystick.Knob.anchoredPosition = movementAmount * maxMovement;
+        }
+        else if (movedFinger == aimFinger)
+        {
+            if (IsTouchingLeftSide(movedFinger))
+            {
+                return;
+            }
+                AimWithFinger(movedFinger);
+        }
+    }
+
+    private void AimWithFinger(Finger movedFinger)
+    {
+        Vector2 delta = movedFinger.currentTouch.delta;
+
+        if (float.IsNaN(delta.x) || float.IsNaN(delta.y))
+            return;
+
+        if (Mathf.Abs(delta.x) < deadZoneThreshold) delta.x = 0f;
+        if (Mathf.Abs(delta.y) < deadZoneThreshold) delta.y = 0f;
+
+        if (delta != Vector2.zero)
+        {
+            targetYaw += delta.x * playerData.lookSensitivity;
+            targetPitch -= delta.y * playerData.lookSensitivity;
+            targetPitch = Mathf.Clamp(targetPitch, -80f, 80f);
         }
     }
 
@@ -71,6 +107,10 @@ public class PlayerController : MonoBehaviour
             joystick.Knob.anchoredPosition = Vector2.zero;
             joystick.gameObject.SetActive(false);
         }
+        else if (lostFinger == aimFinger)
+        {
+            aimFinger = null;
+        }
     }
 
     private Vector2 ClampStartPosition(Vector2 startPosition)
@@ -80,12 +120,21 @@ public class PlayerController : MonoBehaviour
         return startPosition;
     }
 
+    private bool IsTouchingLeftSide(Finger currentFinger)
+    {
+        return currentFinger.screenPosition.x <= Screen.width / 2f;
+    }
+
     private void Update()
     {
-        // Guardar input en el modelo
-        playerModel.currentMoveInput = movementAmount;
+        playerData.currentMoveInput = movementAmount;
+        playerView.Move(playerData.currentMoveInput, playerData.moveSpeed, playerView.cam.transform);
 
-        // Pasar el input a la vista (movimiento)
-        playerView.Move(playerModel.currentMoveInput, playerModel.moveSpeed);
+        // Actualizar valores internos suavizados
+        playerData.currentPitch = Mathf.Lerp(playerData.currentPitch, targetPitch, Time.deltaTime * rotationSmoothSpeed);
+        playerData.currentYaw = Mathf.LerpAngle(playerData.currentYaw, targetYaw, Time.deltaTime * rotationSmoothSpeed);
+
+        // Aplicar rotación final a la cámara
+        playerView.RotateCamera(playerData.currentYaw, playerData.currentPitch);
     }
 }
