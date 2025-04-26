@@ -1,4 +1,4 @@
-S — Single Responsibility Principle
+/*S — Single Responsibility Principle
 "Una clase debe tener una única razón para cambiar."
 Si cambia el sistema de movimiento o de animación, no afectan entre sí.
 
@@ -32,7 +32,7 @@ public class PlayerAnimator : MonoBehaviour
 }
 
 
-O — Open/Closed Principle
+/*O — Open/Closed Principle
 "El software debe estar abierto a extensión, pero cerrado a modificación."
 Si queremos agregar una nueva arma como "Lanzallamas", no modificamos Weapon, solo extendemos.
 
@@ -57,7 +57,7 @@ public class Bow : Weapon
     }
 }
 
-
+/*
 L — Liskov Substitution Principle
 "Una clase derivada debe poder reemplazar a su base sin errores."
 public class Player : MonoBehaviour
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         }
     }
 }
-
+/*
 No importa si el arma es Sword o Bow, siempre puede Attack() sin problemas.
 
 I — Interface Segregation Principle
@@ -111,7 +111,7 @@ public class Sword : MonoBehaviour, IUsable, IDroppable
     }
 }
 
-
+/*
 D — Dependency Inversion Principle
 "Las clases deben depender de abstracciones, no de clases concretas."
 Podemos cambiar el arma sin que Player conozca los detalles de Gun, Sword, etc.
@@ -146,3 +146,4 @@ public class Player : MonoBehaviour
         }
     }
 }
+*/
