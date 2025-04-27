@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Logo : MonoBehaviour
 {
-public Credits credits; 
+    public Credits credits;
 
-void AnimationFinished(){
+    void AnimationFinished()
+    {
 
-credits.AnimationFinished();
+        credits.AnimationFinished();
 
 
-}
-    
+    }
+
 }

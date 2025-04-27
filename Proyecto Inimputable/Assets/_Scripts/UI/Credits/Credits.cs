@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class Credits : MonoBehaviour
 {
-    public Animation animLogo;
+    public Animation animationComponent;
+    public AnimationClip animClipLogo;
     public MenuManager menuManager;
 
     
     void OnEnable()
     {
-        if (animLogo == null)
+        if (animationComponent == null)
         {
-            Debug.LogError("No se inicializo la variable animLogo");
             return;
         }
-        animLogo.Play();
-        
+        animationComponent.clip = animClipLogo;
+        animationComponent.Play();
     }
 
     public void AnimationFinished (){

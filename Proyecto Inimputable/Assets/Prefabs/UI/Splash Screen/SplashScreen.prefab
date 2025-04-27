@@ -274,15 +274,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8620034427098872944}
     m_Modifications:
+    - target: {fileID: 2100761992650249484, guid: 0ed49ef679ac0bf41b99ad845da3921a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3644736031477522510, guid: 0ed49ef679ac0bf41b99ad845da3921a,
         type: 3}
       propertyPath: animLogo
+      value: 
+      objectReference: {fileID: 7400000, guid: 3eb0a7953d8f6754cb6c2cf816528420, type: 2}
+    - target: {fileID: 3644736031477522510, guid: 0ed49ef679ac0bf41b99ad845da3921a,
+        type: 3}
+      propertyPath: animClipLogo
+      value: 
+      objectReference: {fileID: 7400000, guid: 3eb0a7953d8f6754cb6c2cf816528420, type: 2}
+    - target: {fileID: 3644736031477522510, guid: 0ed49ef679ac0bf41b99ad845da3921a,
+        type: 3}
+      propertyPath: animationComponent
       value: 
       objectReference: {fileID: 9201828948822769300}
     - target: {fileID: 4113677313396804483, guid: 0ed49ef679ac0bf41b99ad845da3921a,
         type: 3}
       propertyPath: m_Name
       value: Credits
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675795863650913556, guid: 0ed49ef679ac0bf41b99ad845da3921a,
+        type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7069547811668354269, guid: 0ed49ef679ac0bf41b99ad845da3921a,
         type: 3}

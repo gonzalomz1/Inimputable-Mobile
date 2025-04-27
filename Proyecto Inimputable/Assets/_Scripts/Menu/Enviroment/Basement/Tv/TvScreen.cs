@@ -6,10 +6,9 @@ using UnityEngine.Video;
 
 public class TvScreen : MonoBehaviour
 {
-
     public VideoPlayer videoPlayer;
-
     public Tv tv;
+
 
     void Start()
     {
@@ -21,15 +20,12 @@ public class TvScreen : MonoBehaviour
     void OnVideoEnd(VideoPlayer vp)
     {
         Debug.Log("¡El video ha terminado!");
-        
-    tv.OnVideoEnd();
-
+        tv.OnVideoEnd();
     }
     public void PlayVideo()
     {
         Debug.Log("REPRODUCIENDO VIDEO");
         videoPlayer.Play();
-
     }
- 
+
 }
