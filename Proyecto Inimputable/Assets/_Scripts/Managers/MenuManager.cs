@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public enum GameState { Credits, PlayingClip, Menu, Gameplay }
@@ -19,11 +22,17 @@ public class MenuManager : MonoBehaviour
 
    public MenuCamera menuCamera;
 
+   public List<TextPosition> textPositions;
+
+   public MenuScreen menuScreen;
+
 
    void Start()
    {
       currentState = GameState.Credits;
+      currentMenuState = MenuState.MainMenu;
       ManageState(currentState);
+      ManageMenuState(currentMenuState);
    }
 
    void ManageState(GameState current)
@@ -43,7 +52,30 @@ public class MenuManager : MonoBehaviour
             break;
       }
    }
+   void ManageMenuState(MenuState current)
+   {
+      if (currentState == GameState.Menu)
+      {
+         switch (current)
 
+         {
+            case MenuState.MainMenu:
+
+               break;
+
+         }
+      
+      }else{
+         SetCanvasState(menuScreen, false);
+
+
+      }
+
+   }
+   private void SetCanvasState(CustomCanvas screen, bool boolean){
+   screen.SetActiveCanvas(boolean);
+
+   }
    public void OnCreditsAnimationFinished()
    {
       Debug.Log("termino animacion del logo");
@@ -54,7 +86,17 @@ public class MenuManager : MonoBehaviour
    public void OnVideoEnd()
    {
       currentState = GameState.Menu;
-      currentMenuState = MenuState.MainMenu;
+      
       ManageState(currentState);
+   }
+   public void SelectTextPosition(int listPosition)
+   {
+      if (listPosition == 0)
+      {
+         textPositions[0].TransformPositionToCanvasPosition();
+      }
+
+
+
    }
 }

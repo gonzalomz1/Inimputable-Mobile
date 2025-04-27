@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SplashScreen : MonoBehaviour
+public class SplashScreen : CustomCanvas
 {
  public Credits credits;
 
  public Loading loading;
+
+ public override void SetActiveCanvas(bool isActive)
+    {
+        gameObject.SetActive(isActive); // Cambia la visibilidad del canvas
+    }
 
 public void EnableCredits (){
     if (credits == null){
