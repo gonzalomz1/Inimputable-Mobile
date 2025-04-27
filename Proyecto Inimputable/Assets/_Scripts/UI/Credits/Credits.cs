@@ -6,7 +6,7 @@ using UnityEngine;
 public class Credits : MonoBehaviour
 {
     public Animation animLogo;
-    public bool animFinish = false;
+    public MenuManager menuManager;
 
     
     void OnEnable()
@@ -20,9 +20,12 @@ public class Credits : MonoBehaviour
         
     }
 
-    void AnimationFinished (){
-        animFinish = true;
+    public void AnimationFinished (){
+    menuManager.OnCreditsAnimationFinished();
+
+
     }
+
 
 
 }

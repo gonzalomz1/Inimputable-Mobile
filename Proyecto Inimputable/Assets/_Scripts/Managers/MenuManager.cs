@@ -1,44 +1,82 @@
 using System;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 
-/*Mostrar el canvas de Splash Screen.
-Desabilitar LoadingScreen (gameobject)
-habilitar Credits (gameobject)
-Darle inicio a la animacion de credito.
-Al terminar la animacion de credito:
-Escondemos el canvas de Splash Screen
-Desabilitamos Credits
-Comenzamos el clip del inimputable
-*/
-public enum GameState { Credits, PlayingClip, Menu, Gameplay} 
+
+public enum GameState { Credits, PlayingClip, Menu, Gameplay }
+
+public enum MenuState{ MainMenu, Credits, Options, Exit, Play}
 public class MenuManager : MonoBehaviour
 {
-public SplashScreen splashScreen;
+   public SplashScreen splashScreen;
 
-public GameState currentState;
+   public GameState currentState;
 
-void Start (){
-   currentState = GameState.Credits;
-   ManageState (currentState);
-}
-void ManageState (GameState current){
-   switch (current){
-      case GameState.Credits:
-       
-      
-   splashScreen.gameObject.SetActive(true);
-   splashScreen.DisableLoading(); 
+   public MenuState currentMenuState;
+
+   public Basement basement;
    
-   splashScreen.EnableCredits();
+   public MenuCamera menuCamera;
 
-      
-      
-   
-      // al terminar la animacion de creditos desabilitar todo lo que tenga que ver con splash screen
-      // cambiar el estado del juego a playinclip 
-         break;
+
+
+
+   void Start()
+   {
+      currentState = GameState.Credits;
+      ManageState(currentState);
+
+      currentMenuState = MenuState.MainMenu;
+
    }
-}
+   void ManageState(GameState current)
+   {
+      switch (current)
+      {
+         case GameState.Credits:
+         
 
+
+            splashScreen.gameObject.SetActive(true);
+            splashScreen.DisableLoading();
+
+            splashScreen.EnableCredits();
+
+            break;
+        
+         case GameState.PlayingClip:
+        basement.tv.tvScreen.PlayVideo();
+
+        
+         break;
+
+         case GameState.Menu:
+         menuCamera.MainMenuAngle();
+         
+
+         break; 
+
+
+      }
+   }
+   public void OnCreditsAnimationFinished()
+   {
+      Debug.Log("termino animacion");
+
+      splashScreen.gameObject.SetActive(false);
+
+      currentState = GameState.PlayingClip;
+      ManageState(currentState);
+
+
+   }
+    public void OnVideoEnd(){
+
+      currentState = GameState.Menu;
+      ManageState(currentState);
+   
+
+    
+}
 }
