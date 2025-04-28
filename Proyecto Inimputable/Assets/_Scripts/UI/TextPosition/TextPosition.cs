@@ -19,12 +19,12 @@ public class TextPosition : MonoBehaviour
 
         }
     }
-    public void TransformPositionToCanvasPosition()
+    public Vector2 TransformPositionToCanvasPosition()
     {
 
         Vector3 worldPos = this.transform.position; // La posición 3D en el mundo
         Vector3 screenPos = cameraComponent.WorldToScreenPoint(worldPos); // Convierte a pantalla
-        Debug.Log(screenPos);
+        return screenPos;
 
         /*Vector2 canvasPos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
