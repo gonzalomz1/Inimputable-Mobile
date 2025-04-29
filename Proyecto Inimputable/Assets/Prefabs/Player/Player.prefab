@@ -347,8 +347,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8478518633110533084}
-  - component: {fileID: 6559038644006775235}
   - component: {fileID: 322770469789806280}
+  - component: {fileID: 6602153719186943947}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -371,7 +371,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5340965683215998768}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &6559038644006775235
+--- !u!114 &322770469789806280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8081708864662529074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab62fc5c5b65fb14ca7d943020d77472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzleFlashLight: {fileID: 0}
+  flashDuration: 0.05
+--- !u!108 &6602153719186943947
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -382,8 +396,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.99607843, g: 0.99607843, b: 0.99607843, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -433,17 +447,3 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &322770469789806280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8081708864662529074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab62fc5c5b65fb14ca7d943020d77472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  muzzleFlashLight: {fileID: 6559038644006775235}
-  flashDuration: 0.05

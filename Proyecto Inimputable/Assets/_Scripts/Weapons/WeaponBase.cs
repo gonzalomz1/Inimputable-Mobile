@@ -1,35 +1,47 @@
+using Unity.VisualScripting;
 using UnityEngine;
+
+
+/// <summary>
+/// Cada arma debe tener:
+/// - Su version en canvas visual
+/// - Su almacenamiento de datos en esa version del canvas
+/// -- el jugador tendra un componente de luz para simular el fogonaso.
+/// -- este componente recibira datos como que arma es actualmente, y la posicion desde donde debe "salir"
+/// - Su "version" para enemigo
+///     Los enemigos tambien tendran armas con datos, aunque realmente sin valor agregado como tipo
+///     sencillamente deben tambien tener armas ya que la base de todas las armas tendra un componente de luz para el fogonaso
+/// - Maquina de estados segun esta "disparando" - "recargando"
+/// - Version en el suelo
+/// </summary>
+
+
 
 public interface IWeapon
 {
-    void Fire();
-    void Reload();
-    bool CanFire { get; }
+    public void Fire();
+    public void Reload();
+
 }
 
 public interface IVisualWeapon
 {
-
-    void PlayMuzzleFlash();
-    void UpdateUI(Sprite weaponSprite);
+    public bool IsPlayer(Player player);
 
 }
 public abstract class WeaponBase : IWeapon
 {
-    protected float fireRate;
-    protected int maxAmmo;
-    protected int currentAmmo;
-    protected float lastFireTime;
 
-    public virtual bool CanFire => Time.time >= lastFireTime + fireRate && currentAmmo > 0;
+    public void Fire()
+    {
 
-    public virtual void Fire(){
-        if (!CanFire) return;
-        lastFireTime = Time.time;
-        currentAmmo--;
-        Shoot();
     }
 
-    public abstract void Shoot();
-    public abstract void Reload();
+    public void Reload()
+    {
+
+
+    }
+
+
 }

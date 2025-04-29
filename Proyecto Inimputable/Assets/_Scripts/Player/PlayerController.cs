@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Player
 {
     [SerializeField] private Vector2 joystickSize = new Vector2(300, 300);
     [SerializeField] private FloatingJoystick joystick;
@@ -48,12 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         if (movementFinger == null && IsTouchingLeftSide(touchedFinger))
         {
-            movementFinger = touchedFinger;
-            movementAmount = Vector2.zero;
-
-            joystick.gameObject.SetActive(true);
-            joystick.RectTransform.sizeDelta = joystickSize;
-            joystick.RectTransform.anchoredPosition = ClampStartPosition(touchedFinger.screenPosition);
+            FingerDownIsMovementFinger(touchedFinger);
         }
         else if (aimFinger == null && !IsTouchingLeftSide(touchedFinger))
         {
@@ -65,10 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         if (movedFinger == movementFinger)
         {
-            float maxMovement = joystickSize.x / 2f;
-            Vector2 difference = movedFinger.currentTouch.screenPosition - joystick.RectTransform.anchoredPosition;
-            movementAmount = Vector2.ClampMagnitude(difference / maxMovement, 1f);
-            joystick.Knob.anchoredPosition = movementAmount * maxMovement;
+            MovementLogic(movedFinger);
         }
         else if (movedFinger == aimFinger)
         {
@@ -76,9 +68,48 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
-                AimWithFinger(movedFinger);
+            AimWithFinger(movedFinger);
         }
     }
+
+    private void HandleLoseFinger(Finger lostFinger)
+    {
+        if (lostFinger == movementFinger)
+        {
+            movementFinger = null;
+            movementAmount = Vector2.zero;
+            joystick.Knob.anchoredPosition = Vector2.zero;
+            joystick.gameObject.SetActive(false);
+        }
+        else if (lostFinger == aimFinger)
+        {
+            aimFinger = null;
+        }
+    }
+
+
+    public void FingerDownIsMovementFinger(Finger touchedFinger)
+    {
+        movementFinger = touchedFinger;
+        movementAmount = Vector2.zero;
+        joystickVisualLogic(touchedFinger);
+    }
+
+    public void joystickVisualLogic(Finger movementFinger)
+    {
+        joystick.gameObject.SetActive(true);
+        joystick.RectTransform.sizeDelta = joystickSize;
+        joystick.RectTransform.anchoredPosition = ClampStartPosition(movementFinger.screenPosition);
+    }
+
+    public void MovementLogic(Finger movedFinger)
+    {
+        float maxMovement = joystickSize.x / 2f;
+        Vector2 difference = movedFinger.currentTouch.screenPosition - joystick.RectTransform.anchoredPosition;
+        movementAmount = Vector2.ClampMagnitude(difference / maxMovement, 1f);
+        joystick.Knob.anchoredPosition = movementAmount * maxMovement;
+    }
+
 
     private void AimWithFinger(Finger movedFinger)
     {
@@ -95,21 +126,6 @@ public class PlayerController : MonoBehaviour
             targetYaw += delta.x * playerData.lookSensitivity;
             targetPitch -= delta.y * playerData.lookSensitivity;
             targetPitch = Mathf.Clamp(targetPitch, -80f, 80f);
-        }
-    }
-
-    private void HandleLoseFinger(Finger lostFinger)
-    {
-        if (lostFinger == movementFinger)
-        {
-            movementFinger = null;
-            movementAmount = Vector2.zero;
-            joystick.Knob.anchoredPosition = Vector2.zero;
-            joystick.gameObject.SetActive(false);
-        }
-        else if (lostFinger == aimFinger)
-        {
-            aimFinger = null;
         }
     }
 

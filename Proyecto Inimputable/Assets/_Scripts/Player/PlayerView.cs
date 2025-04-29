@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerView : MonoBehaviour
+public class PlayerView : Player
 {
     public Rigidbody player;
     public Transform cameraPivot;
