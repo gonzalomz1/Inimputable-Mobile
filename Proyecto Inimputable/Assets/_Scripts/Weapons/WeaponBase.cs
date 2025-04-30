@@ -24,12 +24,7 @@ public interface IWeapon
 
 }
 
-public interface IVisualWeapon
-{
-    public bool IsPlayer(Player player);
-
-}
-public abstract class WeaponBase : IWeapon
+public abstract class WeaponBase : ScriptableObject, IWeapon
 {
 
     public void Fire()

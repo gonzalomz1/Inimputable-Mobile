@@ -6,6 +6,7 @@ public class PlayerView : Player
     public Rigidbody player;
     public Transform cameraPivot;
     public Transform cam;
+    public Light muzzleFlash;
 
     void Awake()
     {

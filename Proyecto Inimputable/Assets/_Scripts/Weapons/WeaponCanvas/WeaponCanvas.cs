@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class WeaponCanvas : CustomCanvas
 {
-    /*
-    Necesitamos referencia al jugador
-    necesitamos datos de las armas
-
-    necesitamos objetos que referencien a las armas,
-    estos objetos viviran en el canvas 
-
-    
-    
-
-    */
+    // Representa la parte visual del arma
    public override void SetActiveCanvas(bool isActive){
 
    }
+   
 }
