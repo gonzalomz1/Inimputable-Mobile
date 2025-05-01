@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 3580276877223024558}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,6 +320,7 @@ MonoBehaviour:
   player: {fileID: 2207369697536394543}
   cameraPivot: {fileID: 6468754305405227472}
   cam: {fileID: 1525988118108738103}
+  muzzleFlash: {fileID: 0}
 --- !u!114 &3580276877223024558
 MonoBehaviour:
   m_ObjectHideFlags: 0
