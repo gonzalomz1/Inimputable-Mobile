@@ -22,6 +22,8 @@ public class MenuManager : MonoBehaviour
 
    public MenuScreen menuScreen;
 
+   
+
 
    void Start()
    {
@@ -56,6 +58,10 @@ public class MenuManager : MonoBehaviour
 
          {
             case MenuState.MainMenu:
+               /*acomodar los textos */
+               //habiliar el touch 
+
+               SetCanvasState(menuScreen, true);
 
                break;
 
@@ -85,12 +91,40 @@ public class MenuManager : MonoBehaviour
 
       ManageState(currentState);
    }
-   public void SelectTextPosition(int listPosition)
+   public Vector2 SelectTextPosition(int listPosition)
    {
+      Vector2 pos;
       if (listPosition == 0)
       {
-         Vector2 pos = textPositions[0].TransformPositionToCanvasPosition();
+         pos = textPositions[0].TransformPositionToCanvasPosition();
+         return pos;
       }
+      if (listPosition == 1)
+      {
+         pos = textPositions[1].TransformPositionToCanvasPosition();
+         return pos;
+      }
+      if (listPosition == 2)
+      {
+         pos = textPositions[2].TransformPositionToCanvasPosition();
+         return pos;
+      }
+      if (listPosition == 3)
+      {
+         pos = textPositions[3].TransformPositionToCanvasPosition();
+         return pos;
+      }
+      return Vector2.zero;
 
+   }
+   public void SetMainMenuTexts(){
+      List<Vector2>positions= new List<Vector2>();
+    positions.Add(SelectTextPosition(0));// posicion de play
+    positions.Add(SelectTextPosition(1));// posicion de option
+    positions.Add(SelectTextPosition(2));// posicion de credit
+    positions.Add(SelectTextPosition(3));// posicion de exit
+   
+   menuScreen.SetTextMeshTransform(positions);
+   
    }
 }

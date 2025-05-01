@@ -29,8 +29,9 @@ public class MenuCamera : MonoBehaviour
   }
 public void OnAnimationFinished(AnimationClip clip){
   if (clip == mainMenuClip){
-  menuManager.SelectTextPosition(0);
+    menuManager.SetMainMenuTexts() ;
   }
+
 
 
 }
