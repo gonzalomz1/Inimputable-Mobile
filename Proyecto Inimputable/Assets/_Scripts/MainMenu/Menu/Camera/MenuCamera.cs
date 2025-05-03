@@ -27,8 +27,8 @@ public class MenuCamera : MonoBehaviour
       animationComponent.enabled = true;
       animationComponent.Play();
   }
-public void OnAnimationFinished(AnimationClip clip){
-  if (clip == mainMenuClip){
+public void OnAnimationFinished(string nameOfClip){
+  if (nameOfClip == "MainMenu"){
     menuManager.SetMainMenuTexts() ;
   }
 

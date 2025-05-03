@@ -1100,7 +1100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4712183917527629097}
   - component: {fileID: 1346215057675363180}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NewsPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2585,7 +2585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7544440477607428907}
   - component: {fileID: 5191859412328293371}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3496,6 +3496,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TextPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056389878741874937, guid: 1a17bf8311321534fb104a37bdc6224c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

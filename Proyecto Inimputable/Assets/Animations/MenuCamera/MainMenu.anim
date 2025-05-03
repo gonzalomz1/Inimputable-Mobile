@@ -4547,7 +4547,7 @@ AnimationClip:
   m_Events:
   - time: 2.0166667
     functionName: OnAnimationFinished
-    data: 
+    data: MainMenu
     objectReferenceParameter: {fileID: 7400000}
     floatParameter: 0
     intParameter: 0

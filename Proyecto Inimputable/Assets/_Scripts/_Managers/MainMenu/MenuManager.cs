@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.UI;
+using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 
 public enum GameState { Credits, PlayingClip, Menu, Gameplay }
-public enum MenuState { MainMenu, Credits, Options, Exit, Play }
+public enum MenuState { Disable, MainMenu, Credits, Options, Exit, Play }
 
 public class MenuManager : MonoBehaviour
 {
@@ -21,14 +25,15 @@ public class MenuManager : MonoBehaviour
    public List<TextPosition> textPositions;
 
    public MenuScreen menuScreen;
+   public GraphicRaycaster raycaster;
+   public EventSystem eventSystem;
 
-   
-
+   private Finger menuFinger;
 
    void Start()
    {
       currentState = GameState.Credits;
-      currentMenuState = MenuState.MainMenu;
+      currentMenuState = MenuState.Disable;
       ManageState(currentState);
       ManageMenuState(currentMenuState);
    }
@@ -52,28 +57,18 @@ public class MenuManager : MonoBehaviour
    }
    void ManageMenuState(MenuState current)
    {
-      if (currentState == GameState.Menu)
+      switch (current)
       {
-         switch (current)
-
-         {
-            case MenuState.MainMenu:
-               /*acomodar los textos */
-               //habiliar el touch 
-
-               SetCanvasState(menuScreen, true);
-
-               break;
-
-         }
-
+         case MenuState.Disable:
+            SetCanvasState(menuScreen, false);
+            break;
+         case MenuState.MainMenu:
+            EnableInput();
+            SetCanvasState(menuScreen, true);
+            break;
       }
-      else
-      {
-         SetCanvasState(menuScreen, false);
-      }
-
    }
+
    private void SetCanvasState(CustomCanvas screen, bool boolean)
    {
       screen.SetActiveCanvas(boolean);
@@ -117,14 +112,57 @@ public class MenuManager : MonoBehaviour
       return Vector2.zero;
 
    }
-   public void SetMainMenuTexts(){
-      List<Vector2>positions= new List<Vector2>();
-    positions.Add(SelectTextPosition(0));// posicion de play
-    positions.Add(SelectTextPosition(1));// posicion de option
-    positions.Add(SelectTextPosition(2));// posicion de credit
-    positions.Add(SelectTextPosition(3));// posicion de exit
-   
-   menuScreen.SetTextMeshTransform(positions);
-   
+   public void SetMainMenuTexts()
+   {
+      List<Vector2> positions = new List<Vector2>();
+      Vector2 p1 = SelectTextPosition(0);
+      Vector2 p2 = SelectTextPosition(1);
+      Vector2 p3 = SelectTextPosition(2);
+      Vector2 p4 = SelectTextPosition(3);
+      positions.Add(p1);// posicion de play
+      positions.Add(p2);// posicion de option
+      positions.Add(p3);// posicion de credit
+      positions.Add(p4);// posicion de exit
+      menuScreen.SetTextMeshTransform(positions);
+   }
+
+   public void AfterTextPositionSet()
+   {
+      currentMenuState = MenuState.MainMenu;
+      ManageMenuState(currentMenuState);
+   }
+
+   void EnableInput()
+   {
+      ETouch.EnhancedTouchSupport.Enable();
+      ETouch.Touch.onFingerDown += HandleFingerDown;
+   }
+
+   void DisableInput()
+   {
+      ETouch.Touch.onFingerDown -= HandleFingerDown;
+      ETouch.EnhancedTouchSupport.Disable();
+   }
+
+   void HandleFingerDown(Finger finger)
+   {
+      Vector2 touchPos = finger.screenPosition;
+      PointerEventData pointerEventData = new PointerEventData(eventSystem);
+      pointerEventData.position = touchPos;
+
+      var results = new System.Collections.Generic.List<RaycastResult>();
+      raycaster.Raycast(pointerEventData, results);
+
+      foreach (var result in results)
+      {
+         Button button = result.gameObject.GetComponent<Button>();
+         if (button != null)
+         {
+            Debug.Log("Botón tocado: " + button.name);
+            button.onClick.Invoke(); // Simula el click
+            break;
+         }
+
+      }
    }
 }
