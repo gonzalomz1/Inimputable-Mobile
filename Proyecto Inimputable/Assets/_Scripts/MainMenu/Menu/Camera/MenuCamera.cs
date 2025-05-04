@@ -6,6 +6,7 @@ using UnityEngine;
 public class MenuCamera : MonoBehaviour
 {
   public AnimationClip mainMenuClip;
+  public AnimationClip CreditsClip;
   public Animation animationComponent;
   public MenuManager menuManager;
 
