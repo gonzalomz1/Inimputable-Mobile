@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WeaponCanvas : CustomCanvas
 {
-
     public override void SetActiveCanvas(bool isActive)
     {
         gameObject.SetActive(isActive);

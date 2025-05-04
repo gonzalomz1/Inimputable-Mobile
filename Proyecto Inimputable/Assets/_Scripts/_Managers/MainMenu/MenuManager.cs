@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
-
 public enum GameState { Credits, PlayingClip, Menu, Gameplay }
 public enum MenuState { Disable, MainMenu, Credits, Options, Exit, Play }
 

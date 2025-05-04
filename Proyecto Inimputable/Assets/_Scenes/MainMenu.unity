@@ -387,6 +387,11 @@ PrefabInstance:
       propertyPath: menuManager
       value: 
       objectReference: {fileID: 2110793039}
+    - target: {fileID: 603969779286308867, guid: 5dc43977f1005b141af2d917b1e7114d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2236996025366256291, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -403,6 +408,11 @@ PrefabInstance:
       value: SplashScreen
       objectReference: {fileID: 0}
     - target: {fileID: 4930687855795415564, guid: 5dc43977f1005b141af2d917b1e7114d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562861986566583744, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -64,6 +64,7 @@ public class CanvasManager : GameplayCanvas
     {
         DisableEverything();
         EnableMovAndAimCanvas();
+        EnableWeaponCanvas();
         StartInput();
         StartDefaultUI();
         EnableActionCanvas();
@@ -91,6 +92,12 @@ public class CanvasManager : GameplayCanvas
     {
         movAndAimCanvas.gameObject.SetActive(true);
     }
+
+    void EnableWeaponCanvas()
+    {
+        weaponCanvas.gameObject.SetActive(true);
+    }
+
 
     void StartDefaultUI()
     {
