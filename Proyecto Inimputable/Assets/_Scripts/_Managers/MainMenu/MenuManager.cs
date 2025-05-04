@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -64,8 +65,30 @@ public class MenuManager : MonoBehaviour
          case MenuState.MainMenu:
             EnableInput();
             SetCanvasState(menuScreen, true);
+            menuScreen.SetGameObject(menuScreen.credits, false);
+            menuScreen.SetGameObject(menuScreen.options, false);
+            menuScreen.SetGameObject(menuScreen.mainMenu, true);
+            
+            
+            
             break;
+         case MenuState.Credits:
+            menuScreen.SetGameObject(menuScreen.credits, true);
+            menuScreen.SetGameObject(menuScreen.mainMenu,false);
+            
+           break;
+           case MenuState.Options:
+            menuScreen.SetGameObject(menuScreen.options, true);
+            menuScreen.SetGameObject(menuScreen.mainMenu, false);
+           break;
+           
+          case MenuState.Exit:
+            menuScreen.SetGameObject(menuScreen.exit, true);
+            menuScreen.SetGameObject(menuScreen.mainMenu, false);
+           break;
+
       }
+
    }
 
    private void SetCanvasState(CustomCanvas screen, bool boolean)

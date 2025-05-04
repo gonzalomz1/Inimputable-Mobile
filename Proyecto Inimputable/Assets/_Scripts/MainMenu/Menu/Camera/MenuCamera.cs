@@ -6,7 +6,7 @@ using UnityEngine;
 public class MenuCamera : MonoBehaviour
 {
   public AnimationClip mainMenuClip;
-  public AnimationClip CreditsClip;
+  public AnimationClip creditsClip;
   public Animation animationComponent;
   public MenuManager menuManager;
 
@@ -15,7 +15,7 @@ public class MenuCamera : MonoBehaviour
     if (animationComponent == null) animationComponent = GetComponent<Animation>();
     animationComponent.enabled = false;
     animationComponent.clip = null;
-    
+
   }
 
   public void MainMenuAngle()
@@ -31,13 +31,30 @@ public class MenuCamera : MonoBehaviour
 public void OnAnimationFinished(string nameOfClip){
   if (nameOfClip == "MainMenu"){
     menuManager.SetMainMenuTexts() ;
+
+  }
+   if (nameOfClip == "Credits"){
+    menuManager.SetMainMenuTexts() ;
+    
   }
 
-
+  
+}
+ public void CreditsClip()
+  {
+    PlayAnimation(creditsClip);
+  }
+  
 
 }
 
-}
+
+
+
+
+
+
+
 
 
 
