@@ -1,16 +1,14 @@
-using System.Text.RegularExpressions;
 using UnityEngine;
 
 enum GameFlowState { Loading, Active, Dead }
 public class GameFlowManager : MonoBehaviour
 {
    [SerializeField] private CanvasManager canvasManager;
-   [SerializeField] private WeaponManager weaponManager;
    [SerializeField] private EnemiesManager enemiesManager;
 
    GameFlowState currentState;
 
-   void Start()
+   void Start() 
    {
       currentState = GameFlowState.Active; //hardcoreado a active para testear inputs del player
       ManageState(currentState);

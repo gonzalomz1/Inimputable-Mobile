@@ -67,7 +67,7 @@ public class MovAndAimCanvas : GameplayCanvas, IInputCanvas
             
         if (movementFinger == null && IsTouchingLeftSide(touchedFinger))
         {
-            if (canvasManager.TryRegisterFinger(touchedFinger, CanvasManager.FingerRole.Movement))
+            if (canvasManager.TryRegisterFinger(touchedFinger, FingerRole.Move))
             {
                 movementFinger = touchedFinger;
                 movementAmount = Vector2.zero;
@@ -76,7 +76,7 @@ public class MovAndAimCanvas : GameplayCanvas, IInputCanvas
         }
         else if (aimFinger == null && !IsTouchingLeftSide(touchedFinger))
         {
-            if (canvasManager.TryRegisterFinger(touchedFinger, CanvasManager.FingerRole.Aim))
+            if (canvasManager.TryRegisterFinger(touchedFinger, FingerRole.Aim))
             {
                 aimFinger = touchedFinger;
             }

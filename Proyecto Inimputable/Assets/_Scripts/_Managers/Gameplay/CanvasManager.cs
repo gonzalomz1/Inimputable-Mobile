@@ -8,15 +8,6 @@ public class CanvasManager : GameplayCanvas
     [SerializeField] private MovAndAimCanvas movAndAimCanvas;
     [SerializeField] private UICanvas uICanvas;
     [SerializeField] private ActionCanvas actionCanvas;
-    [SerializeField] private WeaponCanvas weaponCanvas;
-
-    public enum FingerRole
-    {
-        Movement,
-        Aim,
-        Action,
-        Weapon
-    }
     
     private Dictionary<Finger, FingerRole> activeFingers = new Dictionary<Finger, FingerRole>();
 
@@ -26,7 +17,6 @@ public class CanvasManager : GameplayCanvas
         if (!movAndAimCanvas) GetComponent<MovAndAimCanvas>();
         if (!uICanvas) GetComponent<UICanvas>();
         if (!actionCanvas) GetComponent<ActionCanvas>();
-        if (!weaponCanvas) GetComponent<WeaponCanvas>();
     }
 
     public override void SetActiveCanvas(bool isActive)
@@ -64,7 +54,6 @@ public class CanvasManager : GameplayCanvas
     {
         DisableEverything();
         EnableMovAndAimCanvas();
-        EnableWeaponCanvas();
         StartInput();
         StartDefaultUI();
         EnableActionCanvas();
@@ -75,7 +64,6 @@ public class CanvasManager : GameplayCanvas
         movAndAimCanvas.gameObject.SetActive(false);
         uICanvas.gameObject.SetActive(false);
         actionCanvas.gameObject.SetActive(false);
-        weaponCanvas.gameObject.SetActive(false);
     }
 
     public void StartInput()
@@ -92,12 +80,6 @@ public class CanvasManager : GameplayCanvas
     {
         movAndAimCanvas.gameObject.SetActive(true);
     }
-
-    void EnableWeaponCanvas()
-    {
-        weaponCanvas.gameObject.SetActive(true);
-    }
-
 
     void StartDefaultUI()
     {
