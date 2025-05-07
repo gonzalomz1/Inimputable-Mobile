@@ -1,35 +1,52 @@
 using UnityEngine;
 
-enum GameFlowState { Loading, Active, Dead }
 public class GameFlowManager : MonoBehaviour
 {
+   public static GameFlowManager Instance { get; private set; }
+
    [SerializeField] private CanvasManager canvasManager;
-   [SerializeField] private EnemiesManager enemiesManager;
 
-   GameFlowState currentState;
+   public GameFlowState currentState;
 
-   void Start() 
+   private void Awake()
    {
-      currentState = GameFlowState.Active; //hardcoreado a active para testear inputs del player
-      ManageState(currentState);
+      if (Instance != null && Instance != this)
+      {
+         Destroy(gameObject);
+         return;
+      }
+      Instance = this;
    }
 
-   void ManageState(GameFlowState state){
-      switch (state)
+   private void Start()
+   {
+      SetGameState(GameFlowState.Gameplay); // temporal for TEST_Room
+   }
+
+   public void SetGameState(GameFlowState newState)
+   {
+      if (currentState == newState) return;
+
+      currentState = newState;
+      
+      switch (newState)
       {
          case GameFlowState.Loading:
-         break;
-         case GameFlowState.Active:
-            StartGameplay();
-         break;
-         case GameFlowState.Dead:
-         break;
+            canvasManager.DisableInput();
+            break;
+         case GameFlowState.Gameplay:
+            canvasManager.EnableInput();
+            break;
+         case GameFlowState.Paused:
+         case GameFlowState.Cinematic:
+         case GameFlowState.GameOver:
+            canvasManager.DisableInput();
+            break;
       }
+
+      Debug.Log("Game state changed to: " + newState);
    }
 
-   void StartGameplay()
-   {
-      canvasManager.StartGameplay();
-   }
+   public GameFlowState GetCurrentState() => currentState;
 
 }

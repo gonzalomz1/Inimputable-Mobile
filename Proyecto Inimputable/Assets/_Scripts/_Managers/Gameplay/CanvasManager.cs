@@ -3,92 +3,68 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
-public class CanvasManager : GameplayCanvas
+public class CanvasManager : MonoBehaviour
 {
+    [Header("Gameplay Canvases")]
     [SerializeField] private MovAndAimCanvas movAndAimCanvas;
     [SerializeField] private UICanvas uICanvas;
     [SerializeField] private ActionCanvas actionCanvas;
-    
-    private Dictionary<Finger, FingerRole> activeFingers = new Dictionary<Finger, FingerRole>();
 
+    private Dictionary<int, FingerRole> fingerRoles = new Dictionary<int, FingerRole>();
 
-    void Awake()
+    public void EnableInput()
     {
-        if (!movAndAimCanvas) GetComponent<MovAndAimCanvas>();
-        if (!uICanvas) GetComponent<UICanvas>();
-        if (!actionCanvas) GetComponent<ActionCanvas>();
+        ETouch.EnhancedTouchSupport.Enable();
+        ETouch.Touch.onFingerDown += HandleFingerDown;
+        ETouch.Touch.onFingerMove += HandleFingerMove;
+        ETouch.Touch.onFingerUp += HandleFingerUp;
     }
 
-    public override void SetActiveCanvas(bool isActive)
+    public void DisableInput()
     {
-        gameObject.SetActive(isActive);
+        ETouch.Touch.onFingerDown -= HandleFingerDown;
+        ETouch.Touch.onFingerMove -= HandleFingerMove;
+        ETouch.Touch.onFingerUp -= HandleFingerUp;
+        ETouch.EnhancedTouchSupport.Disable();
     }
 
-    public bool TryRegisterFinger(Finger finger, FingerRole role)
+    void HandleFingerDown(Finger finger)
     {
-        if (activeFingers.ContainsKey(finger))
-            return false; // Ya está siendo usado
+        // First detect if try to touch an action button
+        if (actionCanvas.HandleTouch(finger, out FingerRole role))
+        {
+            fingerRoles[finger.index] = role;
+            Debug.Log($"Finger {finger.index} asignado a {role}");
+            return;
+        }
 
-        activeFingers.Add(finger, role);
-        return true;
+        // Then try with move and aim
+        if (movAndAimCanvas.HandleTouch(finger, out role))
+        {
+            fingerRoles[finger.index] = role;
+            Debug.Log($"Finger {finger.index} asignado a {role}");
+            return;
+        }
+
+        // If not action neither move and aim
+        fingerRoles[finger.index] = FingerRole.None;
     }
 
-    public void UnregisterFinger(Finger finger)
+    private void HandleFingerMove(Finger finger)
     {
-        if (activeFingers.ContainsKey(finger))
-            activeFingers.Remove(finger);
+        if (!fingerRoles.TryGetValue(finger.index, out var role)) return;
+
+        if (role == FingerRole.Move || role == FingerRole.Aim)
+        {
+            movAndAimCanvas.HandleFingerMove(finger);
+        }
     }
 
-    public bool IsFingerInUse(Finger finger)
+    void HandleFingerUp(Finger finger)
     {
-        return activeFingers.ContainsKey(finger);
+        if (fingerRoles.ContainsKey(finger.index))
+        {
+            fingerRoles.Remove(finger.index);
+        }
     }
-
-    public bool IsRoleActive(FingerRole role)
-    {
-        return activeFingers.ContainsValue(role);
-    }
-
-
-    public void StartGameplay()
-    {
-        DisableEverything();
-        EnableMovAndAimCanvas();
-        StartInput();
-        StartDefaultUI();
-        EnableActionCanvas();
-    }
-
-    void DisableEverything()
-    {
-        movAndAimCanvas.gameObject.SetActive(false);
-        uICanvas.gameObject.SetActive(false);
-        actionCanvas.gameObject.SetActive(false);
-    }
-
-    public void StartInput()
-    {
-        movAndAimCanvas.EnableInput();
-    }
-
-    public void TurnOffInput()
-    {
-        movAndAimCanvas.DisableInput();
-    }
-
-    void EnableMovAndAimCanvas()
-    {
-        movAndAimCanvas.gameObject.SetActive(true);
-    }
-
-    void StartDefaultUI()
-    {
-
-    }
-
-    void EnableActionCanvas()
-    {
-        actionCanvas.gameObject.SetActive(true);
-    }
-
 }

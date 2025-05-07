@@ -2,10 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
-public class MovAndAimCanvas : GameplayCanvas, IInputCanvas
+public class MovAndAimCanvas : GameplayCanvas
 {
     [SerializeField] private Vector2 joystickSize = new Vector2(300, 300);
-    [SerializeField] private CanvasManager canvasManager;
     [SerializeField] private FloatingJoystick joystick;
     [SerializeField] private PlayerView playerView;
     [SerializeField] private PlayerData playerData;
@@ -16,6 +15,7 @@ public class MovAndAimCanvas : GameplayCanvas, IInputCanvas
 
     [SerializeField] private float deadZoneThreshold = 5f;
     [SerializeField] private float rotationSmoothSpeed = 10f;
+
 
     private float targetYaw;
     private float targetPitch;
@@ -32,115 +32,83 @@ public class MovAndAimCanvas : GameplayCanvas, IInputCanvas
         gameObject.SetActive(isActive);
     }
 
-
-    public void EnableInput()
+    public bool HandleTouch(Finger finger, out FingerRole role)
     {
-        EnhancedTouchSupport.Enable();
-        ETouch.Touch.onFingerDown += HandleFingerDown;
-        ETouch.Touch.onFingerUp += HandleLoseFinger;
-        ETouch.Touch.onFingerMove += HandleFingerMove;
-    }
-    public void DisableInput()
-    {
-        ETouch.Touch.onFingerDown -= HandleFingerDown;
-        ETouch.Touch.onFingerUp -= HandleLoseFinger;
-        ETouch.Touch.onFingerMove -= HandleFingerMove;
-        EnhancedTouchSupport.Disable();
-
-        if (movementFinger != null)
+        role = FingerRole.None;
+        if (IsTouchingLeftSide(finger) && movementFinger == null)
         {
-            canvasManager.UnregisterFinger(movementFinger);
-            movementFinger = null;
+            movementFinger = finger;
+            movementAmount = Vector2.zero;
+            joystickVisualLogic(finger);
+            role = FingerRole.Move;
+            return true;
         }
-
-        if (aimFinger != null)
+        else if (!IsTouchingLeftSide(finger) && aimFinger == null)
         {
-            canvasManager.UnregisterFinger(aimFinger);
-            aimFinger = null;
+            aimFinger = finger;
+            role = FingerRole.Aim;
+            return true;
         }
+        return false;
     }
 
-    private void HandleFingerDown(Finger touchedFinger)
+    public void HandleFingerMove(Finger finger)
+{
+    if (finger == movementFinger)
     {
-
-        if (canvasManager.IsFingerInUse(touchedFinger)) return;
-            
-        if (movementFinger == null && IsTouchingLeftSide(touchedFinger))
-        {
-            if (canvasManager.TryRegisterFinger(touchedFinger, FingerRole.Move))
-            {
-                movementFinger = touchedFinger;
-                movementAmount = Vector2.zero;
-                joystickVisualLogic(touchedFinger);
-            }
-        }
-        else if (aimFinger == null && !IsTouchingLeftSide(touchedFinger))
-        {
-            if (canvasManager.TryRegisterFinger(touchedFinger, FingerRole.Aim))
-            {
-                aimFinger = touchedFinger;
-            }
-        }
+        MovementLogic(finger);
     }
-
-
-    private void HandleFingerMove(Finger movedFinger)
+    else if (finger == aimFinger)
     {
-        if (movedFinger == movementFinger)
-        {
-            MovementLogic(movedFinger);
-        }
-        else if (movedFinger == aimFinger)
-        {
-            if (IsTouchingLeftSide(movedFinger)) return;
-            AimWithFinger(movedFinger);
-        }
+        AimWithFinger(finger);
     }
+}
 
-        private void HandleLoseFinger(Finger lostFinger)
+    public void HandleFingerUp(Finger finger)
     {
-        if (lostFinger == movementFinger)
+        if (finger == movementFinger)
         {
-            canvasManager.UnregisterFinger(movementFinger);
             movementFinger = null;
             movementAmount = Vector2.zero;
             joystick.Knob.anchoredPosition = Vector2.zero;
             joystick.gameObject.SetActive(false);
         }
-        else if (lostFinger == aimFinger)
+        else if (finger == aimFinger)
         {
-            canvasManager.UnregisterFinger(aimFinger);
             aimFinger = null;
         }
     }
 
 
-    public void FingerDownIsMovementFinger(Finger touchedFinger)
+    private void Update()
     {
-        movementFinger = touchedFinger;
-        movementAmount = Vector2.zero;
-        joystickVisualLogic(touchedFinger);
+        playerData.currentMoveInput = movementAmount;
+        playerView.Move(playerData.currentMoveInput, playerData.moveSpeed, playerView.cam.transform);
+
+        playerData.currentPitch = Mathf.Lerp(playerData.currentPitch, targetPitch, Time.deltaTime * rotationSmoothSpeed);
+        playerData.currentYaw = Mathf.LerpAngle(playerData.currentYaw, targetYaw, Time.deltaTime * rotationSmoothSpeed);
+
+        playerView.RotateCamera(playerData.currentYaw, playerData.currentPitch);
     }
 
-    public void joystickVisualLogic(Finger movementFinger)
+        private void joystickVisualLogic(Finger finger)
     {
         joystick.gameObject.SetActive(true);
         joystick.RectTransform.sizeDelta = joystickSize;
-        joystick.RectTransform.anchoredPosition = ClampStartPosition(movementFinger.screenPosition);
+        joystick.RectTransform.anchoredPosition = ClampStartPosition(finger.screenPosition);
     }
 
-    public void MovementLogic(Finger movedFinger)
+        private void MovementLogic(Finger finger)
     {
         float maxMovement = joystickSize.x / 2f;
-        Vector2 difference = movedFinger.currentTouch.screenPosition - joystick.RectTransform.anchoredPosition;
+        Vector2 difference = finger.currentTouch.screenPosition - joystick.RectTransform.anchoredPosition;
         movementAmount = Vector2.ClampMagnitude(difference / maxMovement, 1f);
         joystick.Knob.anchoredPosition = movementAmount * maxMovement;
     }
 
-
-    private void AimWithFinger(Finger movedFinger)
+        private void AimWithFinger(Finger finger)
     {
-        Vector2 delta = movedFinger.currentTouch.delta;
+        Vector2 delta = finger.currentTouch.delta;
 
         if (float.IsNaN(delta.x) || float.IsNaN(delta.y)) return;
 
@@ -155,26 +123,15 @@ public class MovAndAimCanvas : GameplayCanvas, IInputCanvas
         }
     }
 
-    private Vector2 ClampStartPosition(Vector2 startPosition)
+        private Vector2 ClampStartPosition(Vector2 startPosition)
     {
         startPosition.x = Mathf.Max(startPosition.x, joystickSize.x / 2);
         startPosition.y = Mathf.Clamp(startPosition.y, joystickSize.y / 2, Screen.height - joystickSize.y / 2);
         return startPosition;
     }
-    private bool IsTouchingLeftSide(Finger currentFinger)
+
+        private bool IsTouchingLeftSide(Finger finger)
     {
-        return currentFinger.screenPosition.x <= Screen.width / 2f;
-    }
-
-
-    private void Update()
-    {
-        playerData.currentMoveInput = movementAmount;
-        playerView.Move(playerData.currentMoveInput, playerData.moveSpeed, playerView.cam.transform);
-
-        playerData.currentPitch = Mathf.Lerp(playerData.currentPitch, targetPitch, Time.deltaTime * rotationSmoothSpeed);
-        playerData.currentYaw = Mathf.LerpAngle(playerData.currentYaw, targetYaw, Time.deltaTime * rotationSmoothSpeed);
-
-        playerView.RotateCamera(playerData.currentYaw, playerData.currentPitch);
+        return finger.screenPosition.x <= Screen.width / 2f;
     }
 }
