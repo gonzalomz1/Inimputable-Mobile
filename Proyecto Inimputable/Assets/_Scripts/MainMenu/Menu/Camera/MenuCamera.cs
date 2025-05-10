@@ -7,9 +7,12 @@ public class MenuCamera : MonoBehaviour
 {
   public AnimationClip mainMenuClip;
   public AnimationClip creditsClip;
+
+  public AnimationClip creditsReturnClip;
   public Animation animationComponent;
   public MenuManager menuManager;
-
+  
+  public MenuScreen menuScreen;
   void Awake()
   {
     if (animationComponent == null) animationComponent = GetComponent<Animation>();
@@ -22,6 +25,14 @@ public class MenuCamera : MonoBehaviour
   {
     PlayAnimation(mainMenuClip);
   }
+  public void CreditsAngle()
+  {
+     PlayAnimation(creditsClip);
+  }
+  public void CreditsReturnAngle(){
+      PlayAnimation(creditsReturnClip);
+    
+  }
   private void PlayAnimation(AnimationClip clip)
   {
       animationComponent.clip = clip;
@@ -30,14 +41,15 @@ public class MenuCamera : MonoBehaviour
   }
 public void OnAnimationFinished(string nameOfClip){
   if (nameOfClip == "MainMenu"){
-    menuManager.SetMainMenuTexts() ;
+    menuManager.SetMainMenuTexts();
+  }
+  if(nameOfClip == "Credits"){
+   menuScreen.CreditsArrow(true);
 
   }
-   if (nameOfClip == "Credits"){
-    menuManager.SetMainMenuTexts() ;
-    
+  if(nameOfClip == "CreditsReturn"){
+  menuScreen.MainMenuButtons(true);
   }
-
   
 }
  public void CreditsClip()

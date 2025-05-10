@@ -7,13 +7,14 @@ using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
-public enum GameState { Credits, PlayingClip, Menu, Gameplay }
-public enum MenuState { Disable, MainMenu, Credits, Options, Exit, Play }
+
+
+
 
 public class MenuManager : MonoBehaviour
 {
    public SplashScreen splashScreen;
-
+   
    public GameState currentState;
 
    public MenuState currentMenuState;
@@ -27,16 +28,20 @@ public class MenuManager : MonoBehaviour
    public MenuScreen menuScreen;
    public GraphicRaycaster raycaster;
    public EventSystem eventSystem;
-
    private Finger menuFinger;
 
    void Start()
    {
+      SetCameraDefaultPosition();
       currentState = GameState.Credits;
       currentMenuState = MenuState.Disable;
       ManageState(currentState);
       ManageMenuState(currentMenuState);
    }
+      void SetCameraDefaultPosition() {
+      menuCamera.transform.position = new Vector3(-0.38999998569488528f, 0.6000000238418579f,0.05999999865889549f);
+      menuCamera.transform.rotation = new Quaternion(0.0f,-0.7071068286895752f,0.0f,0.7071068286895752f);
+      }
 
    void ManageState(GameState current)
    {
@@ -55,7 +60,7 @@ public class MenuManager : MonoBehaviour
             break;
       }
    }
-   void ManageMenuState(MenuState current)
+   public void ManageMenuState(MenuState current)
    {
       switch (current)
       {
@@ -65,26 +70,29 @@ public class MenuManager : MonoBehaviour
          case MenuState.MainMenu:
             EnableInput();
             SetCanvasState(menuScreen, true);
-            menuScreen.SetGameObject(menuScreen.credits, false);
-            menuScreen.SetGameObject(menuScreen.options, false);
-            menuScreen.SetGameObject(menuScreen.mainMenu, true);
-            
-            
-            
+            menuScreen.SetGameObject(menuScreen.creditsContext, false);
+            menuScreen.SetGameObject(menuScreen.optionsContext, false);
+            menuScreen.SetGameObject(menuScreen.mainMenuContext, true);
+            menuScreen.SetGameObject(menuScreen.exitContext, false);
             break;
          case MenuState.Credits:
-            menuScreen.SetGameObject(menuScreen.credits, true);
-            menuScreen.SetGameObject(menuScreen.mainMenu,false);
-            
+            menuCamera.CreditsAngle();
+            menuScreen.SetGameObject(menuScreen.creditsContext, true);
+            menuScreen.CreditsArrow(false);
+            menuScreen.SetGameObject(menuScreen.mainMenuContext,false);
+            menuScreen.SetGameObject(menuScreen.optionsContext, false);
+            menuScreen.MainMenuButtons(false);
            break;
            case MenuState.Options:
-            menuScreen.SetGameObject(menuScreen.options, true);
-            menuScreen.SetGameObject(menuScreen.mainMenu, false);
+            menuScreen.SetGameObject(menuScreen.optionsContext, true);
+            menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
            break;
            
           case MenuState.Exit:
-            menuScreen.SetGameObject(menuScreen.exit, true);
-            menuScreen.SetGameObject(menuScreen.mainMenu, false);
+            menuScreen.SetGameObject(menuScreen.exitContext, true);
+            menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
+            menuScreen.SetGameObject(menuScreen.optionsContext, false);
+            menuScreen.SetGameObject(menuScreen.creditsContext, false);
            break;
 
       }

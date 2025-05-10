@@ -1,0 +1,1 @@
+public enum GameState { Credits, PlayingClip, Menu, Gameplay }
