@@ -382,6 +382,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: WEAPON_Pistol_Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cee0807387f91dc4fbe30199bd2e7492
+      internalID: 1724374484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -398,6 +419,7 @@ TextureImporter:
       WEAPON_Pistol_Spritesheet_10: -971852026
       WEAPON_Pistol_Spritesheet_11: -2143886323
       WEAPON_Pistol_Spritesheet_12: 2040204667
+      WEAPON_Pistol_Spritesheet_13: 1724374484
       WEAPON_Pistol_Spritesheet_2: 1638923722
       WEAPON_Pistol_Spritesheet_3: -1452058454
       WEAPON_Pistol_Spritesheet_4: -1268807005

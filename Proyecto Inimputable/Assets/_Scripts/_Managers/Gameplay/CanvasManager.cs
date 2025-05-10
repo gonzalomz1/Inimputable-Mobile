@@ -10,7 +10,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private UICanvas uICanvas;
     [SerializeField] private ActionCanvas actionCanvas;
 
-    private Dictionary<int, FingerRole> fingerRoles = new Dictionary<int, FingerRole>();
+    [SerializeField] private Dictionary<int, FingerRole> fingerRoles = new Dictionary<int, FingerRole>();
 
     public void EnableInput()
     {
@@ -30,11 +30,19 @@ public class CanvasManager : MonoBehaviour
 
     void HandleFingerDown(Finger finger)
     {
-        // First detect if try to touch an action button
+        // Don't let have multiple fingers on an index
+        if (fingerRoles.ContainsKey(finger.index))
+        {
+            Debug.LogWarning($"Finger {finger.index} ya está asignado a un rol ({fingerRoles[finger.index]}), ignorando nueva asignación.");
+            return;
+        }
+
+
+        // Detect if try to touch an action button
         if (actionCanvas.HandleTouch(finger, out FingerRole role))
         {
             fingerRoles[finger.index] = role;
-            Debug.Log($"Finger {finger.index} asignado a {role}");
+            Debug.Log($"Finger asignado a {role}.");
             return;
         }
 
@@ -62,9 +70,19 @@ public class CanvasManager : MonoBehaviour
 
     void HandleFingerUp(Finger finger)
     {
-        if (fingerRoles.ContainsKey(finger.index))
+        if (!fingerRoles.TryGetValue(finger.index, out var role))
         {
-            fingerRoles.Remove(finger.index);
+            Debug.LogWarning($"Finger {finger.index} no está registrado en fingerRoles al levantar el dedo.");
+            return;
         }
+
+        if (role == FingerRole.Move || role == FingerRole.Aim)
+        {
+            movAndAimCanvas.HandleFingerUp(finger);
+        }
+
+        Debug.Log($"Removing: {finger.index}");
+        fingerRoles.Remove(finger.index);
+        Debug.Log($"Current Dictionary after change: {fingerRoles.Count} items");
     }
 }

@@ -8,6 +8,7 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 public class ActionCanvas : MonoBehaviour
 {
     public Button shootButton;
+    public Button reloadButton;
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
     public WeaponController weaponController; 
@@ -29,9 +30,18 @@ public class ActionCanvas : MonoBehaviour
             {
                 weaponController.TryShoot();
                 assignedRole = FingerRole.Action;
+                Debug.Log("On ActionCanvas.HandleTrouch(): returning true");
+                return true;
+            }
+            if (result.gameObject == reloadButton.gameObject)
+            {
+                weaponController.TryReload();
+                assignedRole = FingerRole.Action;
+                Debug.Log("On ActionCanvas.HandleTrouch(): returning true");
                 return true;
             }
         }
+        Debug.Log("On ActionCanvas.HandleTrouch(): returning false");
         return false;
     }
 }

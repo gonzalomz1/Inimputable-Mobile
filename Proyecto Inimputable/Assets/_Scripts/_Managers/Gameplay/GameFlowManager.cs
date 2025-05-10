@@ -5,6 +5,7 @@ public class GameFlowManager : MonoBehaviour
    public static GameFlowManager Instance { get; private set; }
 
    [SerializeField] private CanvasManager canvasManager;
+   [SerializeField] private EnemiesManager enemiesManager;
 
    public GameFlowState currentState;
 

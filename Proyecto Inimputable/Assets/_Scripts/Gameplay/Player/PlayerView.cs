@@ -38,4 +38,6 @@ public class PlayerView : Player
         //cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
         cam.rotation = Quaternion.Euler(pitch, yaw, 0f);
     }
+
+
 }

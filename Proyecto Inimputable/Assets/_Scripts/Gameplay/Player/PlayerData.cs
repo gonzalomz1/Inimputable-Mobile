@@ -11,5 +11,6 @@ public class PlayerData : Player
     [HideInInspector] public float cameraPitch = 0f; // Vertical
     public float currentYaw;
     public float currentPitch;
+
     
 }

@@ -21,8 +21,4 @@ public abstract class WeaponBehaviour : MonoBehaviour
         return weaponData.weaponType;
     }
 
-    public void SetState(WeaponState state)
-    {
-        // Handle transitions of states or animations
-    }
 }

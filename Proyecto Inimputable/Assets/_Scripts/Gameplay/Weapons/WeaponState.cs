@@ -2,8 +2,7 @@ public enum WeaponState
 {
     Idle,
     Drawing,
-    Firing,
+    Shooting,
     Reloading,
-    Empty,
-    Inactive
+    Empty
 }

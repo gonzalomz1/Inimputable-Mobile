@@ -1,109 +1,144 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Slots")]
-    [SerializeField] private Transform pistolSlot;
-    [SerializeField] private Transform rifleSlot;
-    [SerializeField] private Transform meleeSlot;
+    [SerializeField] private WeaponObject melee;
+    [SerializeField] private WeaponObject pistol;
+    [SerializeField] private WeaponObject rifle;
 
     [Header("FX")]
     [SerializeField] private Light muzzleFlashLight;
 
-    private WeaponBehaviour currentWeapon;
-    private WeaponBehaviour pistol;
-    private WeaponBehaviour rifle;
-    private WeaponBehaviour melee;
+    [Header("WeaponData")]
+    [SerializeField] WeaponData pistolData;
+    [Header("HashSet for available weapons")]
+    private HashSet<WeaponType> pickedUpWeapons = new HashSet<WeaponType>();
+    
+    [Header("Current Weapon")]
+    private WeaponType currentWeapon;
+
+    void Start()
+    {
+        DisableAllWeapons();
+        InitializeWeapons(pistolData, null, null);
+    }
+
+    private void DisableAllWeapons()
+    {
+        pistol.gameObject.SetActive(false);
+        rifle.gameObject.SetActive(false);
+        melee.gameObject.SetActive(false);
+    }
 
     public void InitializeWeapons(WeaponData pistolData, WeaponData rifleData, WeaponData meleeData)
     {
         // Instantiate but disable at first
         if (pistolData != null)
         {
-            pistol = Instantiate(pistolData.weaponPrefab, pistolSlot).GetComponent<WeaponBehaviour>();
-            pistol.Initialize(pistolData, pistolSlot);
-            pistol.gameObject.SetActive(false);
+            Debug.Log("Initializing Pistol");
+            pistol.Initialize(pistolData, pistol.transform);
         }
 
         if (rifleData != null)
         {
-            rifle = Instantiate(rifleData.weaponPrefab, rifleSlot).GetComponent<WeaponBehaviour>();
-            rifle.Initialize(rifleData, rifleSlot);
-            rifle.gameObject.SetActive(false);
+            Debug.Log("Initializing Rifle");
+            rifle.Initialize(rifleData, rifle.transform);
         }
 
         if (meleeData != null)
         {
-            melee = Instantiate(meleeData.weaponPrefab, meleeSlot).GetComponent<WeaponBehaviour>();
-            melee.Initialize(meleeData, meleeSlot);
-            melee.gameObject.SetActive(false);
+            Debug.Log("Initializing Melee");
+            melee.Initialize(meleeData, melee.transform);
         }
     }
 
     public void EquipWeapon(WeaponType type)
     {
         // Disable current weapon
-        if (currentWeapon != null)
+        if (currentWeapon != WeaponType.NONE)
         {
-            currentWeapon.gameObject.SetActive(false);
-            currentWeapon.SetState(WeaponState.Inactive);
+            currentWeapon = WeaponType.NONE;
         }
 
+        WeaponObject newCurrentWeapon = null;
+
         // Enable new weapon
-        switch(type)
+        switch (type)
         {
             case WeaponType.Pistol:
-                if (pistol !=null)
+                if (pistol != null && pickedUpWeapons.Contains(WeaponType.Pistol))
                 {
-                    currentWeapon = pistol;
+                    currentWeapon = WeaponType.Pistol;
+                    newCurrentWeapon = pistol;
                     pistol.gameObject.SetActive(true);
                     if (melee) melee.gameObject.SetActive(false);
                     if (rifle) rifle.gameObject.SetActive(false);
                 }
                 break;
             case WeaponType.Rifle:
-                if (rifle !=null)
+                if (rifle != null && pickedUpWeapons.Contains(WeaponType.Rifle))
                 {
-                    currentWeapon = rifle;
+                    currentWeapon = WeaponType.Rifle;
+                    newCurrentWeapon = rifle;
                     rifle.gameObject.SetActive(true);
                     if (melee) melee.gameObject.SetActive(false);
                     if (pistol) pistol.gameObject.SetActive(false);
                 }
                 break;
             case WeaponType.Melee:
-                if (melee !=null)
+                if (melee != null && pickedUpWeapons.Contains(WeaponType.Melee))
                 {
-                    currentWeapon = melee;
+                    currentWeapon = WeaponType.Melee;
+                    newCurrentWeapon = melee;
                     melee.gameObject.SetActive(true);
                     if (rifle) rifle.gameObject.SetActive(false);
                     if (pistol) pistol.gameObject.SetActive(false);
                 }
                 break;
         }
-        currentWeapon?.SetState(WeaponState.Drawing);
+        newCurrentWeapon?.SetState(WeaponState.Drawing);
     }
 
-    public void TryShoot(){}
-
-    public void TriggerPull()
+    public void PickUpWeapon(WeaponType type)
     {
-        currentWeapon?.TriggerPull();
+        if (!pickedUpWeapons.Contains(type))
+        {
+            pickedUpWeapons.Add(type);
+            Debug.Log($"Weapon {type} picked up!");
+        }
+    }
+
+    public void TryShoot()
+    {
+        Debug.Log("TryShoot() called.");
+    }
+
+    public void TryReload()
+    {
+        Debug.Log("TryReload() called.");
+    }
+
+    public void TriggerPull(WeaponBehaviour weapon)
+    {
+        weapon?.TriggerPull();
     }
 
 
-    public void TriggerRelease()
+    public void TriggerRelease(WeaponBehaviour weapon)
     {
-        currentWeapon?.TriggerRelease();
+        weapon?.TriggerRelease();
     }
 
-    public void Reload()
+    public void Reload(WeaponBehaviour weapon)
     {
-        currentWeapon?.Reload();
+        weapon?.Reload();
     }
 
-    public WeaponType GetCurrentWeaponType()
+    public WeaponType GetCurrentWeaponType(WeaponBehaviour weapon)
     {
-        return currentWeapon.GetWeaponType();
+        return weapon.GetWeaponType();
     }
 
 }
