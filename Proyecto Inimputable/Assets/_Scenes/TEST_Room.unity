@@ -2574,6 +2574,11 @@ PrefabInstance:
       propertyPath: viewPivot
       value: 
       objectReference: {fileID: 2015666095}
+    - target: {fileID: 6926591215005817557, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
+        type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 1499761943}
     - target: {fileID: 7483012630403764277, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
         type: 3}
       propertyPath: m_Range

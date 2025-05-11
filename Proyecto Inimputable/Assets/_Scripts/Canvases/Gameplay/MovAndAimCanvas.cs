@@ -150,6 +150,14 @@ public class MovAndAimCanvas : GameplayCanvas
 
     private bool IsPlayerMoving()
     {
-        return playerData.currentMoveInput != Vector2.zero;
+        if (playerData.currentMoveInput != Vector2.zero)
+        {
+            playerData.isMoving = true;
+            return true;
+        } else
+        {
+            playerData.isMoving = false;
+            return false;
+        }
     }
 }

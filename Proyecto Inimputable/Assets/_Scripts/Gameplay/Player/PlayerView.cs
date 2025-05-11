@@ -6,7 +6,7 @@ public class PlayerView : Player
     public Rigidbody player;
     public Transform cameraPivot;
     public Transform cam;
-    public Light muzzleFlash;
+    public PlayerData playerData;
 
     void Awake()
     {
@@ -36,7 +36,16 @@ public class PlayerView : Player
     {
         // Solo rotación de cámara
         //cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
-        cam.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        cameraPivot.rotation = Quaternion.Euler(pitch, yaw, 0f);
+    }
+
+    public void Dash()
+    {
+        if (playerData.isDashing) return;
+
+        Debug.Log("Player dashing");
+        //playerData.isDashing = true;
+
     }
 
 

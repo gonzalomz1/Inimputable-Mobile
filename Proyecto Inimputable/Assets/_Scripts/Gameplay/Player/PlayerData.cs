@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class PlayerData : Player
 {
-    [Header("Player Movement")]
+    [Header("Flags")]
+    public bool isDashing = false;
+    public bool isMoving = false;
+
+    [Header("Movement")]
     public float moveSpeed = 5f;
     public Vector2 currentMoveInput = Vector2.zero;
 
@@ -11,6 +15,16 @@ public class PlayerData : Player
     [HideInInspector] public float cameraPitch = 0f; // Vertical
     public float currentYaw;
     public float currentPitch;
+
+    [Header("Stats")]
+    public float health = 100f;
+    public float mana = 100f;
+    public float inimputability = 100f;
+    public float dashStrength = 1f;
+    public float dashDistance = 10f;
+
+
+
 
     
 }
