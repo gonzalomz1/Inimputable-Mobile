@@ -17,11 +17,31 @@ public class PlayerData : Player
     public float currentPitch;
 
     [Header("Stats")]
-    public float maxHealth = 100f;
-    public float currentHealth = 50f;
-    public float mana = 100f;
-    public float inimputability = 100f;
+    public int maxHealth = 100;
+    public int currentHealth = 50;
+    public int mana = 100;
+    public int inimputability = 100;
     public float dashStrength = 1f;
     public float dashDistance = 10f;
+
+    private UIPlayerStats uIPlayerStats;
+
+    
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        uIPlayerStats.SetBarCurrentValue(uIPlayerStats.healthBar, currentHealth);
+        if (IsPlayerDead())
+        {
+            GameObject gameFlowObject = GameObject.FindWithTag("GameFlow");
+            gameFlowObject.GetComponent<GameFlowManager>().GameOver();
+        }
+    }
+
+    public bool IsPlayerDead()
+    {
+        return currentHealth <= 0;
+    }
+
     
 }

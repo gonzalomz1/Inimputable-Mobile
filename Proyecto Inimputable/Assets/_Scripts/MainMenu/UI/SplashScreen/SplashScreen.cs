@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SplashScreen : CustomCanvas
 {
  public Credits credits;
 
- public Loading loading;
+ public LevelLoader levelLoader;
 
  public override void SetActiveCanvas(bool isActive)
     {
@@ -28,18 +29,23 @@ public void EnableCredits (){
     credits.gameObject.SetActive(false);
  }
 public void EnableLoading (){
-    if (loading == null){
+    if (levelLoader == null){
         Debug.LogError("No se inicializo la variable loading");
         return;
     }
-    loading.gameObject.SetActive(true);
+    levelLoader.gameObject.SetActive(true);
  }
 public void DisableLoading() {
-    if (loading == null){
+    if (levelLoader == null){
         Debug.LogError("No se inicializo la variable loading");
         return;
     }
-    loading.gameObject.SetActive(false);
+    levelLoader.gameObject.SetActive(false);
+ }
+
+ public void LoadGameplay()
+ {
+    levelLoader.LoadLevel(SceneManager.GetActiveScene().buildIndex+ 1);
  }
 
 }

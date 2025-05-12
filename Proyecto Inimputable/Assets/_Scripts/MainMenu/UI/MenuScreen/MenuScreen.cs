@@ -10,6 +10,8 @@ public class MenuScreen : CustomCanvas
 
 {
     public MenuManager menuManager;
+    [Header("Splash Screen")]
+    public SplashScreen splashScreen;
     [Header("Main Menu Buttons")]
     public Button mainMenuPlay;
     public Button mainMenuOptions;
@@ -22,7 +24,6 @@ public class MenuScreen : CustomCanvas
     [Header("Options Button")]
 
     public Button optionsBrightness;
-
     public Button optionsExit;
     [Header("Exit")]
     public Button exitExit;
@@ -56,8 +57,8 @@ public class MenuScreen : CustomCanvas
 
     public void Play()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex
-         + 1);
+        menuManager.BeginLoadingGameplay();
+        
     }
 
     public void Options()

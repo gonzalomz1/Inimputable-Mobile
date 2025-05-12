@@ -12,6 +12,12 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] private Dictionary<int, FingerRole> fingerRoles = new Dictionary<int, FingerRole>();
 
+
+    public void StartGameplay()
+    {
+        uICanvas.StartUIPlayerStats();
+        EnableInput();
+    }
     public void EnableInput()
     {
         ETouch.EnhancedTouchSupport.Enable();

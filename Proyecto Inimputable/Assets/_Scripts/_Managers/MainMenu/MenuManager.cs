@@ -13,22 +13,22 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class MenuManager : MonoBehaviour
 {
-   public SplashScreen splashScreen;
-   
+   [Header("State")]
    public GameState currentState;
-
    public MenuState currentMenuState;
-
+   [Header("Components")]
+   public SplashScreen splashScreen;
    public Basement basement;
-
    public MenuCamera menuCamera;
-
-   public List<TextPosition> textPositions;
-
    public MenuScreen menuScreen;
+   [Header("Position for Main Menu buttons")]
+   public List<TextPosition> textPositions;
+   [Header("Raycaster")]
    public GraphicRaycaster raycaster;
+   [Header("Event Object")]
    public EventSystem eventSystem;
    private Finger menuFinger;
+
 
    void Start()
    {
@@ -194,5 +194,13 @@ public class MenuManager : MonoBehaviour
          }
 
       }
+   }
+
+   public void BeginLoadingGameplay()
+   {
+      splashScreen.SetActiveCanvas(true);
+      splashScreen.DisableCredits();
+      splashScreen.EnableLoading();
+      splashScreen.LoadGameplay();
    }
 }

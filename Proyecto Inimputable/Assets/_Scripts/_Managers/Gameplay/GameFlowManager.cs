@@ -36,7 +36,7 @@ public class GameFlowManager : MonoBehaviour
             canvasManager.DisableInput();
             break;
          case GameFlowState.Gameplay:
-            canvasManager.EnableInput();
+            canvasManager.StartGameplay();
             break;
          case GameFlowState.Paused:
          case GameFlowState.Cinematic:
@@ -50,4 +50,8 @@ public class GameFlowManager : MonoBehaviour
 
    public GameFlowState GetCurrentState() => currentState;
 
+   public void GameOver()
+   {
+      //SetGameState(GameFlowState.GameOver);
+   }
 }

@@ -549,17 +549,17 @@ PrefabInstance:
     - target: {fileID: 603969779286308867, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2236996025366256291, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.52
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2236996025366256291, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4930687855795415564, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
@@ -569,12 +569,17 @@ PrefabInstance:
     - target: {fileID: 4930687855795415564, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562861986566583744, guid: 5dc43977f1005b141af2d917b1e7114d,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelLoader
       objectReference: {fileID: 0}
     - target: {fileID: 5562861986566583744, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7283070941130414598, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
@@ -585,7 +590,12 @@ PrefabInstance:
         type: 3}
       propertyPath: loading
       value: 
-      objectReference: {fileID: 245093033}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7283070941130414598, guid: 5dc43977f1005b141af2d917b1e7114d,
+        type: 3}
+      propertyPath: levelLoader
+      value: 
+      objectReference: {fileID: 760338896}
     - target: {fileID: 8620034427098872944, guid: 5dc43977f1005b141af2d917b1e7114d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -686,7 +696,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1925941950296059072, guid: 5dc43977f1005b141af2d917b1e7114d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -701,18 +712,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 245093031}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &245093033 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1925941950296059072, guid: 5dc43977f1005b141af2d917b1e7114d,
-    type: 3}
-  m_PrefabInstance: {fileID: 245093031}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cae0bfe8fc340a43aa90520ed5bc80b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &245093034 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 280270964044796878, guid: 5dc43977f1005b141af2d917b1e7114d,
@@ -1287,6 +1286,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3629365323033154}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &760338896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3439298356095398172, guid: 5dc43977f1005b141af2d917b1e7114d,
+    type: 3}
+  m_PrefabInstance: {fileID: 245093031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cae0bfe8fc340a43aa90520ed5bc80b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &807744552 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7239697518812576238, guid: 1a95bd8d667d09c4cae913b2f8223697,
@@ -2150,17 +2161,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139e932dbed0d7b49b1c9cf5379a1b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splashScreen: {fileID: 245093035}
   currentState: 0
   currentMenuState: 0
+  splashScreen: {fileID: 245093035}
   basement: {fileID: 1334974063}
   menuCamera: {fileID: 62467722}
+  menuScreen: {fileID: 1991993727}
   textPositions:
   - {fileID: 5237037373603675928}
   - {fileID: 188330338}
   - {fileID: 1252465961}
   - {fileID: 493909754}
-  menuScreen: {fileID: 1991993727}
   raycaster: {fileID: 1991993728}
   eventSystem: {fileID: 955089483}
 --- !u!1001 &3629365323033154
