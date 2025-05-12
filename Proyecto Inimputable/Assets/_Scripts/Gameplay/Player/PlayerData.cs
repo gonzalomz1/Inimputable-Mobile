@@ -17,14 +17,11 @@ public class PlayerData : Player
     public float currentPitch;
 
     [Header("Stats")]
-    public float health = 100f;
+    public float maxHealth = 100f;
+    public float currentHealth = 50f;
     public float mana = 100f;
     public float inimputability = 100f;
     public float dashStrength = 1f;
     public float dashDistance = 10f;
-
-
-
-
     
 }

@@ -1,5 +1,6 @@
 using System.Net;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 enum WeaponHolderState { Active, PickedUp, Destroyed }
@@ -34,7 +35,7 @@ public class WeaponHolder3D : MonoBehaviour
                 SetSprite(weaponData);
                 break;
             case WeaponHolderState.PickedUp:
-                GiveDataToWeaponManager(weaponData);
+                SetAsPickedUpOnPlayer(weaponData);
                 currentState = WeaponHolderState.Destroyed;
                 ManageState(currentState);
                 break;
@@ -46,9 +47,9 @@ public class WeaponHolder3D : MonoBehaviour
 
     void SetSprite(WeaponData wd)
     {
-        if (wd && spriteRenderer)
+        if (wd != null && spriteRenderer != null)
         {
-            // setear sprite
+            spriteRenderer.sprite = wd.weaponIcon;
         }
     }
 
@@ -61,7 +62,16 @@ public class WeaponHolder3D : MonoBehaviour
         
     }
 
-    private void GiveDataToWeaponManager(WeaponData wd){
+    private void SetAsPickedUpOnPlayer(WeaponData wd){
+        GameObject player = GameObject.FindWithTag("Player");
+        WeaponController weaponController = player.GetComponent<WeaponController>();
+        switch (wd.weaponName)
+        {
+            case "Pistol":
+               weaponController.pickedUpWeapons.Add(WeaponType.Pistol);
+               weaponController.EquipWeapon(WeaponType.Pistol);
+            break;
+        }
        
     }
 

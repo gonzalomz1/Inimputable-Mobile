@@ -13,6 +13,7 @@ public bool isAutomatic;
 public WeaponType weaponType;
 public float reloadTime;
 public GameObject weaponPrefab;
+public Sprite weaponIcon;
 }
 
 

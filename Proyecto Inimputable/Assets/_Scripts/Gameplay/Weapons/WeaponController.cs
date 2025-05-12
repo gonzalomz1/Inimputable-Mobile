@@ -14,7 +14,7 @@ public class WeaponController : MonoBehaviour
     [Header("WeaponData")]
     [SerializeField] WeaponData pistolData;
     [Header("HashSet for available weapons")]
-    private HashSet<WeaponType> pickedUpWeapons = new HashSet<WeaponType>();
+    public HashSet<WeaponType> pickedUpWeapons = new HashSet<WeaponType>();
     
     [Header("Current Weapon")]
     private WeaponType currentWeapon;
@@ -27,9 +27,9 @@ public class WeaponController : MonoBehaviour
 
     private void DisableAllWeapons()
     {
-        pistol.gameObject.SetActive(false);
-        rifle.gameObject.SetActive(false);
-        melee.gameObject.SetActive(false);
+        if (pistol) pistol.gameObject.SetActive(false);
+        if (rifle) rifle.gameObject.SetActive(false);
+        if (melee) melee.gameObject.SetActive(false);
     }
 
     public void InitializeWeapons(WeaponData pistolData, WeaponData rifleData, WeaponData meleeData)
