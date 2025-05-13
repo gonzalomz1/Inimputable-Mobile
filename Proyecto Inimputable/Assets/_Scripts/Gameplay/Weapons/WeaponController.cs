@@ -1,23 +1,26 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    [Header("Weapon UI")]
+    public WeaponStats weaponStats;
     [Header("Weapon Slots")]
     [SerializeField] private WeaponObject melee;
     [SerializeField] private WeaponObject pistol;
     [SerializeField] private WeaponObject rifle;
-
     [Header("FX")]
     [SerializeField] private Light muzzleFlashLight;
-
+    public bool flashing = false;
     [Header("WeaponData")]
     [SerializeField] WeaponData pistolData;
     [Header("HashSet for available weapons")]
     public HashSet<WeaponType> pickedUpWeapons = new HashSet<WeaponType>();
-    
     [Header("Current Weapon")]
     private WeaponType currentWeapon;
+    private WeaponObject currentWeaponObject;
+
 
     void Start()
     {
@@ -62,7 +65,7 @@ public class WeaponController : MonoBehaviour
             currentWeapon = WeaponType.NONE;
         }
 
-        WeaponObject newCurrentWeapon = null;
+        currentWeaponObject = null;
 
         // Enable new weapon
         switch (type)
@@ -71,7 +74,7 @@ public class WeaponController : MonoBehaviour
                 if (pistol != null && pickedUpWeapons.Contains(WeaponType.Pistol))
                 {
                     currentWeapon = WeaponType.Pistol;
-                    newCurrentWeapon = pistol;
+                    currentWeaponObject = pistol;
                     pistol.gameObject.SetActive(true);
                     if (melee) melee.gameObject.SetActive(false);
                     if (rifle) rifle.gameObject.SetActive(false);
@@ -81,7 +84,7 @@ public class WeaponController : MonoBehaviour
                 if (rifle != null && pickedUpWeapons.Contains(WeaponType.Rifle))
                 {
                     currentWeapon = WeaponType.Rifle;
-                    newCurrentWeapon = rifle;
+                    currentWeaponObject = rifle;
                     rifle.gameObject.SetActive(true);
                     if (melee) melee.gameObject.SetActive(false);
                     if (pistol) pistol.gameObject.SetActive(false);
@@ -91,14 +94,14 @@ public class WeaponController : MonoBehaviour
                 if (melee != null && pickedUpWeapons.Contains(WeaponType.Melee))
                 {
                     currentWeapon = WeaponType.Melee;
-                    newCurrentWeapon = melee;
+                    currentWeaponObject = melee;
                     melee.gameObject.SetActive(true);
                     if (rifle) rifle.gameObject.SetActive(false);
                     if (pistol) pistol.gameObject.SetActive(false);
                 }
                 break;
         }
-        newCurrentWeapon?.SetState(WeaponState.Drawing);
+        currentWeaponObject?.SetState(WeaponState.Drawing);
     }
 
     public void PickUpWeapon(WeaponType type)
@@ -106,39 +109,77 @@ public class WeaponController : MonoBehaviour
         if (!pickedUpWeapons.Contains(type))
         {
             pickedUpWeapons.Add(type);
+            EquipWeapon(WeaponType.Pistol);
             Debug.Log($"Weapon {type} picked up!");
+        }
+        OnNewWeaponStats();
+    }
+
+    public void OnNewWeaponStats()
+    {
+        Debug.Log($"Current Weapon: {currentWeapon}");
+        Debug.Log("on Change UI Stats");
+        WeaponObject newWeapon = GetCurrentWeapon();
+        Debug.Log($"after call, newWeapon is: {newWeapon}");
+        weaponStats.NewWeaponEquiped(newWeapon);
+    }
+
+
+    public void TryShoot() // called onClick() from ActionCanvas:ShootButton
+    {
+        if (currentWeaponObject != null)
+        {
+            bool needToChange = currentWeaponObject.TriggerPull();
+            if (needToChange) 
+            {
+            ChangeUiCurrentAmmo();
+            }
+            else return;
         }
     }
 
-    public void TryShoot()
+    public void TryReload() // called onClick() from ActionCanvas:ReloadButton
     {
-        Debug.Log("TryShoot() called.");
-    }
-
-    public void TryReload()
-    {
-        Debug.Log("TryReload() called.");
-    }
-
-    public void TriggerPull(WeaponBehaviour weapon)
-    {
-        weapon?.TriggerPull();
-    }
-
-
-    public void TriggerRelease(WeaponBehaviour weapon)
-    {
-        weapon?.TriggerRelease();
-    }
-
-    public void Reload(WeaponBehaviour weapon)
-    {
-        weapon?.Reload();
+        if (currentWeaponObject != null)
+        {
+            currentWeaponObject.Reload();
+        }
     }
 
     public WeaponType GetCurrentWeaponType(WeaponBehaviour weapon)
     {
         return weapon.GetWeaponType();
+    }
+
+    public WeaponObject GetCurrentWeapon()
+    {
+        if (currentWeapon == WeaponType.Pistol) return pistol;
+        if (currentWeapon == WeaponType.Rifle) return rifle;
+        if (currentWeapon == WeaponType.Melee) return melee;
+        Debug.LogError("No value for currentWeapon on WeaponController");
+        return null;
+
+    }
+
+    public void ChangeUiCurrentAmmo()
+    {
+        weaponStats.SetCurrentAmmo(currentWeaponObject.currentAmmo);
+    }
+
+    public void ChangeUiAmmoReserve()
+    {
+        weaponStats.SetAmmoReserve(currentWeaponObject.ammoReserve);
+    }
+
+    public void AfterReloadChangeUi()
+    {
+        weaponStats.SetCurrentAmmo(currentWeaponObject.currentAmmo);
+        weaponStats.SetAmmoReserve(currentWeaponObject.ammoReserve);
+    }
+
+    void Update()
+    {
+        muzzleFlashLight.gameObject.SetActive(flashing);
     }
 
 }

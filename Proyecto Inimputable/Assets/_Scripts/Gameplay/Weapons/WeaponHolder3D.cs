@@ -68,8 +68,7 @@ public class WeaponHolder3D : MonoBehaviour
         switch (wd.weaponName)
         {
             case "Pistol":
-               weaponController.pickedUpWeapons.Add(WeaponType.Pistol);
-               weaponController.EquipWeapon(WeaponType.Pistol);
+               weaponController.PickUpWeapon(WeaponType.Pistol);
             break;
         }
        

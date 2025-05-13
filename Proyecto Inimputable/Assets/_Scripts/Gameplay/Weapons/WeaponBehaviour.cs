@@ -12,7 +12,7 @@ public abstract class WeaponBehaviour : MonoBehaviour
 
     }
 
-    public abstract void TriggerPull();     // llamada cuando el jugador intenta disparar
+    public abstract bool TriggerPull();     // llamada cuando el jugador intenta disparar
     public abstract void TriggerRelease();  // para armas automaticas
     public abstract void Reload();          // recarga segun tipo de arma
 

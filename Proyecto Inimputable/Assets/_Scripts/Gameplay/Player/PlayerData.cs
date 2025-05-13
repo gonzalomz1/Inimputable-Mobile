@@ -18,7 +18,7 @@ public class PlayerData : Player
 
     [Header("Stats")]
     public int maxHealth = 100;
-    public int currentHealth = 50;
+    public int currentHealth = 100;
     public int mana = 100;
     public int inimputability = 100;
     public float dashStrength = 1f;

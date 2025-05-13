@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1137125628259502710}
   m_Layer: 0
   m_Name: Turro
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

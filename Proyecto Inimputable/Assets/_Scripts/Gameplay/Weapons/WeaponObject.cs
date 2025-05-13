@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WeaponObject : WeaponBehaviour 
+public class WeaponObject : WeaponBehaviour
 {
     /*
         in WeaponData, we have info such as:
@@ -12,86 +12,131 @@ public class WeaponObject : WeaponBehaviour
         - clipSize (int)
         - isAutomatic (bool)
     */
-    private int currentAmmo;
-    private int ammoReserve;
+    public int currentAmmo;
+    public int ammoReserve;
     [SerializeField] private Animator animator;
-    private float lastShootTime;
+    private bool isShoting = false;
+    private bool isReloading = false;
 
     public override void Initialize(WeaponData data, Transform firePoint)
     {
         base.Initialize(data, firePoint);
         currentAmmo = weaponData.clipSize;
+        ammoReserve = weaponData.maxAmmo;
         animator = GetComponentInChildren<Animator>();
     }
 
     public void SetState(WeaponState state)
     {
-        switch(state)
+        switch (state)
         {
             case WeaponState.Drawing:
-            animator.SetTrigger("Draw");
-            break;
+                animator.SetTrigger("Draw");
+                break;
             case WeaponState.Shooting:
-            animator.SetTrigger("Shoot");
-            break;
+                animator.SetTrigger("Shoot");
+                break;
             case WeaponState.Empty:
-            animator.SetTrigger("Empty");
-            break;
+                animator.SetTrigger("Empty");
+                break;
             case WeaponState.Reloading:
-            animator.SetTrigger("Reload");
-            break;
+                animator.SetTrigger("Reload");
+                isReloading = true;
+                break;
             case WeaponState.Idle:
-            animator.SetTrigger("Idle");
-            break;
+                CheckEmptyAmmo();
+                break;
         }
     }
 
-    public override void TriggerPull()
+    public override bool TriggerPull()
     {
-        if (Time.time < lastShootTime + 1f / weaponData.fireRate) return;
-
-        if (currentAmmo > 0)
+        if (isReloading) return false;
+        if (currentAmmo <= 0)
         {
             SetState(WeaponState.Empty);
-            return;
+            return false;
         }
 
-        Shoot();
+        if (!isShoting)
+        {
+            Shoot();
+            return true;
+        }
+
+        return false; // avoid error
     }
 
-    public override void TriggerRelease(){} 
+    public override void TriggerRelease() { }
 
     private void Shoot()
     {
         SetState(WeaponState.Shooting);
+        isShoting = true;
         currentAmmo--;
-        lastShootTime = Time.time;
-        animator?.SetTrigger("Shoot");
         Debug.Log("Pistol fired. Remaining ammo: " + currentAmmo);
-        // here we can enable raycast
-        SetState(currentAmmo > 0 ? WeaponState.Idle : WeaponState.Empty);
-       
+    }
+
+    public void EnableFlash()
+    {
+        FindWeaponController().flashing = true;
+    }
+
+    public void DisableFlash()
+    {
+        FindWeaponController().flashing = false;
+    }
+    
+    public void FinishShooting()
+    {
+        isShoting = false;
+        BackToIdle();
+    }
+
+        public void BackToIdle()
+    {
+        animator.SetTrigger("ReturnIdle");
     }
 
     public override void Reload()
     {
-        if (currentAmmo < weaponData.clipSize)
+        if (currentAmmo < weaponData.clipSize && ammoReserve > 0)
         {
             SetState(WeaponState.Reloading);
-            animator?.SetTrigger("Reload");
-            // CALLING at the end of animation FinishReload() from PistolSprite class(component of PistolSprite)
         }
-        currentAmmo = weaponData.clipSize;
-        ammoReserve -= weaponData.clipSize;
-        Debug.Log("Pistol reloaded.");
     }
 
-
-    public void FinishReload()
+    public void OnReloadAnimationFinish()
     {
-        currentAmmo = weaponData.clipSize;
+        int ammoToReload = CheckAmmoReserve();
+        currentAmmo = ammoToReload;
+        ammoReserve -= ammoToReload;
+
+        FindWeaponController().AfterReloadChangeUi();
+        isReloading = false;
         SetState(WeaponState.Idle);
+        Debug.Log("Reloaded.");
+
     }
 
+    public int CheckAmmoReserve()
+    {
+        int newAmmo;
+        if (ammoReserve < weaponData.clipSize) newAmmo = ammoReserve;
+        else newAmmo = weaponData.clipSize;
+        return newAmmo;
+    }
 
+    public void CheckEmptyAmmo()
+    {
+        if (currentAmmo == 0) Reload();
+        else animator.SetTrigger("Idle");
+    }
+
+    public WeaponController FindWeaponController()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        WeaponController wc = player.GetComponent<WeaponController>();
+        return wc;
+    }
 }

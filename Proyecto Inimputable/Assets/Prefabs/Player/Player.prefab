@@ -103,7 +103,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2215325308034323493}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -490,12 +490,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98972b6ba085ae9438f6fcc45b783d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDashing: 0
+  isMoving: 0
   moveSpeed: 5
   currentMoveInput: {x: 0, y: 0}
   lookSensitivity: 0.1
   cameraPitch: 0
   currentYaw: 0
   currentPitch: 0
+  maxHealth: 100
+  currentHealth: 100
+  mana: 100
+  inimputability: 100
+  dashStrength: 1
+  dashDistance: 10
 --- !u!114 &6926591215005817557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +519,7 @@ MonoBehaviour:
   player: {fileID: 2207369697536394543}
   cameraPivot: {fileID: 6468754305405227472}
   cam: {fileID: 1525988118108738103}
-  muzzleFlash: {fileID: 0}
+  playerData: {fileID: 0}
 --- !u!114 &7711446217626790815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,10 +532,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fa856a70944db4d9ef8cca4cc443e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponStats: {fileID: 0}
   melee: {fileID: 0}
   pistol: {fileID: 0}
   rifle: {fileID: 0}
   muzzleFlashLight: {fileID: 0}
+  flashing: 0
   pistolData: {fileID: 0}
 --- !u!1 &6996785982587501518
 GameObject:
@@ -601,6 +611,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 2579065320714236474, guid: 2a3b51ac84cdb214ba4b3b5e519871d1,
+        type: 3}
+      propertyPath: currentAmmo
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 4170017910610407998, guid: 2a3b51ac84cdb214ba4b3b5e519871d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -656,6 +671,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 2925c2340321ce6419a9abef28e73f4d, type: 2}
+    - target: {fileID: 5895479454785391831, guid: 2a3b51ac84cdb214ba4b3b5e519871d1,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 1024413303061037303}
     - target: {fileID: 6847292327470905084, guid: 2a3b51ac84cdb214ba4b3b5e519871d1,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -726,6 +746,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a3b51ac84cdb214ba4b3b5e519871d1, type: 3}
+--- !u!114 &1024413303061037303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2579065320714236474, guid: 2a3b51ac84cdb214ba4b3b5e519871d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3314047094516363981}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f31c096345c6848830cc70401f2e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1451071074197504243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4170017910610407998, guid: 2a3b51ac84cdb214ba4b3b5e519871d1,
