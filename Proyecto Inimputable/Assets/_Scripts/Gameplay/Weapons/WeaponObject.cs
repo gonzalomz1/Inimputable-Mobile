@@ -17,6 +17,8 @@ public class WeaponObject : WeaponBehaviour
     [SerializeField] private Animator animator;
     private bool isShoting = false;
     private bool isReloading = false;
+    public LayerMask RaycastLayers;
+
 
     public override void Initialize(WeaponData data, Transform firePoint)
     {
@@ -73,27 +75,43 @@ public class WeaponObject : WeaponBehaviour
     {
         SetState(WeaponState.Shooting);
         isShoting = true;
+        FireRaycast();
         currentAmmo--;
         Debug.Log("Pistol fired. Remaining ammo: " + currentAmmo);
     }
 
+    private void FireRaycast()
+    {
+        Camera camera = Camera.main;
+        Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit, 100f, RaycastLayers);
+        Debug.Log($"hit es: {hit}");
+        Debug.Log($"rigidbody: {hit.rigidbody}");
+        if (hit.rigidbody != null && hit.transform.tag == "Enemies")
+        {
+            hit.transform.GetComponent<TurroModel>().TakeDamage(weaponData.damage);
+        }
+    }
+
+
+
+
     public void EnableFlash()
     {
-        FindWeaponController().flashing = true;
+        FindWeaponController().EnableFlash();
     }
 
     public void DisableFlash()
     {
-        FindWeaponController().flashing = false;
+        FindWeaponController().DisableFlash();
     }
-    
+
     public void FinishShooting()
     {
         isShoting = false;
         BackToIdle();
     }
 
-        public void BackToIdle()
+    public void BackToIdle()
     {
         animator.SetTrigger("ReturnIdle");
     }
@@ -130,7 +148,6 @@ public class WeaponObject : WeaponBehaviour
     public void CheckEmptyAmmo()
     {
         if (currentAmmo == 0) Reload();
-        else animator.SetTrigger("Idle");
     }
 
     public WeaponController FindWeaponController()

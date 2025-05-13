@@ -12,7 +12,6 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private WeaponObject rifle;
     [Header("FX")]
     [SerializeField] private Light muzzleFlashLight;
-    public bool flashing = false;
     [Header("WeaponData")]
     [SerializeField] WeaponData pistolData;
     [Header("HashSet for available weapons")]
@@ -146,6 +145,17 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    public void EnableFlash()
+    {
+        muzzleFlashLight.gameObject.SetActive(true);
+    }
+
+    public void DisableFlash()
+    {
+        muzzleFlashLight.gameObject.SetActive(false);
+    }
+
+
     public WeaponType GetCurrentWeaponType(WeaponBehaviour weapon)
     {
         return weapon.GetWeaponType();
@@ -175,11 +185,6 @@ public class WeaponController : MonoBehaviour
     {
         weaponStats.SetCurrentAmmo(currentWeaponObject.currentAmmo);
         weaponStats.SetAmmoReserve(currentWeaponObject.ammoReserve);
-    }
-
-    void Update()
-    {
-        muzzleFlashLight.gameObject.SetActive(flashing);
     }
 
 }

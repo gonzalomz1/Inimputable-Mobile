@@ -3623,10 +3623,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6021090165220902897, guid: cfc87f91e73b90f44b53d900c3aaaf7e,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6801121685131747583, guid: cfc87f91e73b90f44b53d900c3aaaf7e,
         type: 3}
       propertyPath: m_Name
       value: Turro
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801121685131747583, guid: cfc87f91e73b90f44b53d900c3aaaf7e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3844,6 +3854,11 @@ PrefabInstance:
       propertyPath: currentAmmo
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1024413303061037303, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
+        type: 3}
+      propertyPath: RaycastLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 1451071074197504243, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3879,6 +3894,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971773787988049539, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 3580276877223024558, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
         type: 3}
@@ -4054,12 +4074,12 @@ PrefabInstance:
     - target: {fileID: 7725909911646738655, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9914449
+      value: 0.9990483
       objectReference: {fileID: 0}
     - target: {fileID: 7725909911646738655, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13052616
+      value: 0.043619405
       objectReference: {fileID: 0}
     - target: {fileID: 7725909911646738655, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
         type: 3}
@@ -4074,7 +4094,7 @@ PrefabInstance:
     - target: {fileID: 7725909911646738655, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7977105031984791709, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
         type: 3}

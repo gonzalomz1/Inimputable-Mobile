@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 8003920509165155938}
   - component: {fileID: 6021090165220902897}
   - component: {fileID: 1137125628259502710}
+  - component: {fileID: 6951398663021854015}
+  - component: {fileID: 667081334933393869}
+  - component: {fileID: 7845032472438114813}
   m_Layer: 0
   m_Name: Turro
   m_TagString: Enemies
@@ -77,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 79408eb9104807944ba337329c3ba368, type: 3}
+  m_Sprite: {fileID: 1836128056, guid: 062e66fcc15a17f40a1e06271d478dd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f27e317ce64c1747b4e025cf68635d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turroState: 0
 --- !u!114 &8003920509165155938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a68843f903bb794389fbe1b4ccb3501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 30
 --- !u!114 &6021090165220902897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd36d4b099017f44b1798c3d90b3b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!114 &1137125628259502710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +142,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d0dc8c99539b544854ee78df69116d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &6951398663021854015
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801121685131747583}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &667081334933393869
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801121685131747583}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1.02
+  m_Direction: 1
+  m_Center: {x: 0.0000121593475, y: 0.0000030398369, z: -0.00000011920929}
+--- !u!95 &7845032472438114813
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801121685131747583}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb76a13327849f546baeb7ee80dbf9e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
