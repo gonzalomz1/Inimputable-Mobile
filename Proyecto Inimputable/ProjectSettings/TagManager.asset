@@ -8,6 +8,7 @@ TagManager:
   - GameFlow
   - LevelLoader
   - Enemies
+  - Lights
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,3 @@
-using System.Net;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 enum WeaponHolderState { Active, PickedUp, Destroyed }

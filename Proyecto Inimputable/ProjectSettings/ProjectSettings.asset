@@ -12,15 +12,15 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: Proyecto Inimputable
+  companyName: PixARG
+  productName: Inimputable
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.12156863, g: 0.14901961, b: 0.1882353, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
-  m_SplashScreenAnimation: 1
+  m_SplashScreenAnimation: 2
   m_SplashScreenLogoStyle: 1
   m_SplashScreenDrawMode: 0
   m_SplashScreenBackgroundAnimationZoom: 1
@@ -44,8 +44,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
-  defaultScreenWidthWeb: 960
-  defaultScreenHeightWeb: 600
+  defaultScreenWidthWeb: 720
+  defaultScreenHeightWeb: 1280
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
   unsupportedMSAAFallback: 0
@@ -140,9 +140,8 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0.2
-  preloadedAssets:
-  - {fileID: -1709697129605903643, guid: 14814fe4e03378d4f968d9f772f1bdf4, type: 2}
+  bundleVersion: 0.8.0
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -151,7 +150,7 @@ PlayerSettings:
   vrSettings:
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
-  enableFrameTimingStats: 0
+  enableFrameTimingStats: 1
   enableOpenGLProfilerGPURecorders: 1
   allowHDRDisplaySupport: 0
   useHDRDisplay: 0
@@ -163,7 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.DefaultCompany.ProyectoInimputable
+    Android: com.PixARG.Inimputable
   buildNumber:
     Standalone: 0
     VisionOS: 0

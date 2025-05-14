@@ -1,23 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Video;
 
 public class TvScreen : MonoBehaviour
 {
-    public VideoPlayer videoPlayer;
+
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
     public Tv tv;
 
-
-    void Start()
-    {
-        if (videoPlayer != null)
-        {
-            videoPlayer.loopPointReached += OnVideoEnd;
-        }
-    }
-    void OnVideoEnd(VideoPlayer vp)
+    void OnVideoEnd()
     {
         Debug.Log("¡El video ha terminado!");
         tv.OnVideoEnd();
@@ -25,7 +15,7 @@ public class TvScreen : MonoBehaviour
     public void PlayVideo()
     {
         Debug.Log("REPRODUCIENDO VIDEO");
-        videoPlayer.Play();
+        animator.SetTrigger("Clip");
     }
 
 }
