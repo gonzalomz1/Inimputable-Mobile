@@ -24,7 +24,7 @@ public class PlayerData : Player
     public float dashStrength = 1f;
     public float dashDistance = 10f;
 
-    private UIPlayerStats uIPlayerStats;
+    public UIPlayerStats uIPlayerStats;
 
     
     public void TakeDamage(int damage)

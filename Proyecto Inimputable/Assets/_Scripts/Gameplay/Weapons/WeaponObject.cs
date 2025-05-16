@@ -80,6 +80,7 @@ public class WeaponObject : WeaponBehaviour
         Debug.Log("Pistol fired. Remaining ammo: " + currentAmmo);
     }
 
+
     private void FireRaycast()
     {
         Camera camera = Camera.main;
@@ -118,10 +119,15 @@ public class WeaponObject : WeaponBehaviour
 
     public override void Reload()
     {
-        if (currentAmmo < weaponData.clipSize && ammoReserve > 0)
+        if (CanReload())
         {
             SetState(WeaponState.Reloading);
         }
+    }
+
+    public bool CanReload()
+    {
+        return currentAmmo < weaponData.clipSize && ammoReserve > 0 && !isReloading;
     }
 
     public void OnReloadAnimationFinish()

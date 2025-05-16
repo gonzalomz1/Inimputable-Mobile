@@ -6,17 +6,25 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 public class CanvasManager : MonoBehaviour
 {
     [Header("Gameplay Canvases")]
+    public MenuCanvas menuCanvas;
     [SerializeField] private MovAndAimCanvas movAndAimCanvas;
     [SerializeField] private UICanvas uICanvas;
     [SerializeField] private ActionCanvas actionCanvas;
+
 
     [SerializeField] private Dictionary<int, FingerRole> fingerRoles = new Dictionary<int, FingerRole>();
 
 
     public void StartGameplay()
     {
+        SetMenuCanvas(false);
         uICanvas.StartUIPlayerStats();
         EnableInput();
+    }
+
+    public void SetMenuCanvas(bool boolean)
+    {
+        menuCanvas.gameObject.SetActive(boolean);
     }
     public void EnableInput()
     {
@@ -43,9 +51,15 @@ public class CanvasManager : MonoBehaviour
             return;
         }
 
+        if (menuCanvas.HandleTouch(finger, out FingerRole role))
+        {
+            fingerRoles[finger.index] = role;
+            Debug.Log($"Finger asignado a {role}.");
+            return;
+        }
 
         // Detect if try to touch an action button
-        if (actionCanvas.HandleTouch(finger, out FingerRole role))
+        if (actionCanvas.HandleTouch(finger, out role))
         {
             fingerRoles[finger.index] = role;
             Debug.Log($"Finger asignado a {role}.");

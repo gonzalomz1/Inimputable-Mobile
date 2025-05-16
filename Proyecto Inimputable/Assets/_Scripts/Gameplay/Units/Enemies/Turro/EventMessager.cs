@@ -45,12 +45,14 @@ public class EventMessager : MonoBehaviour
         turroView.ShowSprite();
     }
 
-
-    public void TriggerDieState()
+    public void TriggerShoot()
     {
-        turroController.SetState(EnemyState.Die);
-        turroController.turroState = EnemyState.Die;
+        turroController.Shoot();
+    }
 
+    public void EnemigesManagerDiscount()
+    {
+        GameObject.FindWithTag("EnemiesManager").GetComponent<EnemiesManager>().EnemyDied();
     }
 
     public void TriggerDestroyState()

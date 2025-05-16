@@ -16,6 +16,7 @@ public class TurroController : MonoBehaviour
     public float shootingDistance = 7f;
     public float moveSpeed = 2f;
     private Transform playerTransform;
+    public EnemyGun gun;
 
     void Start()
     {
@@ -93,8 +94,6 @@ public class TurroController : MonoBehaviour
         Vector3 direction = (playerTransform.position - transform.position).normalized;
         transform.position += direction * moveSpeed * Time.deltaTime;
 
-        // Opcional: que mire al jugador
-        //transform.forward = direction;
     }
 
     private void OnDrawGizmosSelected()
@@ -103,5 +102,15 @@ public class TurroController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, shootingDistance);
     }
 
+    public void Shoot()
+    {
+        gun.Shoot();
+    }
+
+    public void Die()
+    {
+        SetState(EnemyState.Die);
+        turroState = EnemyState.Die;
+    }
 
 }
