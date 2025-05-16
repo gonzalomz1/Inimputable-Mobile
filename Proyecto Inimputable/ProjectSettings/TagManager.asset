@@ -9,16 +9,19 @@ TagManager:
   - LevelLoader
   - Enemies
   - Lights
+  - Environment
+  - InvisibleWall
+  - EnemiesManager
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Environment
   - Water
   - UI
   - Enemies
-  - 
-  - 
+  - InvisibleWall
+  - Player
   - 
   - MenuButtons
   - 

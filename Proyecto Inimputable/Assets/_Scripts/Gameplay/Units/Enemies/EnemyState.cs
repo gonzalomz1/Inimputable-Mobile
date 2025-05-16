@@ -2,6 +2,7 @@ using UnityEngine;
 
 public enum EnemyState
 {
+    Inactive,
     Spawn,
     Idle,
     Move,
@@ -9,5 +10,6 @@ public enum EnemyState
     Shoot,
     Melee,
     Die,
+    Dead,
     Destroy
 }

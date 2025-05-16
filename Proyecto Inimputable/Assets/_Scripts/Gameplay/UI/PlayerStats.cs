@@ -19,6 +19,8 @@ public class UIPlayerStats : MonoBehaviour
         
         GameObject player = GameObject.FindWithTag("Player");
         PlayerData playerData = player.GetComponent<PlayerData>();
+        Debug.Log($"el gameobject player es : {player}");
+         Debug.Log($"player data    : {player}");
         SetBarMaxValue(healthBar, playerData.maxHealth);
         SetBarCurrentValue(healthBar, playerData.currentHealth);
 

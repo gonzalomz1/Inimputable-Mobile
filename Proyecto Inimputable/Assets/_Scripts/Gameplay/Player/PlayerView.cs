@@ -1,42 +1,25 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerView : Player
 {
-    public Rigidbody player;
-    public Transform cameraPivot;
+    public CharacterController controller;
+    public Transform player;
     public Transform cam;
     public PlayerData playerData;
 
-    void Awake()
+    public void Move(Vector2 moveInput, float speed)
     {
-        if (!player) player = GetComponent<Rigidbody>();
-    }
+        // Convertimos moveInput a un vector 3D relativo a la cámara
+        Vector3 move = cam.right * moveInput.x + cam.forward * moveInput.y;
+        move.y = 0f;
 
-    public void Move(Vector2 direction, float speed, Transform cameraTransform)
-    {
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
-
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-
-        Vector3 moveDirection = (forward * direction.y + right * direction.x).normalized;
-
-        if (moveDirection.sqrMagnitude > 0.01f)
-        {
-            Vector3 newPosition = player.position + moveDirection * speed * Time.fixedDeltaTime;
-            player.MovePosition(newPosition);
-        }
+        controller.Move(move * speed * Time.deltaTime);
     }
 
     public void RotateCamera(float yaw, float pitch)
     {
-        // Solo rotación de cámara
-        //cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
-        cameraPivot.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        player.localRotation = Quaternion.Euler(0f, yaw, 0f);
+        cam.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
     public void Dash()

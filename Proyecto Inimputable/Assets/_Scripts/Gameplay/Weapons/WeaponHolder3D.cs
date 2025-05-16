@@ -21,7 +21,7 @@ public class WeaponHolder3D : MonoBehaviour
     {
         currentState = WeaponHolderState.Active;
         ManageState(currentState);
-        
+
     }
 
     void ManageState(WeaponHolderState current)
@@ -52,23 +52,32 @@ public class WeaponHolder3D : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player"){
+        if (other.tag == "Player")
+        {
             currentState = WeaponHolderState.PickedUp;
             ManageState(currentState);
-        } 
-        
+
+            GameObject enemiesManagerObj = GameObject.FindGameObjectWithTag("EnemiesManager");
+            if (enemiesManagerObj != null)
+            {
+                EnemiesManager manager = enemiesManagerObj.GetComponent<EnemiesManager>();
+                manager.ActivateEnemies();
+            }
+        }
+
     }
 
-    private void SetAsPickedUpOnPlayer(WeaponData wd){
+    private void SetAsPickedUpOnPlayer(WeaponData wd)
+    {
         GameObject player = GameObject.FindWithTag("Player");
         WeaponController weaponController = player.GetComponent<WeaponController>();
         switch (wd.weaponName)
         {
             case "Pistol":
-               weaponController.PickUpWeapon(WeaponType.Pistol);
-            break;
+                weaponController.PickUpWeapon(WeaponType.Pistol);
+                break;
         }
-       
+
     }
 
 

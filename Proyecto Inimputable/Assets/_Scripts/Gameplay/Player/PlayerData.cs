@@ -11,10 +11,10 @@ public class PlayerData : Player
     public Vector2 currentMoveInput = Vector2.zero;
 
     [Header("Camera Data")]
-    public float lookSensitivity = 0.15f;
-    [HideInInspector] public float cameraPitch = 0f; // Vertical
-    public float currentYaw;
-    public float currentPitch;
+    public float sensitivity = 0.1f;
+    public float aimX = 0f;
+    public float aimY = 0f;
+    public bool isAimAssistActive;
 
     [Header("Stats")]
     public int maxHealth = 100;

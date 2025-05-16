@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class MovAndAimCanvas : GameplayCanvas
 {
     [SerializeField] private Vector2 joystickSize = new Vector2(300, 300);
-    [SerializeField] private FloatingJoystick joystick;
+    [SerializeField] private FloatingJoystick moveJoystick;
+    [SerializeField] private RectTransform aimPanel;
     [SerializeField] private PlayerView playerView;
     [SerializeField] private PlayerData playerData;
 
@@ -13,20 +15,14 @@ public class MovAndAimCanvas : GameplayCanvas
 
     private Finger movementFinger;
     private Finger aimFinger;
+    private Vector2 lastAimPosition;
     private Vector2 movementAmount;
-
-    [SerializeField] private float deadZoneThreshold = 5f;
-    [SerializeField] private float rotationSmoothSpeed = 10f;
-
-    private float targetYaw;
-    private float targetPitch;
-
 
     private void Awake()
     {
         if (!playerData) playerData = GetComponent<PlayerData>();
         if (!playerView) playerView = GetComponent<PlayerView>();
-        playerData.cameraPitch = playerView.cameraPivot.localEulerAngles.x;
+        //playerData.cameraPitch = playerView.cam.localEulerAngles.x;
     }
 
     public override void SetActiveCanvas(bool isActive)
@@ -44,7 +40,7 @@ public class MovAndAimCanvas : GameplayCanvas
             Debug.Log($"Assigning {finger.index} to movementFinger");
             movementFinger = finger;
             movementAmount = Vector2.zero;
-            joystickVisualLogic(finger);
+            joystickVisualLogic(finger, moveJoystick);
             role = FingerRole.Move;
             return true;
         }
@@ -52,6 +48,7 @@ public class MovAndAimCanvas : GameplayCanvas
         {
             Debug.Log($"Assigning {finger.index} to aimFinger");
             aimFinger = finger;
+            lastAimPosition = finger.screenPosition;
             role = FingerRole.Aim;
             return true;
         }
@@ -62,7 +59,7 @@ public class MovAndAimCanvas : GameplayCanvas
     {
         if (finger == movementFinger)
         {
-            MovementLogic(finger);
+            JoystickVectorLogic(finger, moveJoystick);
         }
         else if (finger == aimFinger)
         {
@@ -76,8 +73,8 @@ public class MovAndAimCanvas : GameplayCanvas
         {
             movementFinger = null;
             movementAmount = Vector2.zero;
-            joystick.Knob.anchoredPosition = Vector2.zero;
-            joystick.gameObject.SetActive(false);
+            moveJoystick.Knob.anchoredPosition = Vector2.zero;
+            moveJoystick.gameObject.SetActive(false);
         }
         else if (finger == aimFinger)
         {
@@ -89,15 +86,14 @@ public class MovAndAimCanvas : GameplayCanvas
     private void Update()
     {
         playerData.currentMoveInput = movementAmount;
-        if (movementAnimator != null) movementAnimator.SetBool("isMoving", IsPlayerMoving());
-        playerView.Move(playerData.currentMoveInput, playerData.moveSpeed, playerView.cam.transform);
-        playerData.currentPitch = Mathf.Lerp(playerData.currentPitch, targetPitch, Time.deltaTime * rotationSmoothSpeed);
-        playerData.currentYaw = Mathf.LerpAngle(playerData.currentYaw, targetYaw, Time.deltaTime * rotationSmoothSpeed);
 
-        playerView.RotateCamera(playerData.currentYaw, playerData.currentPitch);
+        if (movementAnimator != null) movementAnimator.SetBool("isMoving", IsPlayerMoving());
+
+        playerView.Move(playerData.currentMoveInput, playerData.moveSpeed);
+        playerView.RotateCamera(playerData.aimX, playerData.aimY);
     }
 
-    private void joystickVisualLogic(Finger finger)
+    private void joystickVisualLogic(Finger finger, FloatingJoystick joystick)
     {
         if (!joystick) return;
         joystick.gameObject.SetActive(true);
@@ -105,34 +101,30 @@ public class MovAndAimCanvas : GameplayCanvas
         joystick.RectTransform.anchoredPosition = ClampStartPosition(finger.screenPosition);
     }
 
-    private void MovementLogic(Finger finger)
+    private void JoystickVectorLogic(Finger finger, FloatingJoystick joystick)
     {
         float maxMovement = joystickSize.x / 2f;
         Vector2 difference = finger.currentTouch.screenPosition - joystick.RectTransform.anchoredPosition;
         movementAmount = Vector2.ClampMagnitude(difference / maxMovement, 1f);
         joystick.Knob.anchoredPosition = movementAmount * maxMovement;
     }
-
     private void AimWithFinger(Finger finger)
     {
-        Vector2 delta = finger.currentTouch.delta;
+        if (playerData.isAimAssistActive) return;
+        Vector2 currentPos = finger.screenPosition;
+        Vector2 delta = currentPos - lastAimPosition;
+        lastAimPosition = currentPos;
 
+        float deltaYaw = delta.x * playerData.sensitivity * Time.deltaTime;
+        float deltaPitch = -delta.y * playerData.sensitivity * Time.deltaTime;
 
+        playerData.aimX += deltaYaw;
+        playerData.aimY += deltaPitch;
 
-        if (float.IsNaN(delta.x) || float.IsNaN(delta.y)) return;
-
-        if (Mathf.Abs(delta.x) < deadZoneThreshold) delta.x = 0f;
-        if (Mathf.Abs(delta.y) < deadZoneThreshold) delta.y = 0f;
-
-
-        if (delta != Vector2.zero)
-        {
-            targetYaw += delta.x * playerData.lookSensitivity;
-            targetPitch -= delta.y * playerData.lookSensitivity;
-            targetPitch = Mathf.Clamp(targetPitch, -80f, 80f);
-        }
-
+        // Clampeo del ángulo vertical si lo necesitás
+        playerData.aimY = Mathf.Clamp(playerData.aimY, -80f, 80f);
     }
+
 
     private Vector2 ClampStartPosition(Vector2 startPosition)
     {
@@ -154,7 +146,8 @@ public class MovAndAimCanvas : GameplayCanvas
         {
             playerData.isMoving = true;
             return true;
-        } else
+        }
+        else
         {
             playerData.isMoving = false;
             return false;
