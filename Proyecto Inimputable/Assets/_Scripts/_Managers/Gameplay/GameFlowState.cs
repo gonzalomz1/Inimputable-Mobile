@@ -1,7 +1,8 @@
 public enum GameFlowState {
     Loading,
-    Gameplay,
+    StartGameplay,
     Paused,
+    ResumeGameplay,
     Cinematic,
     GameOver
     }

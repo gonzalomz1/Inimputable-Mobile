@@ -93,17 +93,14 @@ public class WeaponObject : WeaponBehaviour
         }
     }
 
-
-
-
     public void EnableFlash()
     {
-        FindWeaponController().EnableFlash();
+        FindWeaponView().EnableFlash();
     }
 
     public void DisableFlash()
     {
-        FindWeaponController().DisableFlash();
+        FindWeaponView().DisableFlash();
     }
 
     public void FinishShooting()
@@ -136,7 +133,7 @@ public class WeaponObject : WeaponBehaviour
         currentAmmo = ammoToReload;
         ammoReserve -= ammoToReload;
 
-        FindWeaponController().AfterReloadChangeUi();
+        FindWeaponView().AfterReloadChangeUi();
         isReloading = false;
         SetState(WeaponState.Idle);
         Debug.Log("Reloaded.");
@@ -162,4 +159,19 @@ public class WeaponObject : WeaponBehaviour
         WeaponController wc = player.GetComponent<WeaponController>();
         return wc;
     }
+    
+    public WeaponModel FindWeaponModel()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        WeaponModel wc = player.GetComponent<WeaponModel>();
+        return wc;
+    }
+    
+        public WeaponView FindWeaponView()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        WeaponView wc = player.GetComponent<WeaponView>();
+        return wc;
+    }
+    
 }

@@ -5,12 +5,13 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class CanvasManager : MonoBehaviour
 {
+    public GameFlowManager gameFlowManager;
     [Header("Gameplay Canvases")]
     public MenuCanvas menuCanvas;
-    [SerializeField] private MovAndAimCanvas movAndAimCanvas;
-    [SerializeField] private UICanvas uICanvas;
-    [SerializeField] private ActionCanvas actionCanvas;
-
+    public ActionCanvas actionCanvas;
+    public MovAndAimCanvas movAndAimCanvas;
+    public UICanvas uICanvas;
+    
 
     [SerializeField] private Dictionary<int, FingerRole> fingerRoles = new Dictionary<int, FingerRole>();
 
@@ -25,6 +26,21 @@ public class CanvasManager : MonoBehaviour
     public void SetMenuCanvas(bool boolean)
     {
         menuCanvas.gameObject.SetActive(boolean);
+    }
+
+    public void PauseMode()
+    {
+        menuCanvas.SetActivePause();
+    }
+
+    public void ResumeGameplay()
+    {
+        menuCanvas.gameObject.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        menuCanvas.GameOver();
     }
     public void EnableInput()
     {
@@ -57,6 +73,8 @@ public class CanvasManager : MonoBehaviour
             Debug.Log($"Finger asignado a {role}.");
             return;
         }
+
+        if (gameFlowManager.currentState == GameFlowState.Paused || gameFlowManager.currentState == GameFlowState.GameOver) return;
 
         // Detect if try to touch an action button
         if (actionCanvas.HandleTouch(finger, out role))
@@ -99,6 +117,11 @@ public class CanvasManager : MonoBehaviour
         if (role == FingerRole.Move || role == FingerRole.Aim)
         {
             movAndAimCanvas.HandleFingerUp(finger);
+        }
+
+        if (role == FingerRole.Action)
+        {
+            actionCanvas.HandleFingerUp(finger);
         }
 
         Debug.Log($"Removing: {finger.index}");

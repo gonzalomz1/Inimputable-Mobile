@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -8,13 +7,10 @@ using UnityEngine.UI;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 
-
-
-
 public class MenuManager : MonoBehaviour
 {
    [Header("State")]
-   public GameState currentState;
+   public MenuFlowState currentState;
    public MenuState currentMenuState;
    [Header("Components")]
    public SplashScreen splashScreen;
@@ -32,31 +28,65 @@ public class MenuManager : MonoBehaviour
 
    void Start()
    {
-      SetCameraDefaultPosition();
-      currentState = GameState.Credits;
-      currentMenuState = MenuState.Disable;
-      ManageState(currentState);
-      ManageMenuState(currentMenuState);
+      StartGame();
    }
-      void SetCameraDefaultPosition() {
-      menuCamera.transform.position = new Vector3(-0.38999998569488528f, 0.6000000238418579f,0.05999999865889549f);
-      menuCamera.transform.rotation = new Quaternion(0.0f,-0.7071068286895752f,0.0f,0.7071068286895752f);
-      }
 
-   void ManageState(GameState current)
+   // INPUT    
+   void EnableInput()
+   {
+      ETouch.EnhancedTouchSupport.Enable();
+      ETouch.Touch.onFingerDown += HandleFingerDown;
+   }
+
+   void DisableInput()
+   {
+      ETouch.Touch.onFingerDown -= HandleFingerDown;
+      ETouch.EnhancedTouchSupport.Disable();
+   }
+
+   void HandleFingerDown(Finger finger)
+   {
+      Vector2 touchPos = finger.screenPosition;
+      PointerEventData pointerEventData = new PointerEventData(eventSystem);
+      pointerEventData.position = touchPos;
+
+      var results = new System.Collections.Generic.List<RaycastResult>();
+      raycaster.Raycast(pointerEventData, results);
+
+      foreach (var result in results)
+      {
+         Button button = result.gameObject.GetComponent<Button>();
+         if (button != null)
+         {
+            Debug.Log("Botón tocado: " + button.name);
+            button.onClick.Invoke(); // Simula el click
+            break;
+         }
+      }
+   }
+   // END OF INPUT CONTEXT
+
+   // STATE MACHINES
+   void ManageState(MenuFlowState current)
    {
       switch (current)
       {
-         case GameState.Credits:
+         case MenuFlowState.Logo:
             splashScreen.gameObject.SetActive(true);
             splashScreen.DisableLoading();
             splashScreen.EnableCredits();
             break;
-         case GameState.PlayingClip:
+         case MenuFlowState.TvClip:
             basement.tv.tvScreen.PlayVideo();
             break;
-         case GameState.Menu:
+         case MenuFlowState.Menu:
             menuCamera.MainMenuAngle();
+            break;
+         case MenuFlowState.LoadGameplay:
+            splashScreen.SetActiveCanvas(true);
+            splashScreen.DisableCredits();
+            splashScreen.EnableLoading();
+            splashScreen.LoadGameplay();
             break;
       }
    }
@@ -70,49 +100,83 @@ public class MenuManager : MonoBehaviour
          case MenuState.MainMenu:
             EnableInput();
             SetCanvasState(menuScreen, true);
-            menuScreen.SetGameObject(menuScreen.creditsContext, false);
-            menuScreen.SetGameObject(menuScreen.optionsContext, false);
-            menuScreen.SetGameObject(menuScreen.mainMenuContext, true);
-            menuScreen.SetGameObject(menuScreen.exitContext, false);
+            OnlyMainMenuContext();
             break;
          case MenuState.Credits:
             menuCamera.CreditsAngle();
-            menuScreen.SetGameObject(menuScreen.creditsContext, true);
-            menuScreen.CreditsArrow(false);
-            menuScreen.SetGameObject(menuScreen.mainMenuContext,false);
-            menuScreen.SetGameObject(menuScreen.optionsContext, false);
-            menuScreen.MainMenuButtons(false);
-           break;
-           case MenuState.Options:
+            OnlyCreditsButtons();
+            break;
+         case MenuState.Options:
             menuScreen.SetGameObject(menuScreen.optionsContext, true);
             menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
-           break;
-           
-          case MenuState.Exit:
+            break;
+
+         case MenuState.Exit:
             menuScreen.SetGameObject(menuScreen.exitContext, true);
             menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
             menuScreen.SetGameObject(menuScreen.optionsContext, false);
             menuScreen.SetGameObject(menuScreen.creditsContext, false);
-           break;
+            break;
 
       }
 
+   }
+   // END OF STATE MACHINE CONTEXT
+
+   void SetCameraDefaultPosition()
+   {
+      menuCamera.transform.position = new Vector3(-0.38999998569488528f, 0.6000000238418579f, 0.05999999865889549f);
+      menuCamera.transform.rotation = new Quaternion(0.0f, -0.7071068286895752f, 0.0f, 0.7071068286895752f);
+   }
+
+   void StartGame()
+   {
+      SetCameraDefaultPosition();
+      currentState = MenuFlowState.Logo;
+      currentMenuState = MenuState.Disable;
+      ManageState(currentState);
+      ManageMenuState(currentMenuState);
+   }
+
+
+   private void OnlyMainMenuContext()
+   {
+      menuScreen.SetGameObject(menuScreen.creditsContext, false);
+      menuScreen.SetGameObject(menuScreen.optionsContext, false);
+      menuScreen.SetGameObject(menuScreen.mainMenuContext, true);
+      menuScreen.SetGameObject(menuScreen.exitContext, false);
+   }
+
+   private void OnlyCreditsButtons()
+   {
+      menuScreen.SetGameObject(menuScreen.creditsContext, true);
+      menuScreen.CreditsArrow(false);
+      menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
+      menuScreen.SetGameObject(menuScreen.optionsContext, false);
+      MainMenuButtons(false);
+   }
+
+   private void MainMenuButtons(bool ActiveOrNot)
+   {
+      menuScreen.MainMenuButtons(ActiveOrNot);
    }
 
    private void SetCanvasState(CustomCanvas screen, bool boolean)
    {
       screen.SetActiveCanvas(boolean);
    }
+
+   // METHODS FOR EVENT CALLS IN ANIMATIONS.
    public void OnCreditsAnimationFinished()
    {
       Debug.Log("termino animacion del logo");
       splashScreen.gameObject.SetActive(false);
-      currentState = GameState.PlayingClip;
+      currentState = MenuFlowState.TvClip;
       ManageState(currentState);
    }
    public void OnVideoEnd()
    {
-      currentState = GameState.Menu;
+      currentState = MenuFlowState.Menu;
 
       ManageState(currentState);
    }
@@ -162,45 +226,9 @@ public class MenuManager : MonoBehaviour
       ManageMenuState(currentMenuState);
    }
 
-   void EnableInput()
-   {
-      ETouch.EnhancedTouchSupport.Enable();
-      ETouch.Touch.onFingerDown += HandleFingerDown;
-   }
-
-   void DisableInput()
-   {
-      ETouch.Touch.onFingerDown -= HandleFingerDown;
-      ETouch.EnhancedTouchSupport.Disable();
-   }
-
-   void HandleFingerDown(Finger finger)
-   {
-      Vector2 touchPos = finger.screenPosition;
-      PointerEventData pointerEventData = new PointerEventData(eventSystem);
-      pointerEventData.position = touchPos;
-
-      var results = new System.Collections.Generic.List<RaycastResult>();
-      raycaster.Raycast(pointerEventData, results);
-
-      foreach (var result in results)
-      {
-         Button button = result.gameObject.GetComponent<Button>();
-         if (button != null)
-         {
-            Debug.Log("Botón tocado: " + button.name);
-            button.onClick.Invoke(); // Simula el click
-            break;
-         }
-
-      }
-   }
-
    public void BeginLoadingGameplay()
    {
-      splashScreen.SetActiveCanvas(true);
-      splashScreen.DisableCredits();
-      splashScreen.EnableLoading();
-      splashScreen.LoadGameplay();
+      currentState = MenuFlowState.LoadGameplay;
+      ManageState(currentState);
    }
 }

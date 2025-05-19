@@ -11,6 +11,8 @@ public class MenuCanvas : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI loseText;
     [SerializeField] private TextMeshProUGUI winText;
+    [SerializeField] private GameObject gameOverContext;
+    [SerializeField] private GameObject pauseContext;
     public Button playAgainButton;
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
@@ -28,11 +30,12 @@ public class MenuCanvas : MonoBehaviour
 
         foreach (var result in results)
         {
-            if (result.gameObject == playAgainButton.gameObject)
+            Button button = result.gameObject.GetComponent<Button>();
+            if (button != null)
             {
-                playAgainButton.onClick.Invoke();
+                Debug.Log("Botón tocado: " + button.name);
                 assignedRole = FingerRole.Menu;
-                Debug.Log("On MenuCanvas.HandleTrouch(): returning true");
+                button.onClick.Invoke(); // Simula el click
                 return true;
             }
         }
@@ -42,14 +45,31 @@ public class MenuCanvas : MonoBehaviour
 
     public void SetLoseState()
     {
+        SetActiveGameOver();
+
         loseText.gameObject.SetActive(true);
         winText.gameObject.SetActive(false);
     }
 
     public void SetWinState()
     {
+        SetActiveGameOver();
+
         loseText.gameObject.SetActive(false);
         winText.gameObject.SetActive(true);
+    }
+
+    public void SetActiveGameOver()
+    {
+        gameOverContext.SetActive(true);
+        pauseContext.SetActive(false);
+    }
+
+    public void SetActivePause()
+    {
+        gameObject.SetActive(true);
+        gameOverContext.SetActive(false);
+        pauseContext.SetActive(true);
     }
 
     public void PlayAgain()
@@ -57,6 +77,16 @@ public class MenuCanvas : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void GameOver()
+    {
+        gameObject.SetActive(true);
+        SetActiveGameOver();
+    }
+
+    public void ExitMenu()
+    {
+        GetComponentInParent<GameFlowManager>().SetGameState(GameFlowState.ResumeGameplay);
+    }
     public void BackToMenu()
     {
         SceneManager.LoadScene("MainMenu");

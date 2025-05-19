@@ -8,9 +8,8 @@ public class MovAndAimCanvas : GameplayCanvas
     [SerializeField] private Vector2 joystickSize = new Vector2(300, 300);
     [SerializeField] private FloatingJoystick moveJoystick;
     [SerializeField] private RectTransform aimPanel;
-    [SerializeField] private PlayerView playerView;
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerData playerData;
-
     [SerializeField] private Animator movementAnimator;
 
     private Finger movementFinger;
@@ -21,7 +20,7 @@ public class MovAndAimCanvas : GameplayCanvas
     private void Awake()
     {
         if (!playerData) playerData = GetComponent<PlayerData>();
-        if (!playerView) playerView = GetComponent<PlayerView>();
+        if (!playerMovement) playerMovement = GetComponent<PlayerMovement>();
         //playerData.cameraPitch = playerView.cam.localEulerAngles.x;
     }
 
@@ -86,11 +85,10 @@ public class MovAndAimCanvas : GameplayCanvas
     private void Update()
     {
         playerData.currentMoveInput = movementAmount;
-
         if (movementAnimator != null) movementAnimator.SetBool("isMoving", IsPlayerMoving());
 
-        playerView.Move(playerData.currentMoveInput, playerData.moveSpeed);
-        playerView.RotateCamera(playerData.aimX, playerData.aimY);
+        playerMovement.Move(playerData.currentMoveInput, playerData.moveSpeed);
+        playerMovement.RotateCamera(playerData.aimX, playerData.aimY);
     }
 
     private void joystickVisualLogic(Finger finger, FloatingJoystick joystick)
@@ -115,8 +113,8 @@ public class MovAndAimCanvas : GameplayCanvas
         Vector2 delta = currentPos - lastAimPosition;
         lastAimPosition = currentPos;
 
-        float deltaYaw = delta.x * playerData.sensitivity * Time.deltaTime;
-        float deltaPitch = -delta.y * playerData.sensitivity * Time.deltaTime;
+        float deltaYaw = delta.x * playerData.sensitivityX * Time.deltaTime;
+        float deltaPitch = -delta.y * playerData.sensitivityY * Time.deltaTime;
 
         playerData.aimX += deltaYaw;
         playerData.aimY += deltaPitch;

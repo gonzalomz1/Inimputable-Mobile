@@ -11,7 +11,8 @@ public class PlayerData : Player
     public Vector2 currentMoveInput = Vector2.zero;
 
     [Header("Camera Data")]
-    public float sensitivity = 0.1f;
+    public float sensitivityX = 5f;
+    public float sensitivityY = 3f;
     public float aimX = 0f;
     public float aimY = 0f;
     public bool isAimAssistActive;

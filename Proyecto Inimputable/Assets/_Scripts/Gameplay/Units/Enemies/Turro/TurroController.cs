@@ -58,7 +58,7 @@ public class TurroController : MonoBehaviour
         }
     }
 
-    void Update()
+    void Update() // podria ser llamado de animacion en vez de update.
     {
         // If one of this states, return.
         if (turroState == EnemyState.Inactive ||

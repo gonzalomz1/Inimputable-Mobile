@@ -6,6 +6,7 @@ public class GameFlowManager : MonoBehaviour
 
    [SerializeField] private CanvasManager canvasManager;
    [SerializeField] private EnemiesManager enemiesManager;
+   [SerializeField] private WeaponController weaponController;
 
    public GameFlowState currentState;
 
@@ -21,7 +22,7 @@ public class GameFlowManager : MonoBehaviour
 
    private void Start()
    {
-      SetGameState(GameFlowState.Gameplay); // temporal for TEST_Room
+      SetGameState(GameFlowState.StartGameplay); // temporal for TEST_Room
    }
 
    public void SetGameState(GameFlowState newState)
@@ -35,18 +36,24 @@ public class GameFlowManager : MonoBehaviour
          case GameFlowState.Loading:
             canvasManager.DisableInput();
             break;
-         case GameFlowState.Gameplay:
+         case GameFlowState.StartGameplay:
+            weaponController.StartWeapons();
             canvasManager.StartGameplay();
             ResumeGame();
             break;
          case GameFlowState.Paused:
+            canvasManager.PauseMode();
             PauseGame();
+            break;
+         case GameFlowState.ResumeGameplay:
+            canvasManager.ResumeGameplay();
+            ResumeGame();
             break;
          case GameFlowState.Cinematic:
          case GameFlowState.GameOver:
             PauseGame();
             bool checkPlayer = IsPlayerDead();
-            canvasManager.SetMenuCanvas(true);
+            canvasManager.GameOver();
             if (checkPlayer)
             {
                canvasManager.menuCanvas.SetLoseState();

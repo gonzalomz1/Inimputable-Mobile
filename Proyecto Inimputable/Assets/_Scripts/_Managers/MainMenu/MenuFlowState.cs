@@ -1,0 +1,1 @@
+public enum MenuFlowState { Logo, TvClip, Menu, LoadGameplay }

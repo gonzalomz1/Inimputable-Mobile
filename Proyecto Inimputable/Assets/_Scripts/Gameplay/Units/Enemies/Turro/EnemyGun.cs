@@ -21,14 +21,12 @@ public class EnemyGun : MonoBehaviour
     {
         if (player == null) return;
         bulletSpawnPoint.LookAt(player.transform);
-        //if (forwardCube != null)
-        //    forwardCube.localPosition = Vector3.forward * 1f;
+
         Vector3 spawnPos = bulletSpawnPoint.position + bulletSpawnPoint.forward * 0.5f;
         var bullet = Instantiate(bulletPrefab, spawnPos, bulletSpawnPoint.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
 
-        //var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        //bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
+
     }
 
 }
