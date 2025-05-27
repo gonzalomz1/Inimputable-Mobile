@@ -5,13 +5,13 @@ using UnityEngine;
 public class WeaponModel : MonoBehaviour
 {
     [Header("Weapon Slots")]
-    public WeaponObject melee;
+    public WeaponObject cane;
     public WeaponObject pistol;
     public WeaponObject rifle;
     [Header("WeaponData")]
     public WeaponData pistolData;
     public WeaponData rifleData;
-    public WeaponData meleeData;
+    public WeaponData caneData;
     [Header("HashSet for available weapons")]
     public HashSet<WeaponType> pickedUpWeapons = new HashSet<WeaponType>();
 
@@ -28,7 +28,7 @@ public class WeaponModel : MonoBehaviour
     {
         if (currentWeapon == WeaponType.Pistol) return pistol;
         if (currentWeapon == WeaponType.Rifle) return rifle;
-        if (currentWeapon == WeaponType.Melee) return melee;
+        if (currentWeapon == WeaponType.Cane) return cane;
         Debug.LogError("No value for currentWeapon on WeaponController");
         return null;
 

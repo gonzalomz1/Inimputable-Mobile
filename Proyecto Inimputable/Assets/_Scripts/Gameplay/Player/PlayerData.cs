@@ -12,7 +12,9 @@ public class PlayerData : Player
 
     [Header("Camera Data")]
     public float sensitivityX = 5f;
-    public float sensitivityY = 3f;
+    public float sensitivityY; // on start, we change the value
+    public float ySensitivityRatio = 0.6f;
+
     public float aimX = 0f;
     public float aimY = 0f;
     public bool isAimAssistActive;
@@ -27,7 +29,12 @@ public class PlayerData : Player
 
     public UIPlayerStats uIPlayerStats;
 
-    
+    void Start()
+    {
+        sensitivityY = sensitivityX * ySensitivityRatio;
+    }
+
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -42,6 +49,12 @@ public class PlayerData : Player
     public bool IsPlayerDead()
     {
         return currentHealth <= 0;
+    }
+
+    public void ChangeSensitivity(float amount)
+    {
+        sensitivityX = amount;
+        sensitivityY = sensitivityX * ySensitivityRatio;
     }
 
     

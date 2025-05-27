@@ -13,7 +13,7 @@ public class WeaponView : MonoBehaviour
     {
         if (weaponModel.pistol) weaponModel.pistol.gameObject.SetActive(false);
         if (weaponModel.rifle) weaponModel.rifle.gameObject.SetActive(false);
-        if (weaponModel.melee) weaponModel.melee.gameObject.SetActive(false);
+        if (weaponModel.cane) weaponModel.cane.gameObject.SetActive(false);
     }
 
     public void EquipWeapon(WeaponType type)
@@ -35,7 +35,7 @@ public class WeaponView : MonoBehaviour
                     weaponModel.currentWeapon = WeaponType.Pistol;
                     weaponModel.currentWeaponObject = weaponModel.pistol;
                     weaponModel.pistol.gameObject.SetActive(true);
-                    if (weaponModel.melee) weaponModel.melee.gameObject.SetActive(false);
+                    if (weaponModel.cane) weaponModel.cane.gameObject.SetActive(false);
                     if (weaponModel.rifle) weaponModel.rifle.gameObject.SetActive(false);
                 }
                 break;
@@ -45,16 +45,16 @@ public class WeaponView : MonoBehaviour
                     weaponModel.currentWeapon = WeaponType.Rifle;
                     weaponModel.currentWeaponObject = weaponModel.rifle;
                     weaponModel.rifle.gameObject.SetActive(true);
-                    if (weaponModel.melee) weaponModel.melee.gameObject.SetActive(false);
+                    if (weaponModel.cane) weaponModel.cane.gameObject.SetActive(false);
                     if (weaponModel.pistol) weaponModel.pistol.gameObject.SetActive(false);
                 }
                 break;
-            case WeaponType.Melee:
-                if (weaponModel.melee != null && weaponModel.pickedUpWeapons.Contains(WeaponType.Melee))
+            case WeaponType.Cane:
+                if (weaponModel.cane != null && weaponModel.pickedUpWeapons.Contains(WeaponType.Cane))
                 {
-                    weaponModel.currentWeapon = WeaponType.Melee;
-                    weaponModel.currentWeaponObject = weaponModel.melee;
-                    weaponModel.melee.gameObject.SetActive(true);
+                    weaponModel.currentWeapon = WeaponType.Cane;
+                    weaponModel.currentWeaponObject = weaponModel.cane;
+                    weaponModel.cane.gameObject.SetActive(true);
                     if (weaponModel.rifle) weaponModel.rifle.gameObject.SetActive(false);
                     if (weaponModel.pistol) weaponModel.pistol.gameObject.SetActive(false);
                 }

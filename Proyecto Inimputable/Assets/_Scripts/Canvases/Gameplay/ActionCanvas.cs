@@ -68,4 +68,9 @@ public class ActionCanvas : MonoBehaviour
         GetComponentInParent<GameFlowManager>().SetGameState(GameFlowState.Paused);
     }
 
+    public bool IfNeedToChangeButtonSpray()
+    {
+        return true;
+    }
+
 }

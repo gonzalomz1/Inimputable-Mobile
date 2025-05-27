@@ -17,8 +17,16 @@ public class WeaponObject : WeaponBehaviour
     [SerializeField] private Animator animator;
     private bool isShoting = false;
     private bool isReloading = false;
+    private bool needAmmo = true;
+    private bool needToReload = true;
     public LayerMask RaycastLayers;
 
+    public WeaponType weaponType;
+
+    void Start()
+    {
+        weaponType = weaponData.weaponType;
+    }
 
     public override void Initialize(WeaponData data, Transform firePoint)
     {

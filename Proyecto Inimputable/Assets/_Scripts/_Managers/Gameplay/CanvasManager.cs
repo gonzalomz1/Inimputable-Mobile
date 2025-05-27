@@ -100,6 +100,11 @@ public class CanvasManager : MonoBehaviour
     {
         if (!fingerRoles.TryGetValue(finger.index, out var role)) return;
 
+        if (role == FingerRole.Menu)
+        {
+            menuCanvas.HandleFingerMove(finger);
+        }
+
         if (role == FingerRole.Move || role == FingerRole.Aim)
         {
             movAndAimCanvas.HandleFingerMove(finger);

@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,6 +97,19 @@ TextureImporter:
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -292,8 +305,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f42ac9a3548a41c4f993f93d010f0b75
-      internalID: -882983219
+      spriteID: dfcef7bee5de69146a64efb3fbb8f3de
+      internalID: 2025426278
       vertices: []
       indices: 
       edges: []
@@ -313,92 +326,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59060e0fe2a077642a41f105831535df
-      internalID: -1048596123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WEAPON_Pistol_Spritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 091eb599cc4e402419b534cefdc4e962
-      internalID: -971852026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WEAPON_Pistol_Spritesheet_11
-      rect:
-        serializedVersion: 2
-        x: 2816
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a5ff2cc4c0417b941803aec0658ece6c
-      internalID: -2143886323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WEAPON_Pistol_Spritesheet_12
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8befeb96b1752a14282ac892adc9469f
-      internalID: 2040204667
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WEAPON_Pistol_Spritesheet_13
-      rect:
-        serializedVersion: 2
-        x: 3328
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cee0807387f91dc4fbe30199bd2e7492
-      internalID: 1724374484
+      spriteID: 83440c05c888e4b4c89a5957b6f4d4b5
+      internalID: -996677565
       vertices: []
       indices: 
       edges: []
@@ -416,18 +345,14 @@ TextureImporter:
     nameFileIdTable:
       WEAPON_Pistol_Spritesheet_0: -1177106693
       WEAPON_Pistol_Spritesheet_1: -680402477
-      WEAPON_Pistol_Spritesheet_10: -971852026
-      WEAPON_Pistol_Spritesheet_11: -2143886323
-      WEAPON_Pistol_Spritesheet_12: 2040204667
-      WEAPON_Pistol_Spritesheet_13: 1724374484
       WEAPON_Pistol_Spritesheet_2: 1638923722
       WEAPON_Pistol_Spritesheet_3: -1452058454
       WEAPON_Pistol_Spritesheet_4: -1268807005
       WEAPON_Pistol_Spritesheet_5: -276273843
       WEAPON_Pistol_Spritesheet_6: -278209106
       WEAPON_Pistol_Spritesheet_7: 654033211
-      WEAPON_Pistol_Spritesheet_8: -882983219
-      WEAPON_Pistol_Spritesheet_9: -1048596123
+      WEAPON_Pistol_Spritesheet_8: 2025426278
+      WEAPON_Pistol_Spritesheet_9: -996677565
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

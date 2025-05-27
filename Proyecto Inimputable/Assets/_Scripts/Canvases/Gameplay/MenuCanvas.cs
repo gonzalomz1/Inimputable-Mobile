@@ -9,13 +9,34 @@ using TMPro;
 
 public class MenuCanvas : MonoBehaviour
 {
+    [Header("Pause")]
+    [SerializeField] private Slider sensitivitySlider;
+    private Vector2 startValueSensSldr;
+    [Header("Game Over")]
     [SerializeField] private TextMeshProUGUI loseText;
     [SerializeField] private TextMeshProUGUI winText;
+    public Button playAgainButton;
+    [Header("Contexts")]
     [SerializeField] private GameObject gameOverContext;
     [SerializeField] private GameObject pauseContext;
-    public Button playAgainButton;
+    [Header("Fingers")]
+    private Finger sensFinger;
+
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
+    [Header("Player Reference")]
+    public PlayerData playerData;
+
+    public const float MIN_SENSITIVITY = 2f;
+    public const float MAX_SENSITIVITY = 14f;
+
+    void Start()
+    {
+        playerData = GameObject.FindWithTag("Player").GetComponent<PlayerData>();
+        sensitivitySlider.minValue = MIN_SENSITIVITY;
+        sensitivitySlider.maxValue = MAX_SENSITIVITY;
+        sensitivitySlider.value = playerData.sensitivityX;
+    }
 
     public bool HandleTouch(Finger finger, out FingerRole assignedRole)
     {
@@ -30,18 +51,62 @@ public class MenuCanvas : MonoBehaviour
 
         foreach (var result in results)
         {
-            Button button = result.gameObject.GetComponent<Button>();
-            if (button != null)
+            GameObject target = result.gameObject;
+            if (target.GetComponent<Selectable>())
             {
-                Debug.Log("Botón tocado: " + button.name);
                 assignedRole = FingerRole.Menu;
-                button.onClick.Invoke(); // Simula el click
+                Debug.Log("UI interactiva tocada: " + target.name);
+
+                Slider slr = target.GetComponent<Slider>();
+                if (slr != null)
+                {
+                    sensFinger = finger;
+                    Debug.Log("Se toco un slider");
+                }
+                // Si es botón, disparamos onClick
+                Button btn = target.GetComponent<Button>();
+                if (btn != null)
+                {
+                    btn.onClick.Invoke();
+                }
                 return true;
             }
+
         }
         Debug.Log("On MenuCanvas.HandleTrouch(): returning false");
         return false;
     }
+
+    public void HandleFingerMove(Finger finger)
+    {
+        if (sensFinger != null)
+        {
+            Vector2 currentPos = finger.screenPosition;
+            Vector2 delta = currentPos - startValueSensSldr;
+            startValueSensSldr = currentPos;
+
+            Vector2 deltaNormalized = delta.normalized;
+
+            float sensitivityChange = deltaNormalized.x / 12f;
+
+            sensitivitySlider.value += sensitivityChange;
+
+            if (sensitivitySlider.value <= MIN_SENSITIVITY) sensitivitySlider.value = MIN_SENSITIVITY;
+            if (sensitivitySlider.value >= MAX_SENSITIVITY) sensitivitySlider.value = MAX_SENSITIVITY;
+
+            if (playerData != null) playerData.ChangeSensitivity(sensitivitySlider.value);
+        }
+    }
+
+    public void HandleFingerUp(Finger finger)
+    {
+        if (sensFinger != null)
+        {
+            sensFinger = null;
+        }
+    }
+
+
 
     public void SetLoseState()
     {

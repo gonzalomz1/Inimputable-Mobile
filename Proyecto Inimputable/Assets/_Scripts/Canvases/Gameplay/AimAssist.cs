@@ -5,7 +5,7 @@ public class AimAssist : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] private float maxDistance = 25f;             // Max distance of enemy to consider
-    [SerializeField] private float screenRadius = 100f;           // Radius in pixels from the center where help activates
+    [SerializeField] private float screenRadius = 250f;           // Radius in pixels from the center where help activates
     [SerializeField][Range(0f, 1f)] private float aimAssistStrength = 0.3f; // Strength of the help
 
     [Header("References")]
@@ -19,18 +19,20 @@ public class AimAssist : MonoBehaviour
         mainCamera = Camera.main;
         playerData = GameObject.FindWithTag("Player").GetComponent<PlayerData>();
     }
-/*
+
     void Update()
     {
-        if (currentTarget == null)
+        if (playerData.isAimAssistActive)
         {
-            playerData.isAimAssistActive = false;
-            return;
+            if (currentTarget == null)
+            {
+                playerData.isAimAssistActive = false;
+                return;
+            }
+            FindBestTarget();
+            ApplyAimAssist();
         }
-        FindBestTarget();
-        ApplyAimAssist();
     }
-    */
 
 
     void FindBestTarget()

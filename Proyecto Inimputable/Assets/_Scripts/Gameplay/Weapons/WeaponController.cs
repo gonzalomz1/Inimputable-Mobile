@@ -11,12 +11,12 @@ public class WeaponController : MonoBehaviour
     public void StartWeapons()
     {
         weaponView.DisableAllWeapons();
-        InitializeWeapons(weaponModel.pistolData, null, null);
+        InitializeWeapons(weaponModel.pistolData, weaponModel.caneData, null);
     }
 
 
 
-    public void InitializeWeapons(WeaponData pistolData, WeaponData rifleData, WeaponData meleeData)
+    public void InitializeWeapons(WeaponData pistolData, WeaponData rifleData, WeaponData caneData)
     {
         // Instantiate but disable at first
         if (weaponModel.pistolData != null)
@@ -31,10 +31,10 @@ public class WeaponController : MonoBehaviour
             weaponModel.rifle.Initialize(rifleData, weaponModel.rifle.transform);
         }
 
-        if (weaponModel.meleeData != null)
+        if (weaponModel.caneData != null)
         {
             Debug.Log("Initializing Melee");
-            weaponModel.melee.Initialize(meleeData, weaponModel.melee.transform);
+            weaponModel.cane.Initialize(caneData, weaponModel.cane.transform);
         }
     }
 
@@ -45,7 +45,7 @@ public class WeaponController : MonoBehaviour
         if (!weaponModel.pickedUpWeapons.Contains(type))
         {
             weaponModel.pickedUpWeapons.Add(type);
-            weaponView.EquipWeapon(WeaponType.Pistol);
+            weaponView.EquipWeapon(type);
             Debug.Log($"Weapon {type} picked up!");
         }
         OnNewWeaponStats();
@@ -57,7 +57,7 @@ public class WeaponController : MonoBehaviour
         Debug.Log("on Change UI Stats");
         WeaponObject newWeapon = weaponModel.GetCurrentWeapon();
         Debug.Log($"after call, newWeapon is: {newWeapon}");
-        weaponView.weaponStats.NewWeaponEquiped(newWeapon);
+        if (newWeapon.weaponType != WeaponType.Cane) weaponView.weaponStats.NewWeaponEquiped(newWeapon);
     }
 
 

@@ -21,7 +21,6 @@ public class MovAndAimCanvas : GameplayCanvas
     {
         if (!playerData) playerData = GetComponent<PlayerData>();
         if (!playerMovement) playerMovement = GetComponent<PlayerMovement>();
-        //playerData.cameraPitch = playerView.cam.localEulerAngles.x;
     }
 
     public override void SetActiveCanvas(bool isActive)
