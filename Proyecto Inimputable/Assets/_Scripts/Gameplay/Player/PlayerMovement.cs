@@ -1,11 +1,22 @@
 using UnityEngine;
+using UnityEngine.Diagnostics;
 
-public class PlayerMovement : Player 
+public class PlayerMovement : Player
 {
-    public CharacterController controller;
+    public CharacterController characterController;
     public Transform player;
     public Transform cam;
     public PlayerData playerData;
+
+
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+
+    public float gravity = -9.81f;
+
+    Vector3 velocity;
+    bool isGrounded;
 
     public void Move(Vector2 moveInput, float speed)
     {
@@ -13,7 +24,7 @@ public class PlayerMovement : Player
         Vector3 move = cam.right * moveInput.x + cam.forward * moveInput.y;
         move.y = 0f;
 
-        controller.Move(move * speed * Time.deltaTime);
+        characterController.Move(move * speed * Time.deltaTime);
     }
 
     public void RotateCamera(float yaw, float pitch)
@@ -29,6 +40,18 @@ public class PlayerMovement : Player
         Debug.Log("Player dashing");
         //playerData.isDashing = true;
 
+    }
+
+    void Update()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+        velocity.y += gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime);
     }
 
 }
