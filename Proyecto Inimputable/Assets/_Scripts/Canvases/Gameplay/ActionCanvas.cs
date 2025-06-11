@@ -8,16 +8,25 @@ using System.Collections.Generic;
 
 public class ActionCanvas : MonoBehaviour
 {
+    [Header("Buttons")]
     public Button shootButton;
     public Button reloadButton;
     public Button pauseButton;
+    public Button interactButton;
+    [SerializeField] private List<Sprite> shootSprites = new List<Sprite>();
+    [SerializeField] private List<Sprite> reloadSprites = new List<Sprite>();
+    [SerializeField] private List<Sprite> pauseSprites = new List<Sprite>();
+
+    [Header("Interaction Settings")]
+    public float maxDistance = 5;
+    public LayerMask interactableLayers;
+    private Interactive currentInteractive;
+    [Header("References")]
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
     public WeaponController weaponController;
 
-    [SerializeField] private List<Sprite> shootSprites = new List<Sprite>();
-    [SerializeField] private List<Sprite> reloadSprites = new List<Sprite>();
-    [SerializeField] private List<Sprite> pauseSprites = new List<Sprite>();
+    public Camera playerCamera;
 
     public bool HandleTouch(Finger finger, out FingerRole assignedRole)
     {
@@ -68,9 +77,25 @@ public class ActionCanvas : MonoBehaviour
         GetComponentInParent<GameFlowManager>().SetGameState(GameFlowState.Paused);
     }
 
+    public void Interact()
+    {
+        if (currentInteractive) currentInteractive.OnInteraction();
+    }
+
     public bool IfNeedToChangeButtonSpray()
     {
         return true;
     }
 
+
+    void Update()
+    {
+        if (Physics.Raycast(playerCamera.transform.position, transform.forward, out RaycastHit hit, maxDistance, interactableLayers))
+        {
+            currentInteractive = hit.collider.GetComponent<Interactive>();
+        }
+        else currentInteractive = null;
+
+        interactButton.interactable = currentInteractive != null;
+    }
 }

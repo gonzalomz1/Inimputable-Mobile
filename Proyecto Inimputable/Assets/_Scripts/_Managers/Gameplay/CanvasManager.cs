@@ -15,6 +15,11 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] private Dictionary<int, FingerRole> fingerRoles = new Dictionary<int, FingerRole>();
 
+    void Start()
+    {
+        StartGameplay();
+    }
+
 
     public void StartGameplay()
     {

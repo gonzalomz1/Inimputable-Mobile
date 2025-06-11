@@ -34,7 +34,6 @@ public class PlayerData : Player
         sensitivityY = sensitivityX * ySensitivityRatio;
     }
 
-
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -56,6 +55,4 @@ public class PlayerData : Player
         sensitivityX = amount;
         sensitivityY = sensitivityX * ySensitivityRatio;
     }
-
-    
 }
