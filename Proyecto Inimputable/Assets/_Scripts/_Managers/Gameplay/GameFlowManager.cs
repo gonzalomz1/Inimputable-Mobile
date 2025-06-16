@@ -65,7 +65,7 @@ public class GameFlowManager : MonoBehaviour
             break;
       }
 
-      Debug.Log("Game state changed to: " + newState);
+      //Debug.Log("Game state changed to: " + newState);
    }
 
    public GameFlowState GetCurrentState() => currentState;

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4170017910610407998}
   - component: {fileID: 2579065320714236474}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PistolPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f31c096345c6848830cc70401f2e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAmmo: 0
+  ammoReserve: 0
   animator: {fileID: 0}
+  RaycastLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  weaponType: 1
 --- !u!1 &7144416652495336056
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,3 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdc9f91c4c77274eb844a35a5b507be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}

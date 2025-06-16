@@ -11,6 +11,7 @@ public class WeaponView : MonoBehaviour
 
     public void DisableAllWeapons()
     {
+        print("disabling all view of weapons");
         if (weaponModel.pistol) weaponModel.pistol.gameObject.SetActive(false);
         if (weaponModel.rifle) weaponModel.rifle.gameObject.SetActive(false);
         if (weaponModel.cane) weaponModel.cane.gameObject.SetActive(false);

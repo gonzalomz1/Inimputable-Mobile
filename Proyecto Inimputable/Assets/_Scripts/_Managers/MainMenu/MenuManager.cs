@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour
    [Header("Components")]
    public SplashScreen splashScreen;
    public Basement basement;
-   public MenuCamera menuCamera;
+   public CameraController cameraController;
    public MenuScreen menuScreen;
    [Header("Position for Main Menu buttons")]
    public List<TextPosition> textPositions;
@@ -30,6 +30,16 @@ public class MenuManager : MonoBehaviour
    {
       StartGame();
    }
+
+
+   void StartGame()
+   {
+      currentState = MenuFlowState.Logo;
+      currentMenuState = MenuState.Disable;
+      ManageState(currentState);
+      ManageMenuState(currentMenuState);
+   }
+
 
    // INPUT    
    void EnableInput()
@@ -46,6 +56,7 @@ public class MenuManager : MonoBehaviour
 
    void HandleFingerDown(Finger finger)
    {
+      if (currentState != MenuFlowState.Menu) return;
       Vector2 touchPos = finger.screenPosition;
       PointerEventData pointerEventData = new PointerEventData(eventSystem);
       pointerEventData.position = touchPos;
@@ -72,15 +83,14 @@ public class MenuManager : MonoBehaviour
       switch (current)
       {
          case MenuFlowState.Logo:
-            splashScreen.gameObject.SetActive(true);
-            splashScreen.DisableLoading();
-            splashScreen.EnableCredits();
+            SetSplashScreenLogoMode();
             break;
          case MenuFlowState.TvClip:
-            basement.tv.tvScreen.PlayVideo();
+            SetCameraTvAngle();
+            PlayInimputableClip();
             break;
          case MenuFlowState.Menu:
-            menuCamera.MainMenuAngle();
+            SetCameraMainMenuAngle();
             break;
          case MenuFlowState.LoadGameplay:
             splashScreen.SetActiveCanvas(true);
@@ -103,7 +113,7 @@ public class MenuManager : MonoBehaviour
             OnlyMainMenuContext();
             break;
          case MenuState.Credits:
-            menuCamera.CreditsAngle();
+            cameraController.SetMainMenuAngle();
             OnlyCreditsButtons();
             break;
          case MenuState.Options:
@@ -123,19 +133,26 @@ public class MenuManager : MonoBehaviour
    }
    // END OF STATE MACHINE CONTEXT
 
-   void SetCameraDefaultPosition()
+   void SetSplashScreenLogoMode()
    {
-      menuCamera.transform.position = new Vector3(-0.38999998569488528f, 0.6000000238418579f, 0.05999999865889549f);
-      menuCamera.transform.rotation = new Quaternion(0.0f, -0.7071068286895752f, 0.0f, 0.7071068286895752f);
+      splashScreen.gameObject.SetActive(true);
+      splashScreen.DisableLoading();
+      splashScreen.EnableCredits();
+      splashScreen.PlayLogoAnimation();
    }
 
-   void StartGame()
+   void PlayInimputableClip()
    {
-      SetCameraDefaultPosition();
-      currentState = MenuFlowState.Logo;
-      currentMenuState = MenuState.Disable;
-      ManageState(currentState);
-      ManageMenuState(currentMenuState);
+      basement.tv.tvScreen.PlayVideo();   
+   }
+   void SetCameraTvAngle()
+   {
+      cameraController.SetTvClipAngle();
+   }
+
+   void SetCameraMainMenuAngle()
+   {
+      cameraController.SetMainMenuAngle();
    }
 
 
@@ -177,34 +194,15 @@ public class MenuManager : MonoBehaviour
    public void OnVideoEnd()
    {
       currentState = MenuFlowState.Menu;
-
       ManageState(currentState);
    }
-   public Vector2 SelectTextPosition(int listPosition)
-   {
-      Vector2 pos;
-      if (listPosition == 0)
-      {
-         pos = textPositions[0].TransformPositionToCanvasPosition();
-         return pos;
-      }
-      if (listPosition == 1)
-      {
-         pos = textPositions[1].TransformPositionToCanvasPosition();
-         return pos;
-      }
-      if (listPosition == 2)
-      {
-         pos = textPositions[2].TransformPositionToCanvasPosition();
-         return pos;
-      }
-      if (listPosition == 3)
-      {
-         pos = textPositions[3].TransformPositionToCanvasPosition();
-         return pos;
-      }
+   public Vector2 SelectTextPosition(int index)
+   {/*
+      if (index >= 0 && index < textPositions.Count)
+        return textPositions[index].TransformPositionToCanvasPosition();
+    
+*/
       return Vector2.zero;
-
    }
    public void SetMainMenuTexts()
    {

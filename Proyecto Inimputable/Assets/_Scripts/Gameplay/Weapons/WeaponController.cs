@@ -14,8 +14,6 @@ public class WeaponController : MonoBehaviour
         InitializeWeapons(weaponModel.pistolData, weaponModel.caneData, null);
     }
 
-
-
     public void InitializeWeapons(WeaponData pistolData, WeaponData rifleData, WeaponData caneData)
     {
         // Instantiate but disable at first

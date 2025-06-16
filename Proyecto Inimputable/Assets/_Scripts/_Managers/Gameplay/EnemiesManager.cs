@@ -4,7 +4,7 @@ public class EnemiesManager : MonoBehaviour
 {
     public ObjectiveManager objectiveManager;
 
-
+    [SerializeField] private bool needObjetive = true;
 
     public void ActivateEnemies()
     {
@@ -25,6 +25,7 @@ public class EnemiesManager : MonoBehaviour
 
     public void EnemyDied()
     {
-        objectiveManager.CheckObjectiveCondition();
+        if (needObjetive) objectiveManager.CheckObjectiveCondition();
+        else return;
     }
 }

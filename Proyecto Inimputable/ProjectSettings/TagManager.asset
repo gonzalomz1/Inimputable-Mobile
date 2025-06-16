@@ -12,6 +12,7 @@ TagManager:
   - Environment
   - InvisibleWall
   - EnemiesManager
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - Player
   - Ground
   - MenuButtons
-  - 
-  - 
+  - Interactive
+  - Weapons
   - 
   - 
   - 

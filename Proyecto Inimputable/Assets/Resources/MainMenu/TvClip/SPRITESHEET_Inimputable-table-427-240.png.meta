@@ -1,0 +1,3572 @@
+fileFormatVersion: 2
+guid: 346e4e145435d374fa5b4dab9d0e526a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 177e9217a9436bc4697a3e79e69b11af
+      internalID: 1420948839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_1
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 836d12f9a136bb0469cbec7a22260e1e
+      internalID: 254134014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_2
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a43e989fccebf34fa34143c9418c9bf
+      internalID: -561041594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_3
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29f0e3d8654bfdc4f97b0c0f56a19479
+      internalID: 2077791890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_4
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f7437a010ad8746a8aa776291f5f70
+      internalID: -947967824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_5
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4890986ed5e8e1c4a8cba8e837ef90d3
+      internalID: -1008035936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_6
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96b76e732f2052449961bdb0b736d02a
+      internalID: 1628490753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_7
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83fedda95b365647bd7153c18f78ccc
+      internalID: -1776115750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_8
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97a1a0ed934c8f349b31d611770f8945
+      internalID: 1412154534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_9
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 509b38a3ad97b6d4cb50bc7423c4e791
+      internalID: -325189451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_10
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7048617f28010ed43ba214d6b1b77a07
+      internalID: -851990747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_11
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f8fe9123186174d83789b61ccfd23f
+      internalID: 1578885890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_12
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 2640
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fc4bdb34953d2848b14788b559870d2
+      internalID: -1927016505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c40c70adfd3a204b91ae495af97edd3
+      internalID: -601491637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_14
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1758cd0ff59f00f4d9d9e9467e2151ee
+      internalID: -789189028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_15
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 635c7ab17a9816c43ab71ee040f61004
+      internalID: -1452204758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_16
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f9659633243034429be88b732a4aafd
+      internalID: -532652529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_17
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b894d39c8a9d0e4e9c6444fcb2b7ee4
+      internalID: 1981456662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_18
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc742186f511e84d8a2dcf1260a53a7
+      internalID: -1737840470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_19
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3851f8a3f31431c43be511f167edbd01
+      internalID: 874695161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_20
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4c1c2e6379eb784ca768c27910893a8
+      internalID: -944860902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_21
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bb73d667a70a284a8efa5d0d1af3897
+      internalID: -1009218385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_22
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bb8ecf7649679845bea2db490e4791e
+      internalID: -1565652049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_23
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be156e85e5f69142a9c7c97a1a183bd
+      internalID: -1684866587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_24
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a5bf79f5c39af488bdfed6403b8b6e
+      internalID: -280255210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_25
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 2400
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d3a9bfaf0a61e48b3546c70029e7ba
+      internalID: -1041532437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ebf7f43e90e0714dbfdfc7c1202cfdb
+      internalID: -401853161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_27
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43b60686d5f63a940b72d4c36ce31fa1
+      internalID: -387864873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_28
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7f69d42ba320a4298e380c5b293af3
+      internalID: -1565529226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_29
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c6e4545ff6d9842a550d280c9b11e2
+      internalID: -1217664028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_30
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83cec80dff37e54419076e3c6d3239d5
+      internalID: 236325940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_31
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f816a877b58a8dd4087473c3fb3dbb44
+      internalID: 1957675879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_32
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4431afbe975e41644ae4e6059ae798e7
+      internalID: -862959872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_33
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75870becabcee084db2e4b461b83a556
+      internalID: 606546449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_34
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09818cccbd2a36f4da9da317fdcd1630
+      internalID: -2045506203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_35
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 633267fe359ba584e8344edeee22a705
+      internalID: -1234511563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_36
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69fc183e88e3f6a4da4f7e5be7c99ea1
+      internalID: 1842081001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_37
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f9a81046ca61f049b69c30bc3d6595b
+      internalID: -569270245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_38
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 2160
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d4e966b6823bae4c87eace78abc2bae
+      internalID: 1339279367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd427487e7b3d94f9a30ff4d8088c2d
+      internalID: 1320075194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_40
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c3e98f3652cc2c44abb665ad963b1ff
+      internalID: 1150030170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_41
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85c037b5e189cee409897252b620fbef
+      internalID: 668545741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_42
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f71ecc542b73de34192ebf0afd9b639e
+      internalID: -690968717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_43
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75e41b4e6653de47982919f84b6c2ce
+      internalID: 1403181627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_44
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0dcaeb162dd4494fa77ad0e743b7fb3
+      internalID: 1262910705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_45
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e73cec687997fd4190ff9a0c6bfd783
+      internalID: -51747601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_46
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fef7d2db3d53d74eb7d1d757b0e4eb6
+      internalID: -203860348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_47
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 904da98f0900e0a4aafbd7132175d1e8
+      internalID: -1356396515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_48
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3909fe73dfd30f74b9eddfe8d78db6b7
+      internalID: -1653809736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_49
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7c38a4b5642c584eb1483785577ce1a
+      internalID: -1500518167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_50
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e40b99b18346297418e4af5a128cb5f4
+      internalID: -82159574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_51
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 1920
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0486d3ca5fcf94848bce4176120e453e
+      internalID: 286609620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35a597955389a7241b53f663a024c52b
+      internalID: -1542427995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_53
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc4fee6dcf3a1a446b5edaf3749a3c8c
+      internalID: 1148564441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_54
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a3b73c1697f2e43a34a5de4945c51c
+      internalID: 928645744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_55
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ec36a17e5425cf4682993531ad96b04
+      internalID: -1908532774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_56
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef90e45bbea80d9408e8ab7dc4d4a627
+      internalID: 64080217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_57
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b633fe9ac07d59d4caef38b4c3f66792
+      internalID: 1517742355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_58
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca7d86998fae12409b42abe36de2402
+      internalID: 1831238799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_59
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc9c0a535193a334ba5030d1b59d4777
+      internalID: -556173600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_60
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 974de4e52e3e7da48a81253b3c6ba768
+      internalID: -346695340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_61
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a48aa1574d2676a4eba766902b1ee6aa
+      internalID: -2076051054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_62
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43499c0f13369724cb33c85d1bac1394
+      internalID: 656266232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_63
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dbdab59767873a4d9e7fc6e908925ec
+      internalID: -192569952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_64
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 1680
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a68ddf7025040604c94adf398b49cd6c
+      internalID: -1189379260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07d109fe0885d354fb11daf95d0010fa
+      internalID: -789680426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_66
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c755822718482241bb4c68bd8a1317e
+      internalID: 1657771008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_67
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa2a30d2be7d2584593074e826edb255
+      internalID: -903132606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_68
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0981e1be0cdccd46b99ac1eee28089f
+      internalID: -252354671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_69
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 375ae440409a3e7479612431142e695a
+      internalID: -970545183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_70
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b859d2c884970154e8d10f5d60b21cd2
+      internalID: 161322903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_71
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffd0eec235c18894f8c5c280d7e3114f
+      internalID: 1485789086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_72
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5bc8bfd7366cdf4dab6047fcb86d9b0
+      internalID: -1569666964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_73
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75d112a412d8624a8a8886b45d8ef42
+      internalID: 994945491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_74
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a28e7be94b3429418d65e8382d18647
+      internalID: -1312171555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_75
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e123abd996f62214fb638f3962ffee6b
+      internalID: -521050806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_76
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 852969c180c977f43a91fb7069f55f05
+      internalID: -1133121311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_77
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 1440
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b016f4cd404bc164c99683b3d9c8b6bf
+      internalID: 1482643818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_78
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6ffd3eec359600499d9499d66a34965
+      internalID: 1289465070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_79
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b1c68d3e8efcd4e9bfbea3bcecb5b9
+      internalID: 420342067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_80
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9f7b0e73cc16304898de11950b96398
+      internalID: 1657803968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_81
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d97c90b666e504d97db92613212580
+      internalID: -1560676603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_82
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eae6f4ac262a6040892dd9eaa4855df
+      internalID: -742707976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_83
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406583b475c41aa43862917d7ae56240
+      internalID: 1718501267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_84
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86302035c9d6cd04bac7289d13ed6e58
+      internalID: 427238162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_85
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 016d13faa3f3ff74bbc880c23dd1f077
+      internalID: 814718166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_86
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 362620536e411984c999dad58b15eca7
+      internalID: 631106565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_87
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81212a6d7a79e1f448f79424e775ae11
+      internalID: 571938773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_88
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bef64525820e054793dca5d992b5bfc
+      internalID: -1826799372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_89
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b4b6171bd13e445b25479c005e0d7c
+      internalID: -2100115309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_90
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 1200
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 956e04d3e67c3fe4c986773557a3bf1f
+      internalID: 467425314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_91
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fdd29dc2a7ed3469f66cc55fca5c03
+      internalID: 499448146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_92
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10e403c732b460b4fb13482b6400fa62
+      internalID: 1241787027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_93
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7472b975703053c4385a46cf7e9936af
+      internalID: -1308269756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_94
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d2fa41c878e0244fb4349441ef72991
+      internalID: 2081188711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_95
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98c168e7e66198f4bb1ac97f60bee2e4
+      internalID: -1806343662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_96
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c1439dcf81adb048afb66dcbca9a2e9
+      internalID: -1405725095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_97
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c330e46b41172434d87066e9c79ec6d8
+      internalID: 817962189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_98
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 505b0e05c7293504c986c6b411ca739a
+      internalID: -1913316016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_99
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f97a4e2c9bab2a478b0af7d027848f1
+      internalID: -898373281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_100
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b154dde7ecb5d4c4b846fe8265794e48
+      internalID: -891554424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_101
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77df1dbb1feb5a046a9ef7a8b69e2db6
+      internalID: -1515031569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_102
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2084878785e3604bae4844fdb6a1ae2
+      internalID: -989508225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_103
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 960
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beecf0fd9f80fba4b9a4f2d36257f494
+      internalID: 242348775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_104
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ff368ae0bc772447bbc6ee6338e3d01
+      internalID: -828885073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_105
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9134d4c855c69146803ad70e0ce0097
+      internalID: 439722273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_106
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b703fb86b3fbe5d4ebd39f1f537df719
+      internalID: 1031947447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_107
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6e1c6a791a36cb4db436b5b5b1fb4ae
+      internalID: -1252363303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_108
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526c15f5986e3f54dad8e7bf9471cd51
+      internalID: -2010777880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_109
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f7d75946fbc38245926f4c5b24437f5
+      internalID: 819873932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_110
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ede87cc9f0f09f94dbc2675182a6ba34
+      internalID: -34761024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_111
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03cf08eede56422468de228523164b66
+      internalID: -414652607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_112
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10aed6dfcf607d540adb405d8ecd49e2
+      internalID: -1596710767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_113
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d047201ce276864fad7bb4f864b3e02
+      internalID: 280630087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_114
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b933a771eb454145a2f2031ba3f7169
+      internalID: -1901002890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_115
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a77eebcf13abf1248add967706e54651
+      internalID: 1183539235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_116
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 720
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca9853242acb2b645bed02f310e749f0
+      internalID: 111861782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_117
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df5b69c0d7338d4e8d2bdc1def1d3c7
+      internalID: 814690459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_118
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e010ca5832c7ae42b2616581227b2f8
+      internalID: -987773780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_119
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302df9e37a1a2b04d862b13f4201d0e9
+      internalID: 1889168269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_120
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6add5be482ab90348b1aa4f79b551283
+      internalID: -386373369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_121
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed35a89c1bc2ab4f87e4e9bf7a75b07
+      internalID: 791509674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_122
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 458264d6a9fc47e43a683efd433689f1
+      internalID: 994989333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_123
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dad86d06a3d211468f8a6fb0ae1cd45
+      internalID: -537115662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_124
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d1b2a712ff7e6148b50e0b1b130f9c7
+      internalID: 396028172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_125
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790dbdb7633e8154fb5fb7970b049797
+      internalID: -1206362050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_126
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db62fda519396934493b9b7b0ac0a03b
+      internalID: 2063901164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_127
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a4c1da63860404f9c3eaf9b1da6c4c
+      internalID: -245094307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_128
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827b2ca4b38c14441ba303a65a2a1269
+      internalID: -147730997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_129
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 480
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7276aeae19e6f40448ef8617c0d92c42
+      internalID: 1876469282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_130
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4f5341f4f61a2545964c5a6d0f737bb
+      internalID: 664973940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_131
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad94024cc6ca514d8d354ce3cb963e3
+      internalID: 214686903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_132
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 725e4612a8e8dbc4b829da971b8e67a4
+      internalID: 481136911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_133
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27ff72ae7dc5d564cbe1e7316b6a4ce7
+      internalID: 710041271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_134
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 145033a837574e1419c76491bdde309d
+      internalID: -1188627824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_135
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c0b047d7ed98848bdc017b5056af5e
+      internalID: 1774516854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_136
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552dba2291cb64c44b0ec380138fc241
+      internalID: -237621027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_137
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d91c8aa7955f9f4a849d768cae5a3cc
+      internalID: 719564356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_138
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5998c974a028b9442b19900ce2ec37d6
+      internalID: -2082324185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_139
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae4a61bdc1be9c4fbf4e74d0b68b585
+      internalID: 319799700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_140
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ae9cfd052227454b98fefc030ad7f64
+      internalID: 141573740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_141
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a40a63ed3ee60a479405a2db66ebddd
+      internalID: 605602826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_142
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 240
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2de609dcf1521c44288fe125a8b82f1a
+      internalID: 1492194973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_143
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0cb9cc085d96114f81d5aa04d91bbd6
+      internalID: 757416158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_144
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86a210ba46c9d4147bb37ff9a7151726
+      internalID: -1056587019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_145
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077d34207196a4f48b513128d7353f60
+      internalID: -557655398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_146
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf5a15e866756e54ea3d23c0493010f3
+      internalID: 43672840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_147
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 697d11cc56105de408ed682a4c2e02ad
+      internalID: 1303414775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_148
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d947f1605bffcb64fb43189349a5423c
+      internalID: -343520621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_149
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b381e36803981346b9a71e7c6e50616
+      internalID: -109693171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_150
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0652239c7904636428c3a8b1825d92f3
+      internalID: -1775629347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_151
+      rect:
+        serializedVersion: 2
+        x: 3416
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca88a2a463fdafc41ab0e555393a36fa
+      internalID: -30268588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_152
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e312ee2a9913cd94382af2231e4eca49
+      internalID: -1395013103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_153
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 561c73273d1769b4e8410b0176e86022
+      internalID: -2071315693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_154
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 970f74e02129bc74a997956c11a54aec
+      internalID: 324024460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_Inimputable-table-427-240_155
+      rect:
+        serializedVersion: 2
+        x: 5124
+        y: 0
+        width: 427
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14c1cb17c8a02246ada33931db0b0aa
+      internalID: -1582121001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 86330cb99a1feb149bd3006bdeadfa6f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      SPRITESHEET_Inimputable-table-427-240_0: 1420948839
+      SPRITESHEET_Inimputable-table-427-240_1: 254134014
+      SPRITESHEET_Inimputable-table-427-240_10: -851990747
+      SPRITESHEET_Inimputable-table-427-240_100: -891554424
+      SPRITESHEET_Inimputable-table-427-240_101: -1515031569
+      SPRITESHEET_Inimputable-table-427-240_102: -989508225
+      SPRITESHEET_Inimputable-table-427-240_103: 242348775
+      SPRITESHEET_Inimputable-table-427-240_104: -828885073
+      SPRITESHEET_Inimputable-table-427-240_105: 439722273
+      SPRITESHEET_Inimputable-table-427-240_106: 1031947447
+      SPRITESHEET_Inimputable-table-427-240_107: -1252363303
+      SPRITESHEET_Inimputable-table-427-240_108: -2010777880
+      SPRITESHEET_Inimputable-table-427-240_109: 819873932
+      SPRITESHEET_Inimputable-table-427-240_11: 1578885890
+      SPRITESHEET_Inimputable-table-427-240_110: -34761024
+      SPRITESHEET_Inimputable-table-427-240_111: -414652607
+      SPRITESHEET_Inimputable-table-427-240_112: -1596710767
+      SPRITESHEET_Inimputable-table-427-240_113: 280630087
+      SPRITESHEET_Inimputable-table-427-240_114: -1901002890
+      SPRITESHEET_Inimputable-table-427-240_115: 1183539235
+      SPRITESHEET_Inimputable-table-427-240_116: 111861782
+      SPRITESHEET_Inimputable-table-427-240_117: 814690459
+      SPRITESHEET_Inimputable-table-427-240_118: -987773780
+      SPRITESHEET_Inimputable-table-427-240_119: 1889168269
+      SPRITESHEET_Inimputable-table-427-240_12: -1927016505
+      SPRITESHEET_Inimputable-table-427-240_120: -386373369
+      SPRITESHEET_Inimputable-table-427-240_121: 791509674
+      SPRITESHEET_Inimputable-table-427-240_122: 994989333
+      SPRITESHEET_Inimputable-table-427-240_123: -537115662
+      SPRITESHEET_Inimputable-table-427-240_124: 396028172
+      SPRITESHEET_Inimputable-table-427-240_125: -1206362050
+      SPRITESHEET_Inimputable-table-427-240_126: 2063901164
+      SPRITESHEET_Inimputable-table-427-240_127: -245094307
+      SPRITESHEET_Inimputable-table-427-240_128: -147730997
+      SPRITESHEET_Inimputable-table-427-240_129: 1876469282
+      SPRITESHEET_Inimputable-table-427-240_13: -601491637
+      SPRITESHEET_Inimputable-table-427-240_130: 664973940
+      SPRITESHEET_Inimputable-table-427-240_131: 214686903
+      SPRITESHEET_Inimputable-table-427-240_132: 481136911
+      SPRITESHEET_Inimputable-table-427-240_133: 710041271
+      SPRITESHEET_Inimputable-table-427-240_134: -1188627824
+      SPRITESHEET_Inimputable-table-427-240_135: 1774516854
+      SPRITESHEET_Inimputable-table-427-240_136: -237621027
+      SPRITESHEET_Inimputable-table-427-240_137: 719564356
+      SPRITESHEET_Inimputable-table-427-240_138: -2082324185
+      SPRITESHEET_Inimputable-table-427-240_139: 319799700
+      SPRITESHEET_Inimputable-table-427-240_14: -789189028
+      SPRITESHEET_Inimputable-table-427-240_140: 141573740
+      SPRITESHEET_Inimputable-table-427-240_141: 605602826
+      SPRITESHEET_Inimputable-table-427-240_142: 1492194973
+      SPRITESHEET_Inimputable-table-427-240_143: 757416158
+      SPRITESHEET_Inimputable-table-427-240_144: -1056587019
+      SPRITESHEET_Inimputable-table-427-240_145: -557655398
+      SPRITESHEET_Inimputable-table-427-240_146: 43672840
+      SPRITESHEET_Inimputable-table-427-240_147: 1303414775
+      SPRITESHEET_Inimputable-table-427-240_148: -343520621
+      SPRITESHEET_Inimputable-table-427-240_149: -109693171
+      SPRITESHEET_Inimputable-table-427-240_15: -1452204758
+      SPRITESHEET_Inimputable-table-427-240_150: -1775629347
+      SPRITESHEET_Inimputable-table-427-240_151: -30268588
+      SPRITESHEET_Inimputable-table-427-240_152: -1395013103
+      SPRITESHEET_Inimputable-table-427-240_153: -2071315693
+      SPRITESHEET_Inimputable-table-427-240_154: 324024460
+      SPRITESHEET_Inimputable-table-427-240_155: -1582121001
+      SPRITESHEET_Inimputable-table-427-240_16: -532652529
+      SPRITESHEET_Inimputable-table-427-240_17: 1981456662
+      SPRITESHEET_Inimputable-table-427-240_18: -1737840470
+      SPRITESHEET_Inimputable-table-427-240_19: 874695161
+      SPRITESHEET_Inimputable-table-427-240_2: -561041594
+      SPRITESHEET_Inimputable-table-427-240_20: -944860902
+      SPRITESHEET_Inimputable-table-427-240_21: -1009218385
+      SPRITESHEET_Inimputable-table-427-240_22: -1565652049
+      SPRITESHEET_Inimputable-table-427-240_23: -1684866587
+      SPRITESHEET_Inimputable-table-427-240_24: -280255210
+      SPRITESHEET_Inimputable-table-427-240_25: -1041532437
+      SPRITESHEET_Inimputable-table-427-240_26: -401853161
+      SPRITESHEET_Inimputable-table-427-240_27: -387864873
+      SPRITESHEET_Inimputable-table-427-240_28: -1565529226
+      SPRITESHEET_Inimputable-table-427-240_29: -1217664028
+      SPRITESHEET_Inimputable-table-427-240_3: 2077791890
+      SPRITESHEET_Inimputable-table-427-240_30: 236325940
+      SPRITESHEET_Inimputable-table-427-240_31: 1957675879
+      SPRITESHEET_Inimputable-table-427-240_32: -862959872
+      SPRITESHEET_Inimputable-table-427-240_33: 606546449
+      SPRITESHEET_Inimputable-table-427-240_34: -2045506203
+      SPRITESHEET_Inimputable-table-427-240_35: -1234511563
+      SPRITESHEET_Inimputable-table-427-240_36: 1842081001
+      SPRITESHEET_Inimputable-table-427-240_37: -569270245
+      SPRITESHEET_Inimputable-table-427-240_38: 1339279367
+      SPRITESHEET_Inimputable-table-427-240_39: 1320075194
+      SPRITESHEET_Inimputable-table-427-240_4: -947967824
+      SPRITESHEET_Inimputable-table-427-240_40: 1150030170
+      SPRITESHEET_Inimputable-table-427-240_41: 668545741
+      SPRITESHEET_Inimputable-table-427-240_42: -690968717
+      SPRITESHEET_Inimputable-table-427-240_43: 1403181627
+      SPRITESHEET_Inimputable-table-427-240_44: 1262910705
+      SPRITESHEET_Inimputable-table-427-240_45: -51747601
+      SPRITESHEET_Inimputable-table-427-240_46: -203860348
+      SPRITESHEET_Inimputable-table-427-240_47: -1356396515
+      SPRITESHEET_Inimputable-table-427-240_48: -1653809736
+      SPRITESHEET_Inimputable-table-427-240_49: -1500518167
+      SPRITESHEET_Inimputable-table-427-240_5: -1008035936
+      SPRITESHEET_Inimputable-table-427-240_50: -82159574
+      SPRITESHEET_Inimputable-table-427-240_51: 286609620
+      SPRITESHEET_Inimputable-table-427-240_52: -1542427995
+      SPRITESHEET_Inimputable-table-427-240_53: 1148564441
+      SPRITESHEET_Inimputable-table-427-240_54: 928645744
+      SPRITESHEET_Inimputable-table-427-240_55: -1908532774
+      SPRITESHEET_Inimputable-table-427-240_56: 64080217
+      SPRITESHEET_Inimputable-table-427-240_57: 1517742355
+      SPRITESHEET_Inimputable-table-427-240_58: 1831238799
+      SPRITESHEET_Inimputable-table-427-240_59: -556173600
+      SPRITESHEET_Inimputable-table-427-240_6: 1628490753
+      SPRITESHEET_Inimputable-table-427-240_60: -346695340
+      SPRITESHEET_Inimputable-table-427-240_61: -2076051054
+      SPRITESHEET_Inimputable-table-427-240_62: 656266232
+      SPRITESHEET_Inimputable-table-427-240_63: -192569952
+      SPRITESHEET_Inimputable-table-427-240_64: -1189379260
+      SPRITESHEET_Inimputable-table-427-240_65: -789680426
+      SPRITESHEET_Inimputable-table-427-240_66: 1657771008
+      SPRITESHEET_Inimputable-table-427-240_67: -903132606
+      SPRITESHEET_Inimputable-table-427-240_68: -252354671
+      SPRITESHEET_Inimputable-table-427-240_69: -970545183
+      SPRITESHEET_Inimputable-table-427-240_7: -1776115750
+      SPRITESHEET_Inimputable-table-427-240_70: 161322903
+      SPRITESHEET_Inimputable-table-427-240_71: 1485789086
+      SPRITESHEET_Inimputable-table-427-240_72: -1569666964
+      SPRITESHEET_Inimputable-table-427-240_73: 994945491
+      SPRITESHEET_Inimputable-table-427-240_74: -1312171555
+      SPRITESHEET_Inimputable-table-427-240_75: -521050806
+      SPRITESHEET_Inimputable-table-427-240_76: -1133121311
+      SPRITESHEET_Inimputable-table-427-240_77: 1482643818
+      SPRITESHEET_Inimputable-table-427-240_78: 1289465070
+      SPRITESHEET_Inimputable-table-427-240_79: 420342067
+      SPRITESHEET_Inimputable-table-427-240_8: 1412154534
+      SPRITESHEET_Inimputable-table-427-240_80: 1657803968
+      SPRITESHEET_Inimputable-table-427-240_81: -1560676603
+      SPRITESHEET_Inimputable-table-427-240_82: -742707976
+      SPRITESHEET_Inimputable-table-427-240_83: 1718501267
+      SPRITESHEET_Inimputable-table-427-240_84: 427238162
+      SPRITESHEET_Inimputable-table-427-240_85: 814718166
+      SPRITESHEET_Inimputable-table-427-240_86: 631106565
+      SPRITESHEET_Inimputable-table-427-240_87: 571938773
+      SPRITESHEET_Inimputable-table-427-240_88: -1826799372
+      SPRITESHEET_Inimputable-table-427-240_89: -2100115309
+      SPRITESHEET_Inimputable-table-427-240_9: -325189451
+      SPRITESHEET_Inimputable-table-427-240_90: 467425314
+      SPRITESHEET_Inimputable-table-427-240_91: 499448146
+      SPRITESHEET_Inimputable-table-427-240_92: 1241787027
+      SPRITESHEET_Inimputable-table-427-240_93: -1308269756
+      SPRITESHEET_Inimputable-table-427-240_94: 2081188711
+      SPRITESHEET_Inimputable-table-427-240_95: -1806343662
+      SPRITESHEET_Inimputable-table-427-240_96: -1405725095
+      SPRITESHEET_Inimputable-table-427-240_97: 817962189
+      SPRITESHEET_Inimputable-table-427-240_98: -1913316016
+      SPRITESHEET_Inimputable-table-427-240_99: -898373281
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

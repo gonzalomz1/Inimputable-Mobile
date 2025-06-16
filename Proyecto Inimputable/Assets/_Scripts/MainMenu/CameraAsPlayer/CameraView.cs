@@ -10,4 +10,13 @@ public class CameraView : MonoBehaviour
         if (animator) animator = GetComponent<Animator>();
         if (spriteRenderer) spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
+    public void SetTvClipAngle()
+    {
+        animator.SetTrigger("InFrontOfTv");
+    }
+    public void SetMainMenuAngle()
+    {
+        animator.SetTrigger("MainMenu");
+    }
 }

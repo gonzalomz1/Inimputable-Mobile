@@ -36,8 +36,8 @@ public class MenuScreen : CustomCanvas
     public GameObject optionsContext;
 
     public GameObject exitContext;
-    [Header("")]
-    public MenuCamera menuCamera;
+    //[Header("")]
+    //public MenuCamera menuCamera;
 
 
 
@@ -91,7 +91,7 @@ public class MenuScreen : CustomCanvas
     public void ReturnToMainMenu(){
     menuManager.currentMenuState = MenuState.MainMenu;
     menuManager.ManageMenuState(menuManager.currentMenuState);
-    menuCamera.CreditsReturnAngle();
+    //menuCamera.CreditsReturnAngle();
     }
 
     public void MainMenuButtons(bool boolean){

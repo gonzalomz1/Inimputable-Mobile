@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] CameraView cameraView;
+
+    public void SetTvClipAngle()
     {
-        
+        cameraView.SetTvClipAngle();
+    }
+    public void SetMainMenuAngle()
+    {
+        cameraView.SetMainMenuAngle();
+    }
+    public void SetCreditsAngle()
+    {
+    }
+    public void ReturnToMainMenuAngle()
+    {
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

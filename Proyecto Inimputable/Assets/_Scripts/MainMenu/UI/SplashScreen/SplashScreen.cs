@@ -5,47 +5,69 @@ using UnityEngine.SceneManagement;
 
 public class SplashScreen : CustomCanvas
 {
- public Credits credits;
 
- public LevelLoader levelLoader;
+    [SerializeField] private MenuManager menuManager;
+    [SerializeField] private Credits credits;
+    [SerializeField] private LevelLoader levelLoader;
 
- public override void SetActiveCanvas(bool isActive)
+
+    public void PlayLogoAnimation()
+    {
+        credits.PlayLogoAnimation();
+    }
+
+    public void OnCreditsAnimationFinished()
+    {
+        menuManager.OnCreditsAnimationFinished();
+    }
+
+    public void LoadGameplay()
+    {
+        levelLoader.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public override void SetActiveCanvas(bool isActive)
     {
         gameObject.SetActive(isActive); // Cambia la visibilidad del canvas
     }
 
-public void EnableCredits (){
-    if (credits == null){
-        Debug.LogError("No se inicializo la variable credits");
-        return;
+    public void EnableCredits()
+    {
+        if (credits == null)
+        {
+            Debug.LogError("No se inicializo la variable credits");
+            return;
+        }
+        credits.gameObject.SetActive(true);
     }
-    credits.gameObject.SetActive(true);
- }
- public void DisableCredits() {
-    if (credits == null){
-        Debug.LogError("No se inicializo la variable credits");
-        return;
+    public void DisableCredits()
+    {
+        if (credits == null)
+        {
+            Debug.LogError("No se inicializo la variable credits");
+            return;
+        }
+        credits.gameObject.SetActive(false);
     }
-    credits.gameObject.SetActive(false);
- }
-public void EnableLoading (){
-    if (levelLoader == null){
-        Debug.LogError("No se inicializo la variable loading");
-        return;
+    public void EnableLoading()
+    {
+        if (levelLoader == null)
+        {
+            Debug.LogError("No se inicializo la variable loading");
+            return;
+        }
+        levelLoader.gameObject.SetActive(true);
     }
-    levelLoader.gameObject.SetActive(true);
- }
-public void DisableLoading() {
-    if (levelLoader == null){
-        Debug.LogError("No se inicializo la variable loading");
-        return;
+    public void DisableLoading()
+    {
+        if (levelLoader == null)
+        {
+            Debug.LogError("No se inicializo la variable loading");
+            return;
+        }
+        levelLoader.gameObject.SetActive(false);
     }
-    levelLoader.gameObject.SetActive(false);
- }
 
- public void LoadGameplay()
- {
-    levelLoader.LoadLevel(SceneManager.GetActiveScene().buildIndex+ 1);
- }
+
 
 }

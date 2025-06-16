@@ -13,20 +13,27 @@ public class ActionCanvas : MonoBehaviour
     public Button reloadButton;
     public Button pauseButton;
     public Button interactButton;
+    private bool isShowingInteract = false;
     [SerializeField] private List<Sprite> shootSprites = new List<Sprite>();
     [SerializeField] private List<Sprite> reloadSprites = new List<Sprite>();
     [SerializeField] private List<Sprite> pauseSprites = new List<Sprite>();
+    [SerializeField] private List<Sprite> interactSprites = new List<Sprite>();
 
     [Header("Interaction Settings")]
     public float maxDistance = 5;
     public LayerMask interactableLayers;
-    private Interactive currentInteractive;
+    private IInteractive currentInteractive;
     [Header("References")]
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
     public WeaponController weaponController;
 
     public Camera playerCamera;
+
+    void Start()
+    {
+        interactButton.gameObject.SetActive(false);
+    }
 
     public bool HandleTouch(Finger finger, out FingerRole assignedRole)
     {
@@ -44,16 +51,17 @@ public class ActionCanvas : MonoBehaviour
             Button button = result.gameObject.GetComponent<Button>();
             if (button != null)
             {
-                Debug.Log("Botón tocado: " + button.name);
+                //Debug.Log("Botón tocado: " + button.name);
                 assignedRole = FingerRole.Action;
                 if (button == shootButton) button.image.sprite = shootSprites[1];
                 if (button == reloadButton) button.image.sprite = reloadSprites[1];
                 if (button == pauseButton) button.image.sprite = pauseSprites[1];
+                if (button == interactButton) button.image.sprite = interactSprites[1];
                 button.onClick.Invoke(); // Simula el click
                 return true;
             }
         }
-        Debug.Log("On ActionCanvas.HandleTrouch(): returning false");
+        //Debug.Log("On ActionCanvas.HandleTrouch(): returning false");
         return false;
     }
 
@@ -62,6 +70,7 @@ public class ActionCanvas : MonoBehaviour
         if (shootButton.image.sprite == shootSprites[1]) shootButton.image.sprite = shootSprites[0];
         if (reloadButton.image.sprite == reloadSprites[1]) reloadButton.image.sprite = reloadSprites[0];
         if (pauseButton.image.sprite == pauseSprites[1]) pauseButton.image.sprite = pauseSprites[0];
+        if (interactButton.image.sprite == interactSprites[1]) interactButton.image.sprite = interactSprites[0];
     }
 
     public void OnClickReload()
@@ -79,7 +88,17 @@ public class ActionCanvas : MonoBehaviour
 
     public void Interact()
     {
-        if (currentInteractive) currentInteractive.OnInteraction();
+        if (currentInteractive != null) currentInteractive.OnInteraction();
+    }
+
+    private void ShowInteractButton()
+    {
+        interactButton.gameObject.SetActive(true);
+    }
+
+    private void HideInteractButton()
+    {
+        interactButton.gameObject.SetActive(false);
     }
 
     public bool IfNeedToChangeButtonSpray()
@@ -90,12 +109,19 @@ public class ActionCanvas : MonoBehaviour
 
     void Update()
     {
-        if (Physics.Raycast(playerCamera.transform.position, transform.forward, out RaycastHit hit, maxDistance, interactableLayers))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hit, maxDistance, interactableLayers))
         {
-            currentInteractive = hit.collider.GetComponent<Interactive>();
+            IInteractive foundInteractive = hit.collider.GetComponent<IInteractive>();
+            if (foundInteractive != null)
+            {
+                currentInteractive = foundInteractive;
+                ShowInteractButton();
+                return;
+            }
         }
-        else currentInteractive = null;
 
-        interactButton.interactable = currentInteractive != null;
+        currentInteractive = null;
+        HideInteractButton();
+
     }
 }

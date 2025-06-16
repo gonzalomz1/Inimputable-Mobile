@@ -68,14 +68,14 @@ public class CanvasManager : MonoBehaviour
         // Don't let have multiple fingers on an index
         if (fingerRoles.ContainsKey(finger.index))
         {
-            Debug.LogWarning($"Finger {finger.index} ya está asignado a un rol ({fingerRoles[finger.index]}), ignorando nueva asignación.");
+            //Debug.LogWarning($"Finger {finger.index} ya está asignado a un rol ({fingerRoles[finger.index]}), ignorando nueva asignación.");
             return;
         }
 
         if (menuCanvas.HandleTouch(finger, out FingerRole role))
         {
             fingerRoles[finger.index] = role;
-            Debug.Log($"Finger asignado a {role}.");
+            //Debug.Log($"Finger asignado a {role}.");
             return;
         }
 
@@ -85,7 +85,7 @@ public class CanvasManager : MonoBehaviour
         if (actionCanvas.HandleTouch(finger, out role))
         {
             fingerRoles[finger.index] = role;
-            Debug.Log($"Finger asignado a {role}.");
+            //Debug.Log($"Finger asignado a {role}.");
             return;
         }
 
@@ -93,7 +93,7 @@ public class CanvasManager : MonoBehaviour
         if (movAndAimCanvas.HandleTouch(finger, out role))
         {
             fingerRoles[finger.index] = role;
-            Debug.Log($"Finger {finger.index} asignado a {role}");
+            //Debug.Log($"Finger {finger.index} asignado a {role}");
             return;
         }
 
@@ -120,7 +120,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (!fingerRoles.TryGetValue(finger.index, out var role))
         {
-            Debug.LogWarning($"Finger {finger.index} no está registrado en fingerRoles al levantar el dedo.");
+            //Debug.LogWarning($"Finger {finger.index} no está registrado en fingerRoles al levantar el dedo.");
             return;
         }
 
@@ -134,8 +134,8 @@ public class CanvasManager : MonoBehaviour
             actionCanvas.HandleFingerUp(finger);
         }
 
-        Debug.Log($"Removing: {finger.index}");
+        //Debug.Log($"Removing: {finger.index}");
         fingerRoles.Remove(finger.index);
-        Debug.Log($"Current Dictionary after change: {fingerRoles.Count} items");
+        //Debug.Log($"Current Dictionary after change: {fingerRoles.Count} items");
     }
 }

@@ -3,15 +3,6 @@ using UnityEngine;
 
 public class WeaponObject : WeaponBehaviour
 {
-    /*
-        in WeaponData, we have info such as:
-        - weaponName (string)
-        - fireRate (float)
-        - damage (int)
-        - maxAmmo (int)
-        - clipSize (int)
-        - isAutomatic (bool)
-    */
     public int currentAmmo;
     public int ammoReserve;
     [SerializeField] private Animator animator;
@@ -22,11 +13,6 @@ public class WeaponObject : WeaponBehaviour
     public LayerMask RaycastLayers;
 
     public WeaponType weaponType;
-
-    void Start()
-    {
-        weaponType = weaponData.weaponType;
-    }
 
     public override void Initialize(WeaponData data, Transform firePoint)
     {

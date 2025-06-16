@@ -18,7 +18,7 @@ MonoBehaviour:
   maxAmmo: 60
   clipSize: 12
   isAutomatic: 0
-  weaponType: 0
+  weaponType: 1
   reloadTime: 1.5
   weaponPrefab: {fileID: 826964867102352599, guid: 2a3b51ac84cdb214ba4b3b5e519871d1,
     type: 3}

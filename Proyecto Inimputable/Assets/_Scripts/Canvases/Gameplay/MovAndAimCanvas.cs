@@ -32,10 +32,10 @@ public class MovAndAimCanvas : GameplayCanvas
     {
         // HandleFingerDown
         role = FingerRole.None;
-        Debug.Log($"finger {finger.index}, is touching left side?: " + IsTouchingLeftSide(finger));
+        //Debug.Log($"finger {finger.index}, is touching left side?: " + IsTouchingLeftSide(finger));
         if (IsTouchingLeftSide(finger) && movementFinger == null && finger != aimFinger)
         {
-            Debug.Log($"Assigning {finger.index} to movementFinger");
+            //Debug.Log($"Assigning {finger.index} to movementFinger");
             movementFinger = finger;
             movementAmount = Vector2.zero;
             joystickVisualLogic(finger, moveJoystick);
@@ -44,7 +44,7 @@ public class MovAndAimCanvas : GameplayCanvas
         }
         else if (!IsTouchingLeftSide(finger) && aimFinger == null && finger != movementFinger)
         {
-            Debug.Log($"Assigning {finger.index} to aimFinger");
+            //Debug.Log($"Assigning {finger.index} to aimFinger");
             aimFinger = finger;
             lastAimPosition = finger.screenPosition;
             role = FingerRole.Aim;
@@ -132,8 +132,8 @@ public class MovAndAimCanvas : GameplayCanvas
 
     private bool IsTouchingLeftSide(Finger finger)
     {
-        Debug.Log($"screen width: {Screen.width}");
-        Debug.Log($"finger.screenPosition.x: {finger.screenPosition}");
+        //Debug.Log($"screen width: {Screen.width}");
+        //Debug.Log($"finger.screenPosition.x: {finger.screenPosition}");
         return finger.screenPosition.x <= Screen.width / 2f;
     }
 

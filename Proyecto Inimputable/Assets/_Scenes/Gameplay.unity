@@ -1780,6 +1780,12 @@ Transform:
   - {fileID: 162135583}
   m_Father: {fileID: 401058622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1781910901 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3959128675353990393, guid: ab3e3268fdc9d4d448ea41a82cb240c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2739039034581925814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1787416231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,6 +2134,16 @@ PrefabInstance:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1791609835}
+    - target: {fileID: 2453026616211482724, guid: 55245e1a365573443ac419605186fb7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 38.517693
+      objectReference: {fileID: 0}
+    - target: {fileID: 2453026616211482724, guid: 55245e1a365573443ac419605186fb7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 144.9703
+      objectReference: {fileID: 0}
     - target: {fileID: 4680017813616934664, guid: 55245e1a365573443ac419605186fb7a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2193,6 +2209,11 @@ PrefabInstance:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1791609835}
+    - target: {fileID: 5237583102183822863, guid: 55245e1a365573443ac419605186fb7a,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1781910901}
     - target: {fileID: 5237583102183822863, guid: 55245e1a365573443ac419605186fb7a,
         type: 3}
       propertyPath: weaponController

@@ -3,11 +3,13 @@ using UnityEngine;
 enum WeaponHolderState { Active, PickedUp, Destroyed }
 public class WeaponHolder3D : MonoBehaviour
 {
+    [SerializeField] private bool needToMakeAction = true;
     [SerializeField] private WeaponData weaponData;
     [SerializeField] private WeaponHolderState currentState;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private SphereCollider sphereCollider;
     [SerializeField] private Rigidbody rigidBody;
+
 
     void Awake()
     {
@@ -56,12 +58,14 @@ public class WeaponHolder3D : MonoBehaviour
         {
             currentState = WeaponHolderState.PickedUp;
             ManageState(currentState);
-
-            GameObject enemiesManagerObj = GameObject.FindGameObjectWithTag("EnemiesManager");
-            if (enemiesManagerObj != null)
+            if (needToMakeAction)
             {
-                EnemiesManager manager = enemiesManagerObj.GetComponent<EnemiesManager>();
-                manager.ActivateEnemies();
+                GameObject enemiesManagerObj = GameObject.FindGameObjectWithTag("EnemiesManager");
+                if (enemiesManagerObj != null)
+                {
+                    EnemiesManager manager = enemiesManagerObj.GetComponent<EnemiesManager>();
+                    manager.ActivateEnemies();
+                }
             }
         }
 

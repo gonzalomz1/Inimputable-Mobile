@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class TvScreen : MonoBehaviour
 {
-
     public SpriteRenderer spriteRenderer;
     public Animator animator;
     public Tv tv;
-
+    public AudioSource audioSource;
     void OnVideoEnd()
     {
         Debug.Log("¡El video ha terminado!");
@@ -18,4 +17,8 @@ public class TvScreen : MonoBehaviour
         animator.SetTrigger("Clip");
     }
 
+    public void PlayAudioInimputable()
+    {
+        audioSource.Play();
+    }
 }

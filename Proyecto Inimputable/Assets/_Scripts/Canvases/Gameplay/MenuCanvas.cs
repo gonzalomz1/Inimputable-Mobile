@@ -55,13 +55,13 @@ public class MenuCanvas : MonoBehaviour
             if (target.GetComponent<Selectable>())
             {
                 assignedRole = FingerRole.Menu;
-                Debug.Log("UI interactiva tocada: " + target.name);
+                //Debug.Log("UI interactiva tocada: " + target.name);
 
                 Slider slr = target.GetComponent<Slider>();
                 if (slr != null)
                 {
                     sensFinger = finger;
-                    Debug.Log("Se toco un slider");
+                    //Debug.Log("Se toco un slider");
                 }
                 // Si es botón, disparamos onClick
                 Button btn = target.GetComponent<Button>();
@@ -73,7 +73,7 @@ public class MenuCanvas : MonoBehaviour
             }
 
         }
-        Debug.Log("On MenuCanvas.HandleTrouch(): returning false");
+        //Debug.Log("On MenuCanvas.HandleTrouch(): returning false");
         return false;
     }
 

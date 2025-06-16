@@ -1,31 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class Credits : MonoBehaviour
 {
-    public Animation animationComponent;
-    public AnimationClip animClipLogo;
-    public MenuManager menuManager;
+    [SerializeField] private Animation animationComponent;
+    [SerializeField] private AnimationClip animClipLogo;
+    [SerializeField] private SplashScreen splashScreen;
 
-    
-    void OnEnable()
+    public void PlayLogoAnimation()
     {
-        if (animationComponent == null)
-        {
-            return;
-        }
+        if (animationComponent == null || animClipLogo == null) return;
         animationComponent.clip = animClipLogo;
         animationComponent.Play();
     }
-
-    public void AnimationFinished (){
-    menuManager.OnCreditsAnimationFinished();
-
-
+    
+    public void AnimationFinished()
+    {
+        splashScreen.OnCreditsAnimationFinished();
     }
-
-
 
 }

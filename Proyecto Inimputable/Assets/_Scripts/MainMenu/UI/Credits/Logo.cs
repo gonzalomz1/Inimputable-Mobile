@@ -8,10 +8,7 @@ public class Logo : MonoBehaviour
 
     void AnimationFinished()
     {
-
         credits.AnimationFinished();
-
-
     }
 
 }
