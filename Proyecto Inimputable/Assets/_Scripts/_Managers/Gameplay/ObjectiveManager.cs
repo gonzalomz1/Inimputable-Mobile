@@ -15,11 +15,6 @@ public class ObjectiveManager : MonoBehaviour
         currentObjective = ObjectiveType.KillAll;
     }
 
-    public void SetGameOver()
-    {
-        gameFlowManager.GameOver();
-    }
-
     public void CheckObjectiveCondition()
     {
         remainingEnemies--;
@@ -28,9 +23,13 @@ public class ObjectiveManager : MonoBehaviour
 
         if (remainingEnemies <= 0)
         {
-            SetGameOver(); 
+            SetGameOver();
         }
     }
 
+    public void SetGameOver()
+    {
+        gameFlowManager.GameOver();
+    }
 
 }

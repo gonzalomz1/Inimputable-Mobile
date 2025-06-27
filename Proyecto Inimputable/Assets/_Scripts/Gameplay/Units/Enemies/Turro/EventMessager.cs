@@ -52,7 +52,7 @@ public class EventMessager : MonoBehaviour
 
     public void EnemigesManagerDiscount()
     {
-        GameObject.FindWithTag("EnemiesManager").GetComponent<EnemiesManager>().EnemyDied();
+        GameObject.FindWithTag("EnemiesManager").GetComponent<EnemiesManager>().EnemyDied(this.gameObject);
     }
 
     public void TriggerDestroyState()

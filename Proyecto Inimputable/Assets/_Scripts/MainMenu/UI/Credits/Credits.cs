@@ -15,7 +15,7 @@ public class Credits : MonoBehaviour
     
     public void AnimationFinished()
     {
-        splashScreen.OnCreditsAnimationFinished();
+        splashScreen.SplashScreenOnLogoAnimationFinished();
     }
 
 }

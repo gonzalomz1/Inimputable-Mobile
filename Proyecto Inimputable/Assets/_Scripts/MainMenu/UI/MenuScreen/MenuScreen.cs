@@ -16,15 +16,18 @@ public class MenuScreen : CustomCanvas
     public Button mainMenuPlay;
     public Button mainMenuOptions;
     public Button mainMenuCredits;
+    public Button mainMenuControls;
     public Button mainMenuExit;
+    
+    [Header("Options Button")]
+    public Button optionsBrightness;
+    public Button optionsExit;
 
     [Header("Credits Button")]
     public Button creditsExit;
+    [Header("Controls Button")]
+    public Button controlsExit;
 
-    [Header("Options Button")]
-
-    public Button optionsBrightness;
-    public Button optionsExit;
     [Header("Exit")]
     public Button exitExit;
 
@@ -35,30 +38,18 @@ public class MenuScreen : CustomCanvas
 
     public GameObject optionsContext;
 
+    public GameObject controlsContext;
+
     public GameObject exitContext;
-    //[Header("")]
-    //public MenuCamera menuCamera;
-
-
 
     public override void SetActiveCanvas(bool isActive)
     {
         gameObject.SetActive(isActive); // Cambia la visibilidad del canvas
     }
 
-    public void SetTextMeshTransform(List<Vector2> list)
-    {
-        mainMenuPlay.transform.position = list[0];
-        mainMenuOptions.transform.position = list[1];
-        mainMenuCredits.transform.position = list[2];
-        mainMenuExit.transform.position = list[3];
-        menuManager.AfterTextPositionSet();
-    }
-
     public void Play()
     {
-        menuManager.BeginLoadingGameplay();
-        
+        menuManager.StartDrinkingBottle();
     }
 
     public void Options()
@@ -72,6 +63,12 @@ public class MenuScreen : CustomCanvas
         menuManager.ManageMenuState(menuManager.currentMenuState);
     }
 
+    public void Controls()
+    {
+        menuManager.currentMenuState = MenuState.Controls;
+        menuManager.ManageMenuState(menuManager.currentMenuState);
+    }
+
     public void Exit()
     {
         menuManager.currentMenuState = MenuState.Exit;
@@ -81,28 +78,39 @@ public class MenuScreen : CustomCanvas
     public void SetGameObject(GameObject gameObject, bool boolean)
     {
         gameObject.SetActive(boolean);
-
     }
 
     public void CreditsArrow(bool boolean)
     {
         creditsExit.gameObject.SetActive(boolean);
     }
-    public void ReturnToMainMenu(){
-    menuManager.currentMenuState = MenuState.MainMenu;
-    menuManager.ManageMenuState(menuManager.currentMenuState);
-    //menuCamera.CreditsReturnAngle();
+    public void ReturnToMainMenu()
+    {
+        menuManager.FromCreditsToMainMenu();
+        menuManager.DisableAllContexts();
     }
 
-    public void MainMenuButtons(bool boolean){
-          mainMenuExit.gameObject.SetActive(boolean);
-          mainMenuCredits.gameObject.SetActive(boolean);
-          mainMenuOptions.gameObject.SetActive(boolean);
-          mainMenuPlay.gameObject.SetActive(boolean);
+    public void MainMenuButtons(bool boolean)
+    {
+        mainMenuExit.gameObject.SetActive(boolean);
+        mainMenuCredits.gameObject.SetActive(boolean);
+        mainMenuOptions.gameObject.SetActive(boolean);
+        mainMenuPlay.gameObject.SetActive(boolean);
 
     }
-    public void OnExitButtonNo(){
-       menuManager.currentMenuState = MenuState.MainMenu;
-       menuManager.ManageMenuState(menuManager.currentMenuState);
+    public void OnExitButtonNo()
+    {
+        menuManager.currentMenuState = MenuState.MainMenu;
+        menuManager.ManageMenuState(menuManager.currentMenuState);
+    }
+
+    public void HideMainMenuContext()
+    {
+        mainMenuContext.gameObject.SetActive(false);
+    }
+    
+    public void ShowMainMenuContext()
+    {
+        mainMenuContext.gameObject.SetActive(true);
     }
 }

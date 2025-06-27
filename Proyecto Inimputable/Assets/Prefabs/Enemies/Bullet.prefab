@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5663412657937905317}
   - component: {fileID: 5299941078120687464}
   - component: {fileID: 479980605687305855}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,4 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c012f72d17e7354e96872e3c7c059b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 3
+  lifeTime: 3
+  damage: 3
+  poolTag: EnemyBullet

@@ -1,26 +1,57 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Bullet : MonoBehaviour
 {
-    public float lifeTime = 3;
+    public float lifeTime = 3f;
+    public int damage = 3;
+    public string poolTag = "EnemyBullet"; // El tag usado en ObjectPooler
 
-    void Awake()
+    private Coroutine returnCoroutine;
+
+    void OnEnable()
     {
-        Destroy(gameObject, lifeTime);
+        // Comenzar el temporizador para regresar al pool
+        returnCoroutine = StartCoroutine(ReturnAfterTime(lifeTime));
+    }
+
+    void OnDisable()
+    {
+        // Cancelar el temporizador si se desactiva manualmente antes
+        if (returnCoroutine != null)
+        {
+            StopCoroutine(returnCoroutine);
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.CompareTag("Player"))
         {
-            Debug.Log($"collision: {collision}");
-            Debug.Log($"collision.gameObject: {collision.gameObject}");
-            Debug.Log($"collision.gameObject: {collision.gameObject.GetComponent<PlayerData>()}");
-            collision.gameObject.GetComponent<PlayerData>().TakeDamage(5);
-            Destroy(gameObject);
+            var player = collision.gameObject.GetComponent<PlayerData>();
+            if (player != null)
+            {
+                player.TakeDamage(damage);
+            }
+
+            ReturnToPool();
         }
+        else
+        {
+            // Si impacta cualquier otra cosa, también vuelve al pool
+            ReturnToPool();
+        }
+    }
+
+    private IEnumerator ReturnAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        ReturnToPool();
+    }
+
+    private void ReturnToPool()
+    {
+        gameObject.SetActive(false); // Ocultamos el objeto
+        ObjectPooler.Instance.ReturnToPool(poolTag, gameObject);
     }
 }

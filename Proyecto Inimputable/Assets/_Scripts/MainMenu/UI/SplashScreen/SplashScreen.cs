@@ -16,9 +16,9 @@ public class SplashScreen : CustomCanvas
         credits.PlayLogoAnimation();
     }
 
-    public void OnCreditsAnimationFinished()
+    public void SplashScreenOnLogoAnimationFinished()
     {
-        menuManager.OnCreditsAnimationFinished();
+        menuManager.OnLogoAnimationFinished();
     }
 
     public void LoadGameplay()

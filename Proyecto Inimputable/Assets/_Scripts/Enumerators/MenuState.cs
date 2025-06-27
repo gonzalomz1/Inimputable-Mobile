@@ -1,1 +1,1 @@
-public enum MenuState { Disable, MainMenu, Credits, Options, Exit, Play }
+public enum MenuState { Disable, MainMenu, Credits, Options,Controls, Exit, Play }

@@ -1,1 +1,1 @@
-public enum MenuFlowState { Logo, TvClip, Menu, LoadGameplay }
+public enum MenuFlowState { Logo, TvClip, Menu, DrinkingBottle, LoadGameplay }

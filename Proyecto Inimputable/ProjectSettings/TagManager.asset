@@ -13,6 +13,7 @@ TagManager:
   - InvisibleWall
   - EnemiesManager
   - Door
+  - ScreenFader
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - MenuButtons
   - Interactive
   - Weapons
-  - 
+  - WorldUI
   - 
   - 
   - 

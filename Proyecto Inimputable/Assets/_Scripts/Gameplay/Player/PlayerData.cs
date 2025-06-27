@@ -36,7 +36,9 @@ public class PlayerData : Player
 
     public void TakeDamage(int damage)
     {
+        print(currentHealth);
         currentHealth -= damage;
+        print(currentHealth);
         uIPlayerStats.SetBarCurrentValue(uIPlayerStats.healthBar, currentHealth);
         if (IsPlayerDead())
         {

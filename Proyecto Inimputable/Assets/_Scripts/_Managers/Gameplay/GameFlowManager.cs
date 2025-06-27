@@ -7,6 +7,7 @@ public class GameFlowManager : MonoBehaviour
    [SerializeField] private CanvasManager canvasManager;
    [SerializeField] private EnemiesManager enemiesManager;
    [SerializeField] private WeaponController weaponController;
+   [SerializeField] private LightsManager lightsManager;
 
    public GameFlowState currentState;
 
@@ -73,6 +74,12 @@ public class GameFlowManager : MonoBehaviour
    public void GameOver()
    {
       SetGameState(GameFlowState.GameOver);
+   }
+
+   public void BeginGameplaySequence()
+   {
+      lightsManager.TurnOnLights();
+      enemiesManager.ActivateEnemies();
    }
 
    public bool IsPlayerDead()

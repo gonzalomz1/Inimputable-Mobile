@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -13,27 +15,32 @@ public class MenuManager : MonoBehaviour
    public MenuFlowState currentState;
    public MenuState currentMenuState;
    [Header("Components")]
-   public SplashScreen splashScreen;
    public Basement basement;
    public CameraController cameraController;
+   public HandsController handsController;
+   [Header("UI References")]
+   public SpriteRenderer title;
+   public RectTransform menuScreenCanvasRect;
    public MenuScreen menuScreen;
-   [Header("Position for Main Menu buttons")]
-   public List<TextPosition> textPositions;
+   public SplashScreen splashScreen;
+   public ScreenFader screenFader;
+   [Header("RenderTexture UI")]
+   public RectTransform rawImageRect; // el RectTransform de la RawImage que muestra la RenderTexture
+
    [Header("Raycaster")]
    public GraphicRaycaster raycaster;
    [Header("Event Object")]
    public EventSystem eventSystem;
    private Finger menuFinger;
 
-
    void Start()
    {
       StartGame();
    }
 
-
    void StartGame()
    {
+      screenFader.gameObject.SetActive(false);
       currentState = MenuFlowState.Logo;
       currentMenuState = MenuState.Disable;
       ManageState(currentState);
@@ -56,24 +63,25 @@ public class MenuManager : MonoBehaviour
 
    void HandleFingerDown(Finger finger)
    {
-      if (currentState != MenuFlowState.Menu) return;
-      Vector2 touchPos = finger.screenPosition;
-      PointerEventData pointerEventData = new PointerEventData(eventSystem);
-      pointerEventData.position = touchPos;
+    if (currentState != MenuFlowState.Menu) return;
 
-      var results = new System.Collections.Generic.List<RaycastResult>();
-      raycaster.Raycast(pointerEventData, results);
+    Vector2 touchPos = finger.screenPosition;
+    PointerEventData pointerEventData = new PointerEventData(eventSystem);
+    pointerEventData.position = touchPos;
 
-      foreach (var result in results)
-      {
-         Button button = result.gameObject.GetComponent<Button>();
-         if (button != null)
-         {
+    var results = new List<RaycastResult>();
+    raycaster.Raycast(pointerEventData, results);
+
+    foreach (var result in results)
+    {
+        Button button = result.gameObject.GetComponent<Button>();
+        if (button != null)
+        {
             Debug.Log("Botón tocado: " + button.name);
             button.onClick.Invoke(); // Simula el click
             break;
-         }
-      }
+        }
+    }
    }
    // END OF INPUT CONTEXT
 
@@ -92,6 +100,13 @@ public class MenuManager : MonoBehaviour
          case MenuFlowState.Menu:
             SetCameraMainMenuAngle();
             break;
+         case MenuFlowState.DrinkingBottle:
+            DisableInput();
+            HideTitle();
+            HideBottleInWorld();
+            menuScreen.SetActiveCanvas(false);
+            handsController.ControllerPlayState();
+            break;
          case MenuFlowState.LoadGameplay:
             splashScreen.SetActiveCanvas(true);
             splashScreen.DisableCredits();
@@ -108,19 +123,23 @@ public class MenuManager : MonoBehaviour
             SetCanvasState(menuScreen, false);
             break;
          case MenuState.MainMenu:
+            DisableAllContextExceptMainMenu();
             EnableInput();
             SetCanvasState(menuScreen, true);
-            OnlyMainMenuContext();
+            
+            MainMenuButtons(true);
             break;
          case MenuState.Credits:
-            cameraController.SetMainMenuAngle();
-            OnlyCreditsButtons();
+            cameraController.SetCreditsAngle();
+            menuScreen.HideMainMenuContext();
             break;
          case MenuState.Options:
             menuScreen.SetGameObject(menuScreen.optionsContext, true);
             menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
             break;
-
+         case MenuState.Controls:
+            DisableAllContextExceptControls();
+            break;
          case MenuState.Exit:
             menuScreen.SetGameObject(menuScreen.exitContext, true);
             menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
@@ -143,31 +162,54 @@ public class MenuManager : MonoBehaviour
 
    void PlayInimputableClip()
    {
-      basement.tv.tvScreen.PlayVideo();   
+      basement.tv.tvScreen.PlayVideo();
    }
    void SetCameraTvAngle()
    {
       cameraController.SetTvClipAngle();
    }
 
-   void SetCameraMainMenuAngle()
+   public void SetCameraMainMenuAngle()
    {
       cameraController.SetMainMenuAngle();
    }
 
-
-   private void OnlyMainMenuContext()
+   public void FromCreditsToMainMenu()
    {
+      cameraController.FromCreditsToMainMenu();
+   }
+
+   public void DisableAllContexts()
+   {
+      menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
       menuScreen.SetGameObject(menuScreen.creditsContext, false);
       menuScreen.SetGameObject(menuScreen.optionsContext, false);
-      menuScreen.SetGameObject(menuScreen.mainMenuContext, true);
+      menuScreen.SetGameObject(menuScreen.controlsContext, false);
       menuScreen.SetGameObject(menuScreen.exitContext, false);
    }
 
-   private void OnlyCreditsButtons()
+   public void DisableAllContextExceptMainMenu()
+   {
+      menuScreen.SetGameObject(menuScreen.mainMenuContext, true);
+      menuScreen.SetGameObject(menuScreen.creditsContext, false);
+      menuScreen.SetGameObject(menuScreen.optionsContext, false);
+      menuScreen.SetGameObject(menuScreen.controlsContext, false);
+      menuScreen.SetGameObject(menuScreen.exitContext, false);
+   }
+
+   public void DisableAllContextExceptControls()
+   {
+      menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
+      menuScreen.SetGameObject(menuScreen.creditsContext, false);
+      menuScreen.SetGameObject(menuScreen.optionsContext, false);
+      menuScreen.SetGameObject(menuScreen.controlsContext, true);
+      menuScreen.SetGameObject(menuScreen.exitContext, false);
+   }
+
+   public void OnlyCreditsButtons()
    {
       menuScreen.SetGameObject(menuScreen.creditsContext, true);
-      menuScreen.CreditsArrow(false);
+      menuScreen.CreditsArrow(true);
       menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
       menuScreen.SetGameObject(menuScreen.optionsContext, false);
       MainMenuButtons(false);
@@ -184,7 +226,7 @@ public class MenuManager : MonoBehaviour
    }
 
    // METHODS FOR EVENT CALLS IN ANIMATIONS.
-   public void OnCreditsAnimationFinished()
+   public void OnLogoAnimationFinished()
    {
       Debug.Log("termino animacion del logo");
       splashScreen.gameObject.SetActive(false);
@@ -196,37 +238,39 @@ public class MenuManager : MonoBehaviour
       currentState = MenuFlowState.Menu;
       ManageState(currentState);
    }
-   public Vector2 SelectTextPosition(int index)
-   {/*
-      if (index >= 0 && index < textPositions.Count)
-        return textPositions[index].TransformPositionToCanvasPosition();
-    
-*/
-      return Vector2.zero;
-   }
-   public void SetMainMenuTexts()
-   {
-      List<Vector2> positions = new List<Vector2>();
-      Vector2 p1 = SelectTextPosition(0);
-      Vector2 p2 = SelectTextPosition(1);
-      Vector2 p3 = SelectTextPosition(2);
-      Vector2 p4 = SelectTextPosition(3);
-      positions.Add(p1);// posicion de play
-      positions.Add(p2);// posicion de option
-      positions.Add(p3);// posicion de credit
-      positions.Add(p4);// posicion de exit
-      menuScreen.SetTextMeshTransform(positions);
-   }
 
-   public void AfterTextPositionSet()
+
+// called from CameraController.cs
+   public void SetMenuStateToMainMenu()
    {
       currentMenuState = MenuState.MainMenu;
       ManageMenuState(currentMenuState);
+   }
+
+   public void StartDrinkingBottle()
+   {
+      currentState = MenuFlowState.DrinkingBottle;
+      ManageState(currentState);
    }
 
    public void BeginLoadingGameplay()
    {
       currentState = MenuFlowState.LoadGameplay;
       ManageState(currentState);
+   }
+
+   private void HideTitle()
+   {
+      title.gameObject.SetActive(false);
+   }
+
+   private void HideBottleInWorld()
+   {
+      basement.HideBottle();
+   }
+
+   public void CameraDrinkingAngle()
+   {
+      cameraController.GetComponent<Animator>().SetTrigger("DrinkBottle");
    }
 }

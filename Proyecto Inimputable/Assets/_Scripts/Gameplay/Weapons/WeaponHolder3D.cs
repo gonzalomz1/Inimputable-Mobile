@@ -60,11 +60,11 @@ public class WeaponHolder3D : MonoBehaviour
             ManageState(currentState);
             if (needToMakeAction)
             {
-                GameObject enemiesManagerObj = GameObject.FindGameObjectWithTag("EnemiesManager");
-                if (enemiesManagerObj != null)
+                GameObject gameFlowObj = GameObject.FindGameObjectWithTag("GameFlow");
+                if (gameFlowObj != null)
                 {
-                    EnemiesManager manager = enemiesManagerObj.GetComponent<EnemiesManager>();
-                    manager.ActivateEnemies();
+                    GameFlowManager manager = gameFlowObj.GetComponent<GameFlowManager>();
+                    manager.BeginGameplaySequence();
                 }
             }
         }
