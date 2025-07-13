@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ObjectiveManager : MonoBehaviour
 {
+
+        ObjectiveManager Instance { get; set; }
+
     public GameFlowManager gameFlowManager;
     public EnemiesManager enemiesManager;
 
@@ -9,6 +12,17 @@ public class ObjectiveManager : MonoBehaviour
 
     public int totalEnemies;
     public int remainingEnemies;
+
+   private void Awake()
+   {
+      if (Instance != null && Instance != this)
+      {
+         Destroy(gameObject);
+         return;
+      }
+      Instance = this;
+   }
+
 
     public void SetRoomObjective()
     {

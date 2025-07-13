@@ -5,20 +5,35 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class CanvasManager : MonoBehaviour
 {
+    public static CanvasManager Instance { get; private set; }
+
     public GameFlowManager gameFlowManager;
     [Header("Gameplay Canvases")]
     public MenuCanvas menuCanvas;
     public ActionCanvas actionCanvas;
     public MovAndAimCanvas movAndAimCanvas;
     public UICanvas uICanvas;
-    
+
 
     [SerializeField] private Dictionary<int, FingerRole> fingerRoles = new Dictionary<int, FingerRole>();
 
-    void Start()
+    private void Awake()
     {
-        StartGameplay();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
+
+    void OnDestroy()
+{
+        if (Instance == this)
+            DisableInput();
+        Instance = null;
+}
 
 
     public void StartGameplay()
@@ -47,7 +62,17 @@ public class CanvasManager : MonoBehaviour
     {
         menuCanvas.GameOver();
     }
+
     public void EnableInput()
+    {
+        this.gameObject.SetActive(true);
+    }
+
+    public void DisableInput()
+    {
+        this.gameObject.SetActive(false);
+    }
+    public void OnEnable()
     {
         ETouch.EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += HandleFingerDown;
@@ -55,7 +80,7 @@ public class CanvasManager : MonoBehaviour
         ETouch.Touch.onFingerUp += HandleFingerUp;
     }
 
-    public void DisableInput()
+    public void OnDisable()
     {
         ETouch.Touch.onFingerDown -= HandleFingerDown;
         ETouch.Touch.onFingerMove -= HandleFingerMove;
@@ -138,4 +163,5 @@ public class CanvasManager : MonoBehaviour
         fingerRoles.Remove(finger.index);
         //Debug.Log($"Current Dictionary after change: {fingerRoles.Count} items");
     }
+    
 }

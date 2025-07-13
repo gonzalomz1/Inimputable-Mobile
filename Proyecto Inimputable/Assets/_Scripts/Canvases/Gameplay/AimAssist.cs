@@ -3,6 +3,8 @@ using System.Linq;
 
 public class AimAssist : MonoBehaviour
 {
+    public static AimAssist Instance { get; private set; }
+
     [Header("Config")]
     [SerializeField] private float maxDistance = 25f;             // Max distance of enemy to consider
     [SerializeField] private float screenRadius = 250f;           // Radius in pixels from the center where help activates
@@ -16,6 +18,12 @@ public class AimAssist : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         mainCamera = Camera.main;
         playerData = GameObject.FindWithTag("Player").GetComponent<PlayerData>();
     }

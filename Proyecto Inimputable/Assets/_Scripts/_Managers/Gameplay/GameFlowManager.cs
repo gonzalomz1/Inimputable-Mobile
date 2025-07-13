@@ -1,4 +1,4 @@
-using UnityEngine;
+   using UnityEngine;
 
 public class GameFlowManager : MonoBehaviour
 {
@@ -39,6 +39,7 @@ public class GameFlowManager : MonoBehaviour
             break;
          case GameFlowState.StartGameplay:
             weaponController.StartWeapons();
+            lightsManager.TurnOffLights();
             canvasManager.StartGameplay();
             ResumeGame();
             break;

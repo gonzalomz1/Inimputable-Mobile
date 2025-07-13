@@ -9,6 +9,7 @@ using TMPro;
 
 public class MenuCanvas : MonoBehaviour
 {
+    public static MenuCanvas Instance { get; private set; }
     [Header("Pause")]
     [SerializeField] private Slider sensitivitySlider;
     private Vector2 startValueSensSldr;
@@ -29,6 +30,16 @@ public class MenuCanvas : MonoBehaviour
 
     public const float MIN_SENSITIVITY = 2f;
     public const float MAX_SENSITIVITY = 14f;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Start()
     {

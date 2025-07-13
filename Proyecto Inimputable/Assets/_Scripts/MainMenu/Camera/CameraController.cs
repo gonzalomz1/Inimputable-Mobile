@@ -1,41 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private CameraView cameraView;
-    [SerializeField] private MenuManager menuManager;
 
-    public void SetTvClipAngle()
-    {
-        cameraView.SetTvClipAngle();
-    }
-    public void SetMainMenuAngle()
-    {
-        cameraView.SetMainMenuAngle();
-    }
-    public void SetCreditsAngle()
-    {
-        cameraView.SetCreditsAngle();
-    }
-    public void FromCreditsToMainMenu()
-    {
-        cameraView.FromCreditsToMainMenu();
-    }
+    public event Action OnMenuAnimationFinished;
+    public event Action OnCreditsAnimationFinished;
+    public event Action OnFromCreditsToMainMenuAnimationFinished;
 
-    public void OnMenuAnimationFinished()
-    {
-        menuManager.SetMenuStateToMainMenu();
-    }
+    public void SetTvClipAngle() => cameraView.SetTvClipAngle();
+    public void SetMainMenuAngle() => cameraView.SetMainMenuAngle();
+    public void SetCreditsAngle() => cameraView.SetCreditsAngle();
+    public void FromCreditsToMainMenu() => cameraView.FromCreditsToMainMenu();
 
-    public void OnCreditsAnimationFinished()
-    {
-        menuManager.OnlyCreditsButtons();
-    }
-
-    public void OnFromCreditsToMainMenuAnimationFinished()
-    {
-        menuManager.SetMenuStateToMainMenu();
-    }
+    // callbacks from animations
+    public void MenuAnimationFinished() => OnMenuAnimationFinished?.Invoke();
+    public void CreditsAnimationFinished() => OnCreditsAnimationFinished?.Invoke();
+    public void FromCreditsToMainMenuAnimationFinished() => OnFromCreditsToMainMenuAnimationFinished?.Invoke();
 }

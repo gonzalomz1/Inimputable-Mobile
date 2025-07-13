@@ -529,7 +529,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.5833334
-    functionName: OnMenuAnimationFinished
+    functionName: MenuAnimationFinished
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

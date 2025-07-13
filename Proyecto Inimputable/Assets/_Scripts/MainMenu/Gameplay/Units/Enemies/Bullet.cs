@@ -51,7 +51,6 @@ public class Bullet : MonoBehaviour
 
     private void ReturnToPool()
     {
-        gameObject.SetActive(false); // Ocultamos el objeto
         ObjectPooler.Instance.ReturnToPool(poolTag, gameObject);
     }
 }

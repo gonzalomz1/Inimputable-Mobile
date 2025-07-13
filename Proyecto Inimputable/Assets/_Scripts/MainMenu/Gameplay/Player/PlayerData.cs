@@ -57,4 +57,10 @@ public class PlayerData : Player
         sensitivityX = amount;
         sensitivityY = sensitivityX * ySensitivityRatio;
     }
+
+    public float GetHealthRatio()
+    {
+        if (maxHealth <= 0) return 0f;
+        return Mathf.Clamp01((float)currentHealth / maxHealth);
+    }
 }

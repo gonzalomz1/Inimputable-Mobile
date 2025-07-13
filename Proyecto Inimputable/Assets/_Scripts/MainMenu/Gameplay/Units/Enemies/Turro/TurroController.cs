@@ -74,7 +74,6 @@ public class TurroController : MonoBehaviour
             {
                 SetState(EnemyState.Shoot);
                 turroState = EnemyState.Shoot;
-
             }
             else
             {
@@ -83,8 +82,6 @@ public class TurroController : MonoBehaviour
                 MoveTowardsPlayer();
             }
         }
-
-
     }
 
     private void MoveTowardsPlayer()

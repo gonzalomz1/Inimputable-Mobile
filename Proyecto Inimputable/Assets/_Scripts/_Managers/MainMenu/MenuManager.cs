@@ -11,9 +11,9 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class MenuManager : MonoBehaviour
 {
-   [Header("State")]
-   public MenuFlowState currentState;
-   public MenuState currentMenuState;
+   public MenuFlowState currentMenuFlowState { get; private set; }
+   public MenuState currentMenuState { get; private set; }
+
    [Header("Components")]
    public Basement basement;
    public CameraController cameraController;
@@ -33,17 +33,29 @@ public class MenuManager : MonoBehaviour
    public EventSystem eventSystem;
    private Finger menuFinger;
 
+   public event Action InteractionSoundMenu;
+   public event Action MenuLoopSongRequest;
+
    void Start()
    {
-      StartGame();
+      cameraController.OnMenuAnimationFinished += SetMenuStateToMainMenuAndStartMenuLoopSong;
+      cameraController.OnCreditsAnimationFinished += ShowCreditsArrow;
+      cameraController.OnFromCreditsToMainMenuAnimationFinished += SetMenuStateToMainMenu;
+
+      menuScreen.OnPlayPressed += StartDrinkingBottle;
+      menuScreen.OnOptionsPressed += ShowOptions;
+      menuScreen.OnCreditsPressed += ShowCredits;
+      menuScreen.OnControlsPressed += ShowControls;
+      menuScreen.OnControlsExitPressed += SetMenuStateToMainMenu;
+      menuScreen.OnFromCreditsToMainMenuPressed += ReturnToMainMenuFromCredits;
    }
 
-   void StartGame()
+   public void FromExecuteGameStart()
    {
       screenFader.gameObject.SetActive(false);
-      currentState = MenuFlowState.Logo;
+      currentMenuFlowState = MenuFlowState.Logo;
       currentMenuState = MenuState.Disable;
-      ManageState(currentState);
+      ManageState(currentMenuFlowState);
       ManageMenuState(currentMenuState);
    }
 
@@ -63,25 +75,25 @@ public class MenuManager : MonoBehaviour
 
    void HandleFingerDown(Finger finger)
    {
-    if (currentState != MenuFlowState.Menu) return;
+      if (currentMenuFlowState != MenuFlowState.Menu) return;
 
-    Vector2 touchPos = finger.screenPosition;
-    PointerEventData pointerEventData = new PointerEventData(eventSystem);
-    pointerEventData.position = touchPos;
+      Vector2 touchPos = finger.screenPosition;
+      PointerEventData pointerEventData = new PointerEventData(eventSystem);
+      pointerEventData.position = touchPos;
 
-    var results = new List<RaycastResult>();
-    raycaster.Raycast(pointerEventData, results);
+      var results = new List<RaycastResult>();
+      raycaster.Raycast(pointerEventData, results);
 
-    foreach (var result in results)
-    {
-        Button button = result.gameObject.GetComponent<Button>();
-        if (button != null)
-        {
+      foreach (var result in results)
+      {
+         Button button = result.gameObject.GetComponent<Button>();
+         if (button != null)
+         {
             Debug.Log("Botón tocado: " + button.name);
             button.onClick.Invoke(); // Simula el click
             break;
-        }
-    }
+         }
+      }
    }
    // END OF INPUT CONTEXT
 
@@ -124,14 +136,15 @@ public class MenuManager : MonoBehaviour
             break;
          case MenuState.MainMenu:
             DisableAllContextExceptMainMenu();
+            
             EnableInput();
             SetCanvasState(menuScreen, true);
-            
             MainMenuButtons(true);
             break;
          case MenuState.Credits:
             cameraController.SetCreditsAngle();
-            menuScreen.HideMainMenuContext();
+            DisableAllContextExceptCredits();
+            HideCreditsArrow(); // we wait for animation call to show
             break;
          case MenuState.Options:
             menuScreen.SetGameObject(menuScreen.optionsContext, true);
@@ -206,14 +219,25 @@ public class MenuManager : MonoBehaviour
       menuScreen.SetGameObject(menuScreen.exitContext, false);
    }
 
-   public void OnlyCreditsButtons()
+   public void DisableAllContextExceptCredits()
    {
-      menuScreen.SetGameObject(menuScreen.creditsContext, true);
-      menuScreen.CreditsArrow(true);
       menuScreen.SetGameObject(menuScreen.mainMenuContext, false);
+      menuScreen.SetGameObject(menuScreen.creditsContext, true);
       menuScreen.SetGameObject(menuScreen.optionsContext, false);
-      MainMenuButtons(false);
+      menuScreen.SetGameObject(menuScreen.controlsContext, false);
+      menuScreen.SetGameObject(menuScreen.exitContext, false); 
    }
+
+   public void ShowCreditsArrow()
+   {
+      menuScreen.CreditsArrow(true);
+   }
+
+   public void HideCreditsArrow()
+   {
+      menuScreen.CreditsArrow(false);
+   }
+
 
    private void MainMenuButtons(bool ActiveOrNot)
    {
@@ -225,38 +249,76 @@ public class MenuManager : MonoBehaviour
       screen.SetActiveCanvas(boolean);
    }
 
+   private void StartMenuLoopSong()
+   {
+      MenuLoopSongRequest?.Invoke();
+   }
+
    // METHODS FOR EVENT CALLS IN ANIMATIONS.
    public void OnLogoAnimationFinished()
    {
       Debug.Log("termino animacion del logo");
       splashScreen.gameObject.SetActive(false);
-      currentState = MenuFlowState.TvClip;
-      ManageState(currentState);
+      currentMenuFlowState = MenuFlowState.TvClip;
+      ManageState(currentMenuFlowState);
    }
    public void OnVideoEnd()
    {
-      currentState = MenuFlowState.Menu;
-      ManageState(currentState);
+      currentMenuFlowState = MenuFlowState.Menu;
+      ManageState(currentMenuFlowState);
    }
 
 
-// called from CameraController.cs
-   public void SetMenuStateToMainMenu()
+   private void SetMenuStateToMainMenuAndStartMenuLoopSong()
    {
+      StartMenuLoopSong();
+      SetMenuStateToMainMenu();
+   }
+
+   private void SetMenuStateToMainMenu()
+   {
+      RequestInteractionSound();
       currentMenuState = MenuState.MainMenu;
       ManageMenuState(currentMenuState);
    }
 
-   public void StartDrinkingBottle()
+   private void StartDrinkingBottle()
    {
-      currentState = MenuFlowState.DrinkingBottle;
-      ManageState(currentState);
+      RequestInteractionSound();
+      currentMenuFlowState = MenuFlowState.DrinkingBottle;
+      ManageState(currentMenuFlowState);
+   }
+
+   private void ShowOptions()
+   { 
+      RequestInteractionSound();
+   }
+
+   private void ShowCredits()
+   {
+      RequestInteractionSound();
+      currentMenuState = MenuState.Credits;
+      ManageMenuState(currentMenuState);
+   }
+
+   private void ReturnToMainMenuFromCredits()
+   {
+      RequestInteractionSound();
+      DisableAllContexts();
+      cameraController.FromCreditsToMainMenu();
+   }
+
+   private void ShowControls()
+   {
+      RequestInteractionSound();
+      currentMenuState = MenuState.Controls;
+      ManageMenuState(currentMenuState);
    }
 
    public void BeginLoadingGameplay()
    {
-      currentState = MenuFlowState.LoadGameplay;
-      ManageState(currentState);
+      currentMenuFlowState = MenuFlowState.LoadGameplay;
+      ManageState(currentMenuFlowState);
    }
 
    private void HideTitle()
@@ -272,5 +334,10 @@ public class MenuManager : MonoBehaviour
    public void CameraDrinkingAngle()
    {
       cameraController.GetComponent<Animator>().SetTrigger("DrinkBottle");
+   }
+
+   private void RequestInteractionSound()
+   {
+      InteractionSoundMenu?.Invoke();
    }
 }

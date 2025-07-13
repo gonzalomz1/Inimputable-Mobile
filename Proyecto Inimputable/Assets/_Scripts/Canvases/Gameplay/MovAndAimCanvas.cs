@@ -5,6 +5,7 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class MovAndAimCanvas : GameplayCanvas
 {
+public static MovAndAimCanvas Instance { get; private set; }
     [SerializeField] private Vector2 joystickSize = new Vector2(300, 300);
     [SerializeField] private FloatingJoystick moveJoystick;
     [SerializeField] private RectTransform aimPanel;
@@ -17,8 +18,20 @@ public class MovAndAimCanvas : GameplayCanvas
     private Vector2 lastAimPosition;
     private Vector2 movementAmount;
 
+    public MovAndAimCanvas()
+    {
+    }
+
+
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        
         if (!playerData) playerData = GetComponent<PlayerData>();
         if (!playerMovement) playerMovement = GetComponent<PlayerMovement>();
     }

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 
 public class ActionCanvas : MonoBehaviour
 {
+
+    public static ActionCanvas Instance { get; private set; }
     [Header("Buttons")]
     public Button shootButton;
     public Button reloadButton;
@@ -30,6 +32,16 @@ public class ActionCanvas : MonoBehaviour
 
     public Camera playerCamera;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+    
     void Start()
     {
         interactButton.gameObject.SetActive(false);

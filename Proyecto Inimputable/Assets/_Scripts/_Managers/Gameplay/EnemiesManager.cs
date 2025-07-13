@@ -3,10 +3,23 @@ using System.Collections.Generic;
 
 public class EnemiesManager : MonoBehaviour
 {
+    EnemiesManager Instance { get; set; }
+
     public ObjectiveManager objectiveManager;
     [SerializeField] private bool needObjetive = true;
     [SerializeField] private int totalEnemiesToSpawn = 5;
     [SerializeField] private Transform[] spawnPoints;
+
+   private void Awake()
+   {
+      if (Instance != null && Instance != this)
+      {
+         Destroy(gameObject);
+         return;
+      }
+      Instance = this;
+   }
+
 
     private List<GameObject> activeEnemies = new List<GameObject>();
 

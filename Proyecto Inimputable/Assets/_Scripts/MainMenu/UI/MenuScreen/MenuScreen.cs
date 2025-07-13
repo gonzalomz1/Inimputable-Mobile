@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,7 +10,6 @@ using UnityEngine.UI;
 public class MenuScreen : CustomCanvas
 
 {
-    public MenuManager menuManager;
     [Header("Splash Screen")]
     public SplashScreen splashScreen;
     [Header("Main Menu Buttons")]
@@ -42,38 +42,34 @@ public class MenuScreen : CustomCanvas
 
     public GameObject exitContext;
 
+    public event Action OnPlayPressed;
+    public event Action OnOptionsPressed;
+    public event Action OnCreditsPressed;
+    public event Action OnFromCreditsToMainMenuPressed;
+    public event Action OnControlsPressed;
+    public event Action OnControlsExitPressed;
+    public event Action OnExitPressed;
+    public event Action OnExitContextNoPressed;
+    public event Action OnExitContextYesPressed;
+
+    void Start()
+    {
+        mainMenuPlay.onClick.AddListener(() => OnPlayPressed?.Invoke());
+        mainMenuOptions.onClick.AddListener(() => OnOptionsPressed?.Invoke());
+        mainMenuCredits.onClick.AddListener(() => OnCreditsPressed?.Invoke());
+        mainMenuControls.onClick.AddListener(() => OnControlsPressed?.Invoke());
+        mainMenuExit.onClick.AddListener(() => OnExitPressed?.Invoke());
+        creditsExit.onClick.AddListener(() => OnFromCreditsToMainMenuPressed?.Invoke());
+        controlsExit.onClick.AddListener(() => OnControlsExitPressed?.Invoke());
+    //exitExit.onClick.AddListener(() => OnExitContextYesPressed?.Invoke());
+    }
+
+
     public override void SetActiveCanvas(bool isActive)
     {
         gameObject.SetActive(isActive); // Cambia la visibilidad del canvas
     }
 
-    public void Play()
-    {
-        menuManager.StartDrinkingBottle();
-    }
-
-    public void Options()
-    {
-
-    }
-
-    public void Credits()
-    {
-        menuManager.currentMenuState = MenuState.Credits;
-        menuManager.ManageMenuState(menuManager.currentMenuState);
-    }
-
-    public void Controls()
-    {
-        menuManager.currentMenuState = MenuState.Controls;
-        menuManager.ManageMenuState(menuManager.currentMenuState);
-    }
-
-    public void Exit()
-    {
-        menuManager.currentMenuState = MenuState.Exit;
-        menuManager.ManageMenuState(menuManager.currentMenuState);
-    }
 
     public void SetGameObject(GameObject gameObject, bool boolean)
     {
@@ -84,11 +80,6 @@ public class MenuScreen : CustomCanvas
     {
         creditsExit.gameObject.SetActive(boolean);
     }
-    public void ReturnToMainMenu()
-    {
-        menuManager.FromCreditsToMainMenu();
-        menuManager.DisableAllContexts();
-    }
 
     public void MainMenuButtons(bool boolean)
     {
@@ -96,13 +87,8 @@ public class MenuScreen : CustomCanvas
         mainMenuCredits.gameObject.SetActive(boolean);
         mainMenuOptions.gameObject.SetActive(boolean);
         mainMenuPlay.gameObject.SetActive(boolean);
+    }
 
-    }
-    public void OnExitButtonNo()
-    {
-        menuManager.currentMenuState = MenuState.MainMenu;
-        menuManager.ManageMenuState(menuManager.currentMenuState);
-    }
 
     public void HideMainMenuContext()
     {
