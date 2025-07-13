@@ -40,13 +40,13 @@ public class MenuManager : MonoBehaviour
    {
       cameraController.OnMenuAnimationFinished += SetMenuStateToMainMenuAndStartMenuLoopSong;
       cameraController.OnCreditsAnimationFinished += ShowCreditsArrow;
-      cameraController.OnFromCreditsToMainMenuAnimationFinished += SetMenuStateToMainMenu;
+      cameraController.OnFromCreditsToMainMenuAnimationFinished += SetMenuStateToMainMenuWithoutSound;
 
       menuScreen.OnPlayPressed += StartDrinkingBottle;
       menuScreen.OnOptionsPressed += ShowOptions;
       menuScreen.OnCreditsPressed += ShowCredits;
       menuScreen.OnControlsPressed += ShowControls;
-      menuScreen.OnControlsExitPressed += SetMenuStateToMainMenu;
+      menuScreen.OnControlsExitPressed += SetMenuStateToMainMenuWithSound;
       menuScreen.OnFromCreditsToMainMenuPressed += ReturnToMainMenuFromCredits;
       //
    }
@@ -273,10 +273,16 @@ public class MenuManager : MonoBehaviour
    private void SetMenuStateToMainMenuAndStartMenuLoopSong()
    {
       StartMenuLoopSong();
-      SetMenuStateToMainMenu();
+      SetMenuStateToMainMenuWithoutSound();
    }
 
-   private void SetMenuStateToMainMenu()
+   private void SetMenuStateToMainMenuWithoutSound()
+   {
+      currentMenuState = MenuState.MainMenu;
+      ManageMenuState(currentMenuState);
+   }
+
+   private void SetMenuStateToMainMenuWithSound()
    {
       RequestInteractionSound();
       currentMenuState = MenuState.MainMenu;
