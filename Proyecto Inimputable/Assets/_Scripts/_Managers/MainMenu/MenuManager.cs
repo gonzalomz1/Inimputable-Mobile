@@ -48,6 +48,7 @@ public class MenuManager : MonoBehaviour
       menuScreen.OnControlsPressed += ShowControls;
       menuScreen.OnControlsExitPressed += SetMenuStateToMainMenu;
       menuScreen.OnFromCreditsToMainMenuPressed += ReturnToMainMenuFromCredits;
+      //
    }
 
    public void FromExecuteGameStart()
