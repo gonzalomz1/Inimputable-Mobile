@@ -6,7 +6,7 @@ public class ScreenFader : MonoBehaviour
 {
 
     [SerializeField] private Animator animator;
-
+    
     public void FadeIn()
     {
         if (!this.gameObject.activeInHierarchy) this.gameObject.SetActive(true);

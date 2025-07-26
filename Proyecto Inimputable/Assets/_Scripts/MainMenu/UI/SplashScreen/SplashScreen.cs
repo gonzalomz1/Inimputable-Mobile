@@ -8,8 +8,6 @@ public class SplashScreen : CustomCanvas
 
     [SerializeField] private MenuManager menuManager;
     [SerializeField] private Credits credits;
-    [SerializeField] private LevelLoader levelLoader;
-
 
     public void PlayLogoAnimation()
     {
@@ -21,10 +19,6 @@ public class SplashScreen : CustomCanvas
         menuManager.OnLogoAnimationFinished();
     }
 
-    public void LoadGameplay()
-    {
-        levelLoader.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
-    }
 
     public override void SetActiveCanvas(bool isActive)
     {
@@ -48,24 +42,6 @@ public class SplashScreen : CustomCanvas
             return;
         }
         credits.gameObject.SetActive(false);
-    }
-    public void EnableLoading()
-    {
-        if (levelLoader == null)
-        {
-            Debug.LogError("No se inicializo la variable loading");
-            return;
-        }
-        levelLoader.gameObject.SetActive(true);
-    }
-    public void DisableLoading()
-    {
-        if (levelLoader == null)
-        {
-            Debug.LogError("No se inicializo la variable loading");
-            return;
-        }
-        levelLoader.gameObject.SetActive(false);
     }
 
 

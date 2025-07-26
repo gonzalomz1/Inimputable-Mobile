@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UICanvas : GameplayCanvas
 {
+    [SerializeField] GameManager gameManager;
     public static UICanvas Instance { get; private set; }
     public UIPlayerStats uIPlayerStats;
 
@@ -15,7 +16,19 @@ public class UICanvas : GameplayCanvas
             return;
         }
         Instance = this;
+        SubscribeToGameManagerEvents();
     }
+
+    void SubscribeToGameManagerEvents()
+    {
+        gameManager.GameplayStart += OnGameplayStart;
+    }
+
+    void OnGameplayStart()
+    {
+        StartUIPlayerStats();
+    }
+
     public override void SetActiveCanvas(bool isActive)
     {
         gameObject.SetActive(isActive);

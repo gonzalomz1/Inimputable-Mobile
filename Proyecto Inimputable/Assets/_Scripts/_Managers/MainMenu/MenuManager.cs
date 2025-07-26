@@ -31,58 +31,62 @@ public class MenuManager : MonoBehaviour
    public GraphicRaycaster raycaster;
    [Header("Event Object")]
    public EventSystem eventSystem;
-   private Finger menuFinger;
 
    public event Action InteractionSoundMenu;
    public event Action MenuLoopSongRequest;
+   public event Action StartGameplay;
+   public event Action CanvasMenuDisabled;
+   public event Action ActivateInputs;
+   public event Action InGameplayControls;
 
-   void Start()
+   void Awake()
+   {
+      SubscribeToGameManagerEvents();
+      SubscribeToCameraControllerEvents();
+      SubscribeToMenuScreenEvents();
+      SubscribeToHandsControllerEvents();
+   }
+
+   void SubscribeToGameManagerEvents()
+   {
+      GameManager.instance.GameExecute += OnGameExecute;
+      GameManager.instance.GameplayStart += OnGameplayStart;
+   }
+
+   void SubscribeToCameraControllerEvents()
    {
       cameraController.OnMenuAnimationFinished += SetMenuStateToMainMenuAndStartMenuLoopSong;
       cameraController.OnCreditsAnimationFinished += ShowCreditsArrow;
       cameraController.OnFromCreditsToMainMenuAnimationFinished += SetMenuStateToMainMenuWithoutSound;
+   }
 
+   void SubscribeToMenuScreenEvents()
+   {
       menuScreen.OnPlayPressed += StartDrinkingBottle;
       menuScreen.OnOptionsPressed += ShowOptions;
       menuScreen.OnCreditsPressed += ShowCredits;
       menuScreen.OnControlsPressed += ShowControls;
       menuScreen.OnControlsExitPressed += SetMenuStateToMainMenuWithSound;
       menuScreen.OnFromCreditsToMainMenuPressed += ReturnToMainMenuFromCredits;
-      //
    }
 
-   public void FromExecuteGameStart()
+   void SubscribeToHandsControllerEvents()
    {
-      screenFader.gameObject.SetActive(false);
-      currentMenuFlowState = MenuFlowState.Logo;
-      currentMenuState = MenuState.Disable;
-      ManageState(currentMenuFlowState);
-      ManageMenuState(currentMenuState);
+      handsController.DrinkBottle += StartFadeIn;
+      handsController.DrinkAnimationStarted += OnHandsControllerDrinkAnimationStarted;
+      handsController.DrinkAnimationFinished += OnHandsControllerDrinkAnimationFinished;
    }
-
 
    // INPUT    
-   void EnableInput()
+
+   public bool HandleTouch(Finger finger, out FingerRole role)
    {
-      ETouch.EnhancedTouchSupport.Enable();
-      ETouch.Touch.onFingerDown += HandleFingerDown;
-   }
+      role = FingerRole.None;
 
-   void DisableInput()
-   {
-      ETouch.Touch.onFingerDown -= HandleFingerDown;
-      ETouch.EnhancedTouchSupport.Disable();
-   }
+      PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+      pointerEventData.position = finger.screenPosition;
 
-   void HandleFingerDown(Finger finger)
-   {
-      if (currentMenuFlowState != MenuFlowState.Menu) return;
-
-      Vector2 touchPos = finger.screenPosition;
-      PointerEventData pointerEventData = new PointerEventData(eventSystem);
-      pointerEventData.position = touchPos;
-
-      var results = new List<RaycastResult>();
+      List<RaycastResult> results = new List<RaycastResult>();
       raycaster.Raycast(pointerEventData, results);
 
       foreach (var result in results)
@@ -90,12 +94,17 @@ public class MenuManager : MonoBehaviour
          Button button = result.gameObject.GetComponent<Button>();
          if (button != null)
          {
-            Debug.Log("Botón tocado: " + button.name);
-            button.onClick.Invoke(); // Simula el click
-            break;
+            button.onClick.Invoke();
+            role = FingerRole.Menu;
+            return true;
          }
       }
+
+      return false;
    }
+
+
+
    // END OF INPUT CONTEXT
 
    // STATE MACHINES
@@ -103,6 +112,9 @@ public class MenuManager : MonoBehaviour
    {
       switch (current)
       {
+         case MenuFlowState.Disabled:
+            DisableAllMainMenuStuff();
+            break;
          case MenuFlowState.Logo:
             SetSplashScreenLogoMode();
             break;
@@ -114,17 +126,14 @@ public class MenuManager : MonoBehaviour
             SetCameraMainMenuAngle();
             break;
          case MenuFlowState.DrinkingBottle:
-            DisableInput();
+            GameManager.instance.DisableInput();
             HideTitle();
             HideBottleInWorld();
             menuScreen.SetActiveCanvas(false);
-            handsController.ControllerPlayState();
+            handsController.ControllerDrinkingToStartGameplayState();
             break;
-         case MenuFlowState.LoadGameplay:
-            splashScreen.SetActiveCanvas(true);
-            splashScreen.DisableCredits();
-            splashScreen.EnableLoading();
-            splashScreen.LoadGameplay();
+         case MenuFlowState.StartGameplay:
+            StartGameplay.Invoke();
             break;
       }
    }
@@ -137,8 +146,7 @@ public class MenuManager : MonoBehaviour
             break;
          case MenuState.MainMenu:
             DisableAllContextExceptMainMenu();
-            
-            EnableInput();
+            GameManager.instance.EnableInput();
             SetCanvasState(menuScreen, true);
             MainMenuButtons(true);
             break;
@@ -166,10 +174,23 @@ public class MenuManager : MonoBehaviour
    }
    // END OF STATE MACHINE CONTEXT
 
+   private void OnGameExecute()
+   {
+      FromExecuteGameStart();
+   }
+
+   public void FromExecuteGameStart()
+   {
+      print("MainMenu: from execute called.");
+      currentMenuFlowState = MenuFlowState.Logo;
+      currentMenuState = MenuState.Disable;
+      ManageState(currentMenuFlowState);
+      ManageMenuState(currentMenuState);
+   }
+
    void SetSplashScreenLogoMode()
    {
       splashScreen.gameObject.SetActive(true);
-      splashScreen.DisableLoading();
       splashScreen.EnableCredits();
       splashScreen.PlayLogoAnimation();
    }
@@ -226,7 +247,7 @@ public class MenuManager : MonoBehaviour
       menuScreen.SetGameObject(menuScreen.creditsContext, true);
       menuScreen.SetGameObject(menuScreen.optionsContext, false);
       menuScreen.SetGameObject(menuScreen.controlsContext, false);
-      menuScreen.SetGameObject(menuScreen.exitContext, false); 
+      menuScreen.SetGameObject(menuScreen.exitContext, false);
    }
 
    public void ShowCreditsArrow()
@@ -297,7 +318,7 @@ public class MenuManager : MonoBehaviour
    }
 
    private void ShowOptions()
-   { 
+   {
       RequestInteractionSound();
    }
 
@@ -324,7 +345,7 @@ public class MenuManager : MonoBehaviour
 
    public void BeginLoadingGameplay()
    {
-      currentMenuFlowState = MenuFlowState.LoadGameplay;
+      currentMenuFlowState = MenuFlowState.StartGameplay;
       ManageState(currentMenuFlowState);
    }
 
@@ -343,8 +364,42 @@ public class MenuManager : MonoBehaviour
       cameraController.GetComponent<Animator>().SetTrigger("DrinkBottle");
    }
 
+   private void DisableAllMainMenuStuff()
+   {
+
+   }
+
    private void RequestInteractionSound()
    {
       InteractionSoundMenu?.Invoke();
    }
+
+   private void StartFadeIn()
+   {
+      GameManager.instance.FadeInScreen();
+   }
+
+   private void OnHandsControllerDrinkAnimationStarted()
+   {
+      CameraDrinkingAngle();
+   }
+
+   private void OnHandsControllerDrinkAnimationFinished()
+   {
+      BeginLoadingGameplay();
+   }
+
+   private void OnGameplayStart()
+   {
+      DisableMenuStuff();
+   }
+
+   private void DisableMenuStuff()
+   {
+      HideTitle();
+      HideBottleInWorld();
+   }
+
+
+   
 }

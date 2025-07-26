@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class HandsController : MonoBehaviour
@@ -9,28 +7,58 @@ public class HandsController : MonoBehaviour
     [SerializeField] private HandsView handsView;
     [SerializeField] private ScreenFader screenFader;
 
+    public event Action DrinkBottle;
+    public event Action DrinkAnimationStarted;
+    public event Action DrinkAnimationFinished;
+
+    void Start()
+    {
+        GameManager.instance.GameplayStart += OnGameplayStart;
+        GameManager.instance.GameplayExit += OnGameplayExit;
+    }
+
     public void ControllerMainMenuState()
     {
         handsView.SetMainMenuState();
     }
 
-    public void ControllerPlayState()
+    public void ControllerDrinkingToStartGameplayState()
     {
         handsView.SetPlayButtonState();
     }
 
     public void ControllerDrinkAnimationStarted()
     {
-        menuManager.CameraDrinkingAngle();
+        DrinkAnimationStarted?.Invoke();
     }
 
     public void ControllerDrinkAnimationFinished()
     {
-        menuManager.BeginLoadingGameplay();
+        DrinkAnimationFinished?.Invoke();
     }
 
-    public void FadeIn()
+    public void AnimationEventDrinkBottle()
     {
-        screenFader.FadeIn();
+        DrinkBottle?.Invoke();
+    }
+
+    private void OnGameplayStart()
+    {
+        GameplayMode();
+    }
+
+    private void OnGameplayExit()
+    {
+        MainMenuMode();
+    }
+
+    public void GameplayMode()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void MainMenuMode()
+    {
+        gameObject.SetActive(true);
     }
 }

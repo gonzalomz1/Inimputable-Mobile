@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -32,6 +33,8 @@ public class ActionCanvas : MonoBehaviour
 
     public Camera playerCamera;
 
+    public event Action pauseRequest;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -41,7 +44,7 @@ public class ActionCanvas : MonoBehaviour
         }
         Instance = this;
     }
-    
+
     void Start()
     {
         interactButton.gameObject.SetActive(false);
@@ -95,12 +98,28 @@ public class ActionCanvas : MonoBehaviour
     }
     public void OnClickPause()
     {
-        GetComponentInParent<GameFlowManager>().SetGameState(GameFlowState.Paused);
+        pauseRequest?.Invoke();
     }
 
     public void Interact()
     {
-        if (currentInteractive != null) currentInteractive.OnInteraction();
+        if (currentInteractive == null) return;
+
+        // Si el objeto es una puerta
+        if (currentInteractive is Door door)
+        {
+            if (door.TryToOpenDoor(out Door linkedDoor))
+            {
+                GameManager.instance.StartCoroutine(
+                    GameManager.instance.DoDoorTransition(linkedDoor)
+                );
+            }
+        }
+        else
+        {
+            // Otros interactuables
+            currentInteractive.OnInteraction();
+        }
     }
 
     private void ShowInteractButton()
@@ -134,6 +153,5 @@ public class ActionCanvas : MonoBehaviour
 
         currentInteractive = null;
         HideInteractButton();
-
     }
 }

@@ -3,46 +3,27 @@ using System.Collections.Generic;
 
 public class EnemiesManager : MonoBehaviour
 {
-    EnemiesManager Instance { get; set; }
+    public static EnemiesManager Instance { get; private set; }
 
     public ObjectiveManager objectiveManager;
     [SerializeField] private bool needObjetive = true;
-    [SerializeField] private int totalEnemiesToSpawn = 5;
-    [SerializeField] private Transform[] spawnPoints;
-
-   private void Awake()
-   {
-      if (Instance != null && Instance != this)
-      {
-         Destroy(gameObject);
-         return;
-      }
-      Instance = this;
-   }
-
-
     private List<GameObject> activeEnemies = new List<GameObject>();
 
-    public void ActivateEnemies()
+    private void Awake()
     {
-        objectiveManager.totalEnemies = totalEnemiesToSpawn;
-        objectiveManager.remainingEnemies = totalEnemiesToSpawn;
-
-        for (int i = 0; i < totalEnemiesToSpawn; i++)
+        if (Instance != null && Instance != this)
         {
-            Transform spawnPoint = spawnPoints[i % spawnPoints.Length];
-            GameObject enemy = ObjectPooler.Instance.SpawnFromPool("Enemy", spawnPoint.position, spawnPoint.rotation);
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
-            if (enemy != null)
-            {
-                TurroController turro = enemy.GetComponent<TurroController>();
-                if (turro != null)
-                {
-                    turro.SetState(EnemyState.Spawn);
-                    turro.turroState = EnemyState.Spawn;
-                }
-                activeEnemies.Add(enemy);
-            }
+    public void RegisterEnemy(GameObject enemy)
+    {
+        if (!activeEnemies.Contains(enemy))
+        {
+            activeEnemies.Add(enemy);
         }
     }
 
@@ -50,7 +31,7 @@ public class EnemiesManager : MonoBehaviour
     {
         if (needObjetive)
         {
-            objectiveManager.CheckObjectiveCondition();
+
         }
 
         if (activeEnemies.Contains(enemy))
@@ -60,12 +41,17 @@ public class EnemiesManager : MonoBehaviour
         }
     }
 
-    public void DeactivateAllEnemies()
+    public void ClearEnemies()
     {
-        foreach (GameObject enemy in activeEnemies)
+        foreach (var enemy in activeEnemies)
         {
             ObjectPooler.Instance.ReturnToPool("Enemy", enemy);
         }
         activeEnemies.Clear();
     }
+
+    public GameObject[] GetActiveEnemiesArray()
+{
+    return activeEnemies.ToArray();
+}
 }

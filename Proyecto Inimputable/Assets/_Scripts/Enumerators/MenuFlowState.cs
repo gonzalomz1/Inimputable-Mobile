@@ -1,6 +1,7 @@
 public enum MenuFlowState {
+    Disabled,
     Logo,
     TvClip,
     Menu,
     DrinkingBottle,
-    LoadGameplay }
+    StartGameplay }

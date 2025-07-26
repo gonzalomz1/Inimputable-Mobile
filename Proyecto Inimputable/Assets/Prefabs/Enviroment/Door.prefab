@@ -335,6 +335,7 @@ MonoBehaviour:
   enemySpawnPosition: {fileID: 3337012328416851787}
   animator: {fileID: 1476611043577905719}
   isLocked: 0
+  linkedDoor: {fileID: 0}
 --- !u!95 &1476611043577905719
 Animator:
   serializedVersion: 5
@@ -415,7 +416,7 @@ Transform:
   m_GameObject: {fileID: 3242953988565759206}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

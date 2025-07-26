@@ -18,11 +18,6 @@ public static MovAndAimCanvas Instance { get; private set; }
     private Vector2 lastAimPosition;
     private Vector2 movementAmount;
 
-    public MovAndAimCanvas()
-    {
-    }
-
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -98,7 +93,6 @@ public static MovAndAimCanvas Instance { get; private set; }
     {
         playerData.currentMoveInput = movementAmount;
         if (movementAnimator != null) movementAnimator.SetBool("isMoving", IsPlayerMoving());
-
         playerMovement.Move(playerData.currentMoveInput, playerData.moveSpeed);
         playerMovement.RotateCamera(playerData.aimX, playerData.aimY);
     }

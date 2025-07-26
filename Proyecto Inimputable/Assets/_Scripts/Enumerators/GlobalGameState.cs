@@ -1,7 +1,7 @@
 public enum GlobalState
 {
-    LogoDisplay,
-    MenuWithInimputableClip,
+    FromExecute,
+    MainMenu,
     Loading,
     Gameplay,
     PausedGameplay,
