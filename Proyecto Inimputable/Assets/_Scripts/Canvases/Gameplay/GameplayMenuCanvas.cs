@@ -10,7 +10,7 @@ using TMPro;
 
 public class GameplayMenuCanvas : MonoBehaviour
 {
-    public static GameplayMenuCanvas Instance { get; private set; }
+    public static GameplayMenuCanvas instance;
     [Header("Canvas Manager")]
     [SerializeField] private CanvasManager canvasManager;
     [Header("Pause")]
@@ -41,12 +41,12 @@ public class GameplayMenuCanvas : MonoBehaviour
     public event Action ShowControlsRequest;
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
+        instance = this;
         SubscribeToCanvasManagerEvents();
     }
 
@@ -56,10 +56,12 @@ public class GameplayMenuCanvas : MonoBehaviour
     }
 
 
-
-
-
     void Start()
+    {
+        SetSensitivitySlider();
+    }
+
+    private void SetSensitivitySlider()
     {
         sensitivitySlider.minValue = MIN_SENSITIVITY;
         sensitivitySlider.maxValue = MAX_SENSITIVITY;

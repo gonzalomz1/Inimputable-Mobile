@@ -13,12 +13,14 @@ public class PlayerPresenter : Player
     [SerializeField] private GameplayManager gameplayManager;
     [SerializeField] private PlayerData playerData; // model
     [SerializeField] private WeaponController weaponController; // view
+    [SerializeField] private MovementGameObjectMessager movementGameObjectMessager;
 
 
 
     void Start()
     {
         SubscribeToGameManagerEvents();
+        SubscribeToPlayerEvents();
         ManagePlayerState(playerState);
     }
 
@@ -26,6 +28,11 @@ public class PlayerPresenter : Player
     {
         gameplayManager.EnablePlayer += OnEnablePlayer;
         gameplayManager.DisablePlayer += OnDisablePlayer;
+    }
+
+    private void SubscribeToPlayerEvents()
+    {
+        movementGameObjectMessager.MovementSoundRequest += OnMovementSoundRequest;
     }
 
     private void OnEnablePlayer()
@@ -56,6 +63,11 @@ public class PlayerPresenter : Player
             case PlayerState.StartFromGameplay:
                 break;
         }
+    }
+
+    private void OnMovementSoundRequest()
+    {
+        GameManager.instance.PlayerMovementSound();
     }
 
 

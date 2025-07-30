@@ -1,3 +1,4 @@
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractive
@@ -52,18 +53,22 @@ public class Door : MonoBehaviour, IInteractive
     /// <summary>
     /// Devuelve la posición donde debe colocarse el jugador al llegar por esta puerta.
     /// </summary>
-public Vector3 GetPlayerSpawnPosition()
-{
-    return playerSpawnPosition.position;
-}
+    public Vector3 GetPlayerSpawnPosition()
+    {
+        return playerSpawnPosition.position;
+    }
 
-public Quaternion GetSpawnRotation()
-{
-    return playerSpawnPosition.rotation;
-}
+    public Quaternion GetSpawnRotation()
+    {
+        return playerSpawnPosition.rotation;
+    }
+
+    public void DefaultStateDoor() => SetState(DoorState.Default);
+    public void LockStateDoor() => SetState(DoorState.Locked);
 
     private void SetState(DoorState state)
     {
+        doorState = state;
         switch (state)
         {
             case DoorState.Default:
@@ -87,19 +92,21 @@ public Quaternion GetSpawnRotation()
         }
     }
 
-public GameObject SpawnEnemy()
-{
-    if (enemySpawnPosition == null) return null;
-
-    GameObject enemy = ObjectPooler.Instance.SpawnFromPool("Enemy", enemySpawnPosition.position, enemySpawnPosition.rotation);
-    if (enemy != null)
+    public GameObject SpawnEnemy()
     {
-        var controller = enemy.GetComponent<TurroController>();
-        if (controller != null)
+        if (enemySpawnPosition == null) return null;
+
+        GameObject enemy = ObjectPooler.Instance.SpawnFromPool("Enemy", enemySpawnPosition.position, enemySpawnPosition.rotation);
+        if (enemy != null)
         {
-            controller.SetState(EnemyState.Spawn);
+            var controller = enemy.GetComponent<TurroController>();
+            if (controller != null)
+            {
+                controller.Spawn();
+            }
         }
+        return enemy;
     }
-    return enemy;
-}
+
+
 }

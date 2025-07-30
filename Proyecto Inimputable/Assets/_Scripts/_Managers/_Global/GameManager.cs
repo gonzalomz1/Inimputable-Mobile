@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private PlayerManager playerManager;
-
     [SerializeField] private GameObject playerRoot;
     [SerializeField] private CharacterController playerCC;
     [SerializeField] private PlayerPresenter playerPresenter;
@@ -46,9 +45,13 @@ public class GameManager : MonoBehaviour
     public event Action AudioPlayMenuInteractionSound;
     public event Action AudioStartMenuLoopSong;
     public event Action AudioPistolShoot;
+    public event Action AudioStepSound;
+    public event Action AudioDoorTransition;
 
     public event Action FadeIn;
     public event Action FadeOut;
+
+    public event Action GameOver;
 
     public bool IsGamePaused => currentGameState == GlobalState.PausedGameplay || currentGameState == GlobalState.MainMenu;
 
@@ -238,7 +241,7 @@ public class GameManager : MonoBehaviour
         FadeInScreen();
         DisableInput();
         HideAllCanvas();
-
+        GameManager.instance.TriggerDoorTransitionSound();
         playerCC.enabled = false;
         playerRoot.transform.SetPositionAndRotation(
             linkedDoor.GetPlayerSpawnPosition(),
@@ -246,9 +249,7 @@ public class GameManager : MonoBehaviour
         );
         Debug.Log($"{linkedDoor.GetPlayerSpawnPosition()}, {linkedDoor.GetSpawnRotation()}");
         playerCC.enabled = true;
-
-        yield return new WaitForSeconds(0.25f);
-
+        yield return new WaitForSeconds(0.5f);
         EnableInput();
         FadeOutScreen();
         ShowAllCanvas();
@@ -266,5 +267,20 @@ public class GameManager : MonoBehaviour
     public void PlayPistolShootSound()
     {
         AudioPistolShoot?.Invoke();
+    }
+
+    public void SetGameOver()
+    {
+        GameOver?.Invoke();
+    }
+
+    public void PlayerMovementSound()
+    {
+        AudioStepSound?.Invoke();
+    }
+
+    public void TriggerDoorTransitionSound()
+    {
+        AudioDoorTransition?.Invoke();
     }
 }

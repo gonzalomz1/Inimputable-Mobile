@@ -14,12 +14,15 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip menuInteractionSound;
     [SerializeField] private AudioClip MainLoopTheme;
     [SerializeField] private AudioClip pistolShoot;
+    [SerializeField] private AudioClip doorTransitionSound;
+    [SerializeField] private AudioClip playerStepSound;
     [Header("Audio Sources")]
     [SerializeField] private AudioSource menuLoopAudioSource;
     [SerializeField] private AudioSource menuInteractionAudioSource;
     [SerializeField] private AudioSource mainLoopThemeAudioSource;
-
     [SerializeField] private AudioSource pistolShootAudioSource;
+    [SerializeField] private AudioSource doorTransitionAudioSource;
+    [SerializeField] private AudioSource playerStepSoundAudioSource;
     private void Awake()
     {
         if (instance == null)
@@ -34,40 +37,54 @@ public class AudioManager : MonoBehaviour
     private void SetAudioSourceConfiguration()
     {
         if (menuLoopAudioSource != null)
+        {
             menuLoopAudioSource.loop = true;
-        menuLoopAudioSource.playOnAwake = false;
+            menuLoopAudioSource.playOnAwake = false;
+        }
         if (menuInteractionAudioSource != null)
+        {
             menuInteractionAudioSource.loop = false;
-        menuInteractionAudioSource.playOnAwake = false;
+            menuInteractionAudioSource.playOnAwake = false;
+        }
         if (mainLoopThemeAudioSource != null)
+        {
             mainLoopThemeAudioSource.loop = true;
-        mainLoopThemeAudioSource.playOnAwake = false;
+            mainLoopThemeAudioSource.playOnAwake = false;
+        }
         if (pistolShootAudioSource != null)
+        {
             pistolShootAudioSource.loop = false;
-        pistolShootAudioSource.playOnAwake = false;
-
+            pistolShootAudioSource.playOnAwake = false;
+        }
+        if (doorTransitionAudioSource != null)
+        {
+            doorTransitionAudioSource.loop = false;
+            doorTransitionAudioSource.playOnAwake = false;
+        }
+        if (playerStepSoundAudioSource != null)
+        {
+            playerStepSoundAudioSource.loop = false;
+            playerStepSoundAudioSource.playOnAwake = false;
+        }
     }
 
     private void SubscribeToEvents()
     {
-        gameManager.GameExecute += OnGameExecute;
+        gameManager.GameExecute += SetAudioSourceConfiguration;
         gameManager.GameplayStart += OnGameplayStartCalled;
+
         gameManager.AudioPlayMenuInteractionSound += PlayMenuInteractionSound;
         gameManager.AudioStartMenuLoopSong += StartMenuLoopSong;
         gameManager.AudioPistolShoot += PlayPistolShootSound;
-    }
+        gameManager.AudioStepSound += PlayStepSound;
+        gameManager.AudioDoorTransition += PlayDoorTransitionSound;
 
-    private void OnGameExecute()
-    {
-        SetAudioSourceConfiguration();
     }
-
 
     private void OnGameplayStartCalled()
     {
         StopMenuLoopSong();
         StartCoroutine(DelayedStartMainLoopTheme());
-        
     }
 
     public void StartMenuLoopSong()
@@ -105,8 +122,21 @@ public class AudioManager : MonoBehaviour
             pistolShootAudioSource.clip = pistolShoot;
         pistolShootAudioSource.Play();
     }
-    
-        private IEnumerator DelayedStartMainLoopTheme()
+
+    private void PlayStepSound()
+    {
+        if (playerStepSoundAudioSource.clip != playerStepSound)
+            playerStepSoundAudioSource.clip = playerStepSound;
+        playerStepSoundAudioSource.Play();
+    }
+
+    private void PlayDoorTransitionSound()
+    {
+        if (doorTransitionAudioSource.clip != doorTransitionSound)
+            doorTransitionAudioSource.clip = doorTransitionSound;
+        doorTransitionAudioSource.Play();
+    }
+    private IEnumerator DelayedStartMainLoopTheme()
     {
         yield return null; // espera un frame
         StartMainLoopTheme();

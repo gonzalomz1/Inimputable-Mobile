@@ -126,11 +126,11 @@ public class MenuManager : MonoBehaviour
             SetCameraMainMenuAngle();
             break;
          case MenuFlowState.DrinkingBottle:
-            GameManager.instance.DisableInput();
+            menuScreen.SetActiveCanvas(false);  
             HideTitle();
             HideBottleInWorld();
-            menuScreen.SetActiveCanvas(false);
             handsController.ControllerDrinkingToStartGameplayState();
+            GameManager.instance.DisableInput();
             break;
          case MenuFlowState.StartGameplay:
             StartGameplay.Invoke();

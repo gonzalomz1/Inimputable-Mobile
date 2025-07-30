@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class EnemiesManager : MonoBehaviour
 {
-    public static EnemiesManager Instance { get; private set; }
+    public static EnemiesManager instance;
 
     public ObjectiveManager objectiveManager;
     [SerializeField] private bool needObjetive = true;
@@ -11,12 +11,12 @@ public class EnemiesManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance == null)
         {
-            Destroy(gameObject);
-            return;
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
-        Instance = this;
+        else Destroy(gameObject);
     }
 
     public void RegisterEnemy(GameObject enemy)

@@ -23,7 +23,7 @@ public class ActionCanvas : MonoBehaviour
     [SerializeField] private List<Sprite> interactSprites = new List<Sprite>();
 
     [Header("Interaction Settings")]
-    public float maxDistance = 5;
+    public float maxDistance = 2;
     public LayerMask interactableLayers;
     private IInteractive currentInteractive;
     [Header("References")]
@@ -105,7 +105,6 @@ public class ActionCanvas : MonoBehaviour
     {
         if (currentInteractive == null) return;
 
-        // Si el objeto es una puerta
         if (currentInteractive is Door door)
         {
             if (door.TryToOpenDoor(out Door linkedDoor))

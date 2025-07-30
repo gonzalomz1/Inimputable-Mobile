@@ -118,4 +118,9 @@ public class TurroController : MonoBehaviour, IPooledEnemy
     {
         SetState(EnemyState.Spawn);
     }
+
+    public void Spawn()
+    {
+        SetState(EnemyState.Spawn);
+    }
 }

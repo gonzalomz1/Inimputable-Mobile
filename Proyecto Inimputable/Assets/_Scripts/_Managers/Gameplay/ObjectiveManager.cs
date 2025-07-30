@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    public static ObjectiveManager Instance { get; private set; }
+    public static ObjectiveManager instance;
 
     private List<GameObject> objectiveEnemies = new List<GameObject>();
 
@@ -12,15 +12,14 @@ public class ObjectiveManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance == null)
         {
-            Destroy(gameObject);
-            return;
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
-        Instance = this;
+        else Destroy(gameObject);
     }
 
-    // Registrar un enemigo que forma parte del objetivo (llamalo cuando spawneas)
     public void RegisterObjectiveEnemy(GameObject enemy)
     {
         if (!objectiveEnemies.Contains(enemy))
@@ -48,12 +47,9 @@ public class ObjectiveManager : MonoBehaviour
 
     private void OnObjectiveCompleted()
     {
-        Debug.Log("¡Objetivo completado! Todos los enemigos eliminados.");
-        // Aquí poné la lógica para el GameOver o siguiente nivel
-        // Ejemplo: GameManager.instance.GameOver();
+        GameManager.instance.SetGameOver();
     }
 
-    // Opcional: resetear la lista cuando inicies nueva ronda o escena
     public void ResetObjective()
     {
         objectiveEnemies.Clear();

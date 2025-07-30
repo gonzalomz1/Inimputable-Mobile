@@ -10,7 +10,10 @@ public class TurroView : MonoBehaviour
     public Color damageColor = Color.red;
     public float flashDuration = 0.2f;
 
+    public AudioSource takeDamageAudioSource;
+
     private Color originalColor;
+
 
     void Awake()
     {
@@ -31,6 +34,11 @@ public class TurroView : MonoBehaviour
     public void FlashDamageColor()
     {
         StartCoroutine(DamageFlashRoutine());
+    }
+
+    public void TakeDamageSound()
+    {
+        takeDamageAudioSource.Play();
     }
 
     private IEnumerator DamageFlashRoutine()

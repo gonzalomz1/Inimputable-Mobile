@@ -4,18 +4,18 @@ using UnityEngine;
 public class GameplayManager : MonoBehaviour
 {
     public static GameplayManager instance;
-
     public Basement basement;
-
     public FirstLevel firstLevel;
+    public GameplayState currentGameplayState;
+    [SerializeField] PlayerPresenter playerPresenter;
 
     public event Action EnablePlayer;
     public event Action DisablePlayer;
     public event Action GameplayLoaded;
 
-    public GameplayState currentGameplayState;
-
-    [SerializeField] PlayerPresenter playerPresenter;
+    public event Action FirstRoomLock;
+    public event Action FirstRoomUnlock;
+    public event Action SecondRoomLock;
 
     private void Awake()
     {
@@ -44,14 +44,14 @@ public class GameplayManager : MonoBehaviour
     }
 
     public void ActivatePlayerExternally()
-{
-    EnablePlayer?.Invoke();
-}
+    {
+        EnablePlayer?.Invoke();
+    }
 
-public void DeactivatePlayerExternally()
-{
-    DisablePlayer?.Invoke();
-}
+    public void DeactivatePlayerExternally()
+    {
+        DisablePlayer?.Invoke();
+    }
 
     private void OnGameplayPauseCalled()
     {
@@ -83,4 +83,4 @@ public void DeactivatePlayerExternally()
         GameplayLoaded.Invoke();
     }
 
-    }
+}

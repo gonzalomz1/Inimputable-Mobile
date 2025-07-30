@@ -27,6 +27,7 @@ public class TurroModel : MonoBehaviour
             health -= amount;
             StartCoroutine(DamageCooldownRoutine());
             turroView.FlashDamageColor();
+            turroView.TakeDamageSound();
             CheckHealth();
         }
         else return;

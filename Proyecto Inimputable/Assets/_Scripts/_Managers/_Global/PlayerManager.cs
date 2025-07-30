@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager instance;
     [Header("Game Manager")]
     [SerializeField] private GameManager gameManager;
 
@@ -9,6 +10,12 @@ public class PlayerManager : MonoBehaviour
 
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else Destroy(gameObject);
         SubscribeToGameManagerEvents();
     }
 
@@ -25,7 +32,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnGameplayStart()
     {
-        EnablePlayerGameObject();    
+        EnablePlayerGameObject();
     }
 
     private void DisablePlayerGameObject()
@@ -36,6 +43,16 @@ public class PlayerManager : MonoBehaviour
     private void EnablePlayerGameObject()
     {
         playerPresenter.gameObject.SetActive(true);
+    }
+
+    public void GetPlayerPosition()
+    {
+        //Transform position = playerPresenter.GetPlayerPosition();
+    }
+
+    public void GetPlayerRotation()
+    {
+        //
     }
 
 
