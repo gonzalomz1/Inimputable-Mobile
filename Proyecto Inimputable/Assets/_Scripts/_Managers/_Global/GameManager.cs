@@ -218,13 +218,13 @@ public class GameManager : MonoBehaviour
         ManageGlobalState(currentGameState);
     }
 
-    private void OnPlayerAlive() { }
+    private void OnPlayerAlive(){ }
 
-    private void OnPlayerDead() { }
+    private void OnPlayerDead(){ }
 
-    private void OnPlayerTakeDamage() { }
+    private void OnPlayerTakeDamage(){ }
 
-    public void PlayerDead() { }
+    public void PlayerDead(){ }
 
     private void FreezeTime()
     {

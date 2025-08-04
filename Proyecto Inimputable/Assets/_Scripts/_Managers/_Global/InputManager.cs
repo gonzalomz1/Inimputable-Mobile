@@ -27,7 +27,6 @@ public class InputManager : MonoBehaviour
     {
         ETouch.EnhancedTouchSupport.Enable();
         TouchSimulation.Enable();
-
         ETouch.Touch.onFingerDown += HandleFingerDown;
         ETouch.Touch.onFingerMove += HandleFingerMove;
         ETouch.Touch.onFingerUp += HandleFingerUp;

@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
-using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
-using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 
 public class MenuManager : MonoBehaviour
