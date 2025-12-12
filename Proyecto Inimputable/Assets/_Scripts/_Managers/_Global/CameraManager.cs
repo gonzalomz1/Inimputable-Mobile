@@ -56,7 +56,7 @@ public class CameraManager : MonoBehaviour
         if (menuCamera != null) menuCamera.gameObject.SetActive(false);
         if (cinematicCamera != null) cinematicCamera.gameObject.SetActive(false);
         if (gameplayCamera != null) gameplayCamera.gameObject.SetActive(false);
-        //NOTE: gameplay camara is actually the player's camera. The game object itself its managed by PlayerManager with the same event call from GameManager.
+        // Gameplay camera is managed by PlayerManager (same event)
         targetCamera.gameObject.SetActive(true);
     }
 

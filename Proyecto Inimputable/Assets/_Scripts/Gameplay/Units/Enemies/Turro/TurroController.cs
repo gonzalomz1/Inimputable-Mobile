@@ -9,7 +9,6 @@ public interface IPooledEnemy
 public class TurroController : MonoBehaviour, IPooledEnemy
 {
 
-    // Enum to define if enemy is Ranged or Melee
     public enum EnemyType { Ranged, Melee }
 
     [Header("Enemy Type Settings")]
@@ -57,7 +56,7 @@ public class TurroController : MonoBehaviour, IPooledEnemy
 
     public void SetState(EnemyState newState)
     {
-        if (beginState == newState) return; // avoid unnecesary calls.
+        if (beginState == newState) return;
         turroModel.turroState = newState;
         Animator animator = turroView.GetAnimatorComponent();
         
@@ -97,7 +96,7 @@ public class TurroController : MonoBehaviour, IPooledEnemy
         }
     }
 
-    void Update() // podria ser llamado de animacion en vez de update.
+    void Update() // TODO: check if this can be event-driven instead
     {
         EnemyState turroState = GetTurroState();
         // If one of this states, return.
@@ -113,10 +112,9 @@ public class TurroController : MonoBehaviour, IPooledEnemy
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
         if (!turroModel.isDead && turroModel.canChase)
         {
-            // Branch logic based on Enemy Type
             if (enemyType == EnemyType.Ranged)
             {
-                // Ranged: Keep distance and shoot
+                // Ranged behavior
                 if (distanceToPlayer <= shootingDistance)
                 {
                     SetState(EnemyState.Shoot);
@@ -129,7 +127,7 @@ public class TurroController : MonoBehaviour, IPooledEnemy
             }
             else if (enemyType == EnemyType.Melee)
             {
-                // Melee: Aggressive chase until point blank range
+                // Melee behavior
                 if (distanceToPlayer <= meleeDistance)
                 {
                     SetState(EnemyState.Melee);
@@ -187,18 +185,17 @@ public class TurroController : MonoBehaviour, IPooledEnemy
 
     private void ResetStats()
     {
-        // 1. Base Stats
+        // Base stats
         int baseHealth = 100;
         int baseDamage = 10;
         float baseSpeed = 2f; 
 
-        // 2. Melee Speed Boost
         if (enemyType == EnemyType.Melee)
         {
-            baseSpeed *= 1.25f; // +25% Speed for Melee
+            baseSpeed *= 1.25f;
         }
         
-        // 3. Apply Buff System
+        // Apply difficulty buffs
         Color buffColor = Color.white;
 
         if (SurvivalDifficultyManager.Instance != null)
@@ -238,7 +235,7 @@ public class TurroController : MonoBehaviour, IPooledEnemy
             Debug.LogError("[TurroController] SurvivalDifficultyManager Instance is NULL!");
         }
 
-        // 4. Set Final Stats
+        // Finalize stats
         turroModel.health = baseHealth;
         turroModel.damage = baseDamage;
         moveSpeed = baseSpeed;
@@ -263,7 +260,7 @@ public class TurroController : MonoBehaviour, IPooledEnemy
 
     private void OnTurroDead()
     {
-        // Drop System
+        // Loot drop
         if (UnityEngine.Random.value <= dropChance)
         {
             if (Spawner.instance != null)

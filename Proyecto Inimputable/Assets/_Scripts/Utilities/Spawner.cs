@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
             var controller = enemy.GetComponent<TurroController>();
             if (controller != null)
             {
-                controller.enemyType = type; // Set the specific behavior (Melee/Ranged)
+                controller.enemyType = type;
                 controller.Spawn();
             }
         }

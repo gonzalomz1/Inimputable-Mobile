@@ -86,9 +86,7 @@ public class PlayerData : Player
             uIPlayerStats.SetBarCurrentValue(uIPlayerStats.healthBar, currentHealth);
 
         // Reset Position
-        // Note: CharacterController or NavMeshAgent might override position if enabled.
-        // Safe bet: disable movement script temporarily or just set transform if using Rigidbody/Transform.
-        // Assuming Transform based on project type (Mobile).
+        // Ensure position isn't overridden by physics/navmesh
         if (playerMovement != null)
         {
             playerMovement.Teleport(position, rotation);

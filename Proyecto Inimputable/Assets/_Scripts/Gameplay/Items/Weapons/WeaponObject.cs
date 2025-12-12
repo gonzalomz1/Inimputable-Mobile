@@ -21,7 +21,7 @@ public class WeaponObject : WeaponBehaviour
         ammoReserve = weaponDataSO.maxAmmo;
         animator = GetComponentInChildren<Animator>();
         
-        // Fix for Retry Bug: Reset state flags
+        // Reset state for retry
         isShoting = false;
         isReloading = false;
         needAmmo = true; 
@@ -66,7 +66,7 @@ public class WeaponObject : WeaponBehaviour
             return true;
         }
 
-        return false; // avoid error
+        return false;
     }
 
     public override void TriggerRelease() { }
@@ -154,7 +154,7 @@ public class WeaponObject : WeaponBehaviour
         ammoReserve += amount;
         Debug.Log($"[WeaponObject] New Reserve: {ammoReserve}");
         
-        // Update the AMMO RESERVE UI, not just the current clip
+        // Refresh UI
         WeaponView view = FindWeaponView();
         if (view != null)
         {
