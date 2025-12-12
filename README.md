@@ -29,7 +29,7 @@ El juego opera bajo una arquitectura dirigida por **Managers** que controlan el 
 4.  **Interacción**: El `InputManager` procesa las entradas del jugador (táctiles/virtual joystick) y las traduce en acciones (movimiento, disparo).
 
 ## Futuras Mejoras y Roadmap
-Para llevar el proyecto al siguiente nivel ("Release Candidate"), se sugieren las siguientes áreas de mejora:
+Para llevar el proyecto al siguiente nivel:
 
 ### Contenido
 - **Variedad de Enemigos**: Introducir nuevos tipos de enemigos con patrones de ataque únicos (ej. Tanks, Kamikazes).
@@ -41,5 +41,3 @@ Para llevar el proyecto al siguiente nivel ("Release Candidate"), se sugieren la
 - **Optimización**: Profiling profundo para asegurar 60 FPS estables en dispositivos de gama media/baja. Implementación de Addressables para gestión de memoria.
 - **Servicios**: Integración de Analytics y Crashlytics para monitorear el comportamiento de los usuarios y errores en producción.
 
----
-*Documentación generada automáticamente por Antigravity AI.*
