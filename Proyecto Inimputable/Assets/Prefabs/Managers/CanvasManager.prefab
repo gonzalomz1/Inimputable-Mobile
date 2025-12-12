@@ -49,7 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00999c89722a3c428d5b8f29ba2177a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameFlowManager: {fileID: 0}
+  inputManager: {fileID: 0}
+  menuManager: {fileID: 0}
+  mainMenuCanvas: {fileID: 0}
+  mainMenuButtons: {fileID: 0}
+  mainMenuControls: {fileID: 0}
   gameplayMenuCanvas: {fileID: 0}
   actionCanvas: {fileID: 5469413637765095486}
   movAndAimCanvas: {fileID: 6169361618762726418}
@@ -221,6 +225,7 @@ RectTransform:
   - {fileID: 1576081055847743618}
   - {fileID: 385834463892526603}
   - {fileID: 4283878982784281382}
+  - {fileID: 3658188200650503900}
   m_Father: {fileID: 4228238976345864113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -307,6 +312,7 @@ MonoBehaviour:
   reloadButton: {fileID: 2197612426834742245}
   pauseButton: {fileID: 2895318636973607502}
   interactButton: {fileID: 756474046415211547}
+  stompButton: {fileID: 0}
   shootSprites:
   - {fileID: 21300000, guid: 36b0154c185821e4786afe0a0b201123, type: 3}
   - {fileID: 21300000, guid: 0e42f1dc9a9462e4aa7a03a27356705b, type: 3}
@@ -319,6 +325,9 @@ MonoBehaviour:
   interactSprites:
   - {fileID: 21300000, guid: d093bb91ce048bf4d941b1c0921750dd, type: 3}
   - {fileID: 21300000, guid: e83ef0942e369294e88393e3e4e8533d, type: 3}
+  stompSprites:
+  - {fileID: 21300000, guid: e7a4af4b2ff8a544caa5f333ee3dc395, type: 3}
+  - {fileID: 21300000, guid: c48e9545b5ff6b24881baea69d9be040, type: 3}
   maxDistance: 5
   interactableLayers:
     serializedVersion: 2
@@ -327,6 +336,138 @@ MonoBehaviour:
   eventSystem: {fileID: 0}
   weaponController: {fileID: 0}
   playerCamera: {fileID: 0}
+--- !u!1 &576051008803503051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3658188200650503900}
+  - component: {fileID: 3358535309657026218}
+  - component: {fileID: 8112590843557299259}
+  - component: {fileID: 4569874350403767867}
+  m_Layer: 5
+  m_Name: StompButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3658188200650503900
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576051008803503051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7060833803639672099}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -342, y: 179}
+  m_SizeDelta: {x: 256, y: 256}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3358535309657026218
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576051008803503051}
+  m_CullTransparentMesh: 1
+--- !u!114 &8112590843557299259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576051008803503051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e7a4af4b2ff8a544caa5f333ee3dc395, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4569874350403767867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576051008803503051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 0
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 8112590843557299259}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5469413637765095486}
+        m_TargetAssemblyTypeName: ActionCanvas, Assembly-CSharp
+        m_MethodName: OnClickStopm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &714176652125118098
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,10 +583,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96642566bae844a4d918a8d180b8d8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasManager: {fileID: 0}
   sensitivitySlider: {fileID: 6861855042552505616}
+  controlsButton: {fileID: 0}
+  exitButton: {fileID: 0}
   loseText: {fileID: 7990735158437947084}
   winText: {fileID: 6140214656898628639}
   playAgainButton: {fileID: 6074808266482306386}
+  gameplayControls: {fileID: 0}
+  pausePanel: {fileID: 0}
   gameOverContext: {fileID: 9057542654805855674}
   pauseContext: {fileID: 3211321331693666595}
   raycaster: {fileID: 1468360796749747626}
@@ -3844,6 +3990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2060e1c5d74eaa46a72b2491a524ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   uIPlayerStats: {fileID: 5535520380748841642}
 --- !u!1 &8821809708409830668
 GameObject:

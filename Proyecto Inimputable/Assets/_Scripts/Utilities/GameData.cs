@@ -4,6 +4,8 @@ public class GameData : MonoBehaviour
 {
     public static GameData instance;
 
+    public LayerMask playerHitMask;
+
     private void Awake()
     {
         if (instance == null)
@@ -13,4 +15,6 @@ public class GameData : MonoBehaviour
         }
         else Destroy(gameObject);
     }
+
+
 }

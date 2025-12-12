@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     public void SetMainMenuAngle() => cameraView.SetMainMenuAngle();
     public void SetCreditsAngle() => cameraView.SetCreditsAngle();
     public void FromCreditsToMainMenu() => cameraView.FromCreditsToMainMenu();
+    public void SetDefaultAngle() => cameraView.SetDefaultAngle();
 
     // callbacks from animations
     public void MenuAnimationFinished() => OnMenuAnimationFinished?.Invoke();

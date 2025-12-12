@@ -5,7 +5,7 @@ public class EnemiesManager : MonoBehaviour
 {
     public static EnemiesManager instance;
 
-    public ObjectiveManager objectiveManager;
+    
     [SerializeField] private bool needObjetive = true;
     private List<GameObject> activeEnemies = new List<GameObject>();
 

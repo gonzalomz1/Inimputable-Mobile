@@ -29,4 +29,10 @@ public class WeaponStats : MonoBehaviour
     {
         ammoReserve.text = $"{amount}";
     }
+
+    public void ResetStats()
+    {
+        currentAmmo.text = "0";
+        ammoReserve.text = "0";
+    }
 }

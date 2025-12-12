@@ -98,7 +98,7 @@ public class AimAssist : MonoBehaviour
 
     bool IsValidTarget(Transform enemy)
     {
-        var turro = enemy.GetComponent<TurroController>();
+        var turro = enemy.GetComponent<TurroModel>();
         return turro != null && (turro.turroState != EnemyState.Dead || turro.turroState != EnemyState.Die);
     }
 }

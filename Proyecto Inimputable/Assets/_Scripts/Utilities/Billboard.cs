@@ -26,7 +26,7 @@ public class Billboard : MonoBehaviour
     void LateUpdate()
     {
         if (controller == null && isEnemy) return;
-        if (isEnemy && controller.turroState != EnemyState.Spawn) BillboardEffect();
+        if (isEnemy && controller.turroModel.turroState != EnemyState.Spawn) BillboardEffect();
         if (!isEnemy && controller == null) BillboardEffect();
     }
 

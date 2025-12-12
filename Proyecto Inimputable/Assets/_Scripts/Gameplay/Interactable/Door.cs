@@ -1,11 +1,11 @@
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using System;
 
 public class Door : MonoBehaviour, IInteractive
 {
     [SerializeField] private DoorState doorState;
-    [SerializeField] private Transform playerSpawnPosition;   // Lugar donde aparecerá el jugador al usar esta puerta
-    [SerializeField] private Transform enemySpawnPosition;    // Por si más adelante quieres spawnear enemigos
+    [SerializeField] private Transform playerSpawnPosition;   
+    [SerializeField] private Transform enemySpawnPosition;    
     [SerializeField] private Animator animator;
     [SerializeField] private bool isLocked = false;
 
@@ -14,6 +14,8 @@ public class Door : MonoBehaviour, IInteractive
     [SerializeField] private Door linkedDoor;
 
     private bool isOpen = false;
+
+    public event Action doorOpenedTrigger;
 
     private void Start()
     {
@@ -68,19 +70,24 @@ public class Door : MonoBehaviour, IInteractive
 
     private void SetState(DoorState state)
     {
+        Debug.Log($"Door {gameObject.name}: Switching state to {state}");
         doorState = state;
         switch (state)
         {
             case DoorState.Default:
                 animator?.SetTrigger("Default");
                 isOpen = false;
+                isLocked = false; // Unlock logically
                 break;
             case DoorState.Open:
                 animator?.SetTrigger("Open");
                 isOpen = true;
+                // isLocked state doesn't necessarily change here, but usually implies unlocked
+                doorOpenedTrigger?.Invoke();
                 break;
             case DoorState.Locked:
                 animator?.SetTrigger("Locked");
+                isLocked = true; // Lock logically
                 break;
             case DoorState.Close:
                 animator?.SetTrigger("Close");
@@ -92,21 +99,12 @@ public class Door : MonoBehaviour, IInteractive
         }
     }
 
-    public GameObject SpawnEnemy()
+    public Transform GetEnemiesSpawnPosition()
     {
-        if (enemySpawnPosition == null) return null;
-
-        GameObject enemy = ObjectPooler.Instance.SpawnFromPool("Enemy", enemySpawnPosition.position, enemySpawnPosition.rotation);
-        if (enemy != null)
-        {
-            var controller = enemy.GetComponent<TurroController>();
-            if (controller != null)
-            {
-                controller.Spawn();
-            }
-        }
-        return enemy;
+        return enemySpawnPosition;
     }
+
+
 
 
 }

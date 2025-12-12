@@ -21,12 +21,13 @@ public class InputManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        ETouch.EnhancedTouchSupport.Enable();
+        TouchSimulation.Enable();
     }
 
     private void OnEnable()
     {
-        ETouch.EnhancedTouchSupport.Enable();
-        TouchSimulation.Enable();
         ETouch.Touch.onFingerDown += HandleFingerDown;
         ETouch.Touch.onFingerMove += HandleFingerMove;
         ETouch.Touch.onFingerUp += HandleFingerUp;
@@ -37,8 +38,15 @@ public class InputManager : MonoBehaviour
         ETouch.Touch.onFingerDown -= HandleFingerDown;
         ETouch.Touch.onFingerMove -= HandleFingerMove;
         ETouch.Touch.onFingerUp -= HandleFingerUp;
-        TouchSimulation.Disable();
-        ETouch.EnhancedTouchSupport.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            TouchSimulation.Disable();
+            ETouch.EnhancedTouchSupport.Disable();
+        }
     }
     
     private void HandleFingerDown(Finger finger) => OnFingerDown?.Invoke(finger);

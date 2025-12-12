@@ -24,21 +24,39 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    private PlayerData _cachedPlayer;
+
+    void Start()
+    {
+        // Try to cache player on start
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            _cachedPlayer = playerObj.GetComponent<PlayerData>();
+        }
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Player"))
         {
-            var player = collision.gameObject.GetComponent<PlayerData>();
-            if (player != null)
+            // Use cached component if available, otherwise find it. 
+            // This prevents doing GetComponent calls on every single bullet hit, saving performance.
+            if (_cachedPlayer == null)
             {
-                player.TakeDamage(damage);
+                _cachedPlayer = collision.gameObject.GetComponent<PlayerData>();
+            }
+
+            if (_cachedPlayer != null)
+            {
+                _cachedPlayer.TakeDamage(damage);
             }
 
             ReturnToPool();
         }
         else
         {
-            // Si impacta cualquier otra cosa, también vuelve al pool
+            // Hit a wall or obstacle
             ReturnToPool();
         }
     }

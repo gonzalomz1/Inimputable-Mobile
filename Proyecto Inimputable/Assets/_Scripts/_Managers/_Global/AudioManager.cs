@@ -9,13 +9,23 @@ public class AudioManager : MonoBehaviour
     [Header("Game Manager")]
     [SerializeField] private GameManager gameManager;
 
-    [Header("Audio Clips")]
+    [Header("Menu Clips")]
     [SerializeField] private AudioClip menuLoop;
     [SerializeField] private AudioClip menuInteractionSound;
     [SerializeField] private AudioClip MainLoopTheme;
+
+    [Header("Player Clips")]
     [SerializeField] private AudioClip pistolShoot;
-    [SerializeField] private AudioClip doorTransitionSound;
+
     [SerializeField] private AudioClip playerStepSound;
+
+    [Header("Enemies Clips")]
+    [SerializeField] private AudioClip turroAlertSound_01;
+    [SerializeField] private AudioClip turroHitSound_01;
+
+    [Header("Environment Clips")]
+    [SerializeField] private AudioClip doorTransitionSound;
+
     [Header("Audio Sources")]
     [SerializeField] private AudioSource menuLoopAudioSource;
     [SerializeField] private AudioSource menuInteractionAudioSource;
@@ -23,6 +33,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource pistolShootAudioSource;
     [SerializeField] private AudioSource doorTransitionAudioSource;
     [SerializeField] private AudioSource playerStepSoundAudioSource;
+
     private void Awake()
     {
         if (instance == null)
@@ -89,6 +100,7 @@ public class AudioManager : MonoBehaviour
 
     public void StartMenuLoopSong()
     {
+        StopMainLoopTheme(); // Ensure gameplay music stops
         if (menuLoopAudioSource.clip != menuLoop)
             menuLoopAudioSource.clip = menuLoop;
         menuLoopAudioSource.Play();
@@ -128,6 +140,15 @@ public class AudioManager : MonoBehaviour
         if (playerStepSoundAudioSource.clip != playerStepSound)
             playerStepSoundAudioSource.clip = playerStepSound;
         playerStepSoundAudioSource.Play();
+    }
+
+    private void StopMainLoopTheme() 
+    {
+        if (mainLoopThemeAudioSource != null)
+        {
+             mainLoopThemeAudioSource.Stop();
+             mainLoopThemeAudioSource.enabled = false;
+        }
     }
 
     private void PlayDoorTransitionSound()

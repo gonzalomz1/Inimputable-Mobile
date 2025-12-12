@@ -9,10 +9,6 @@ public class FirstLevel : MonoBehaviour
     [SerializeField] private GameObject firstRoom;
     [SerializeField] private GameObject secondRoom;
 
-    [Header("Spawn Doors")]
-    [SerializeField] private Door[] enemySpawnDoors;  // <= agregamos esto desde el Inspector
-
-    public Door[] GetEnemySpawnDoors() => enemySpawnDoors;
 
     void Awake()
     {
@@ -29,6 +25,6 @@ public class FirstLevel : MonoBehaviour
     private void OnGameplayStart()
     {
         firstRoom.SetActive(true);
-        secondRoom.SetActive(false);
+        secondRoom.SetActive(true);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
@@ -7,10 +8,14 @@ public class GameplayManager : MonoBehaviour
     public Basement basement;
     public FirstLevel firstLevel;
     public GameplayState currentGameplayState;
-    [SerializeField] PlayerPresenter playerPresenter;
+
+    [SerializeField] PlayerManager playerManager;
 
     public event Action EnablePlayer;
     public event Action DisablePlayer;
+
+    public event Action TeleportStatePlayer;
+
     public event Action GameplayLoaded;
 
     public event Action FirstRoomLock;
@@ -26,20 +31,49 @@ public class GameplayManager : MonoBehaviour
         }
         else Destroy(gameObject);
         SubscribeToGameManagerEvents();
+        SubscribeToPlayerTeleporterEvents();
     }
 
     void SubscribeToGameManagerEvents()
     {
         GameManager.instance.GameplayStart += OnGameplayStartCalled;
         GameManager.instance.GameplayPause += OnGameplayPauseCalled;
-        GameManager.instance.GameplayResume += OnGameplayResumeCalled;
         GameManager.instance.GameplayExit += OnGameplayExitCalled;
     }
 
+    void SubscribeToPlayerTeleporterEvents()
+    {
+        PlayerTeleporter.instance.DisablePlayerForTeleport += OnDisablePlayerForTeleport;
+        PlayerTeleporter.instance.EnablePlayerAfterTeleport += OnEnablePlayerForTeleport;
+    }
+
+    private void Start()
+    {
+        ManageGameplayState(currentGameplayState);
+    }
+
+    private void ManageGameplayState(GameplayState state)
+    {
+        switch (state)
+        {
+            case GameplayState.Disabled:
+            DisablePlayer?.Invoke();
+            break;
+            case GameplayState.Running:
+            EnablePlayer?.Invoke();
+            break;
+            case GameplayState.TeleportingPlayer:
+            TeleportStatePlayer?.Invoke();
+            break;
+            case GameplayState.GameOver:
+            break;
+        }
+    }
+
+
     private void OnGameplayStartCalled()
     {
-        ActivatePlayer();
-        ActivateFirstLevel();
+        ActivatePlayerExternally();
         CallForFadeOutScreen();
     }
 
@@ -55,28 +89,28 @@ public class GameplayManager : MonoBehaviour
 
     private void OnGameplayPauseCalled()
     {
-
-    }
-
-    private void OnGameplayResumeCalled()
-    {
-
+        currentGameplayState = GameplayState.Paused;
+        ManageGameplayState(currentGameplayState);
     }
 
     private void OnGameplayExitCalled()
     {
-
+        currentGameplayState = GameplayState.Disabled;
+        ManageGameplayState(currentGameplayState);
     }
 
-    private void ActivatePlayer()
+    private void OnDisablePlayerForTeleport()
     {
-        EnablePlayer?.Invoke();
+        currentGameplayState = GameplayState.TeleportingPlayer;
+        ManageGameplayState(currentGameplayState);
     }
 
-    private void ActivateFirstLevel()
+    private void OnEnablePlayerForTeleport()
     {
-
+        currentGameplayState = GameplayState.Running;
+        ManageGameplayState(currentGameplayState);
     }
+
 
     private void CallForFadeOutScreen()
     {

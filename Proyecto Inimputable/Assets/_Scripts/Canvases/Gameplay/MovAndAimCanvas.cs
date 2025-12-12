@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
-using ETouch = UnityEngine.InputSystem.EnhancedTouch;
+using System;
 
 public class MovAndAimCanvas : GameplayCanvas
 {
@@ -17,6 +16,8 @@ public static MovAndAimCanvas Instance { get; private set; }
     private Finger aimFinger;
     private Vector2 lastAimPosition;
     private Vector2 movementAmount;
+
+    public event Action<Vector2> InputDataRequest; // event para intentar mover al jugador
 
     private void Awake()
     {
@@ -91,10 +92,9 @@ public static MovAndAimCanvas Instance { get; private set; }
 
     private void Update()
     {
-        playerData.currentMoveInput = movementAmount;
+        if (!PlayerManager.instance.CanPlayerProcessInput()) return;
+        InputDataRequest?.Invoke(movementAmount);
         if (movementAnimator != null) movementAnimator.SetBool("isMoving", IsPlayerMoving());
-        playerMovement.Move(playerData.currentMoveInput, playerData.moveSpeed);
-        playerMovement.RotateCamera(playerData.aimX, playerData.aimY);
     }
 
     private void joystickVisualLogic(Finger finger, FloatingJoystick joystick)
@@ -139,8 +139,6 @@ public static MovAndAimCanvas Instance { get; private set; }
 
     private bool IsTouchingLeftSide(Finger finger)
     {
-        //Debug.Log($"screen width: {Screen.width}");
-        //Debug.Log($"finger.screenPosition.x: {finger.screenPosition}");
         return finger.screenPosition.x <= Screen.width / 2f;
     }
 

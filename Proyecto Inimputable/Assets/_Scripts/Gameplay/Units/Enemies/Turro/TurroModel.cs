@@ -1,22 +1,30 @@
+using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurroModel : MonoBehaviour
 {
     TurroController turroController;
     TurroView turroView;
+    [Header("Current State")]
+    public EnemyState turroState;
+    [Header("Stats")]
     public int health = 150;
     public int damage = 5;
 
+    [SerializeField] private float damageCooldown = 0.2f;
+    
+    [Header("Flags")]
     public bool isDead = false;
     public bool canChase = false;
-    [SerializeField] private float damageCooldown = 0.2f;
-    private bool isTakingDamage = false;
+    public bool isStompable => turroState == EnemyState.Dead;
+    public bool isTakingDamage = false;
+
     void Awake()
     {
         turroController = GetComponent<TurroController>();
         turroView = GetComponent<TurroView>();
+        turroController.Dead += OnModelTurroDead;
     }
 
     public void TakeDamage(int amount)
@@ -28,11 +36,15 @@ public class TurroModel : MonoBehaviour
             StartCoroutine(DamageCooldownRoutine());
             turroView.FlashDamageColor();
             turroView.TakeDamageSound();
+            turroView.UpdateHealthBar(health);
             CheckHealth();
         }
         else return;
+    }
 
-
+    public EnemyState GetTurroState()
+    {
+        return turroState;
     }
 
     public void CheckHealth()
@@ -45,16 +57,31 @@ public class TurroModel : MonoBehaviour
 
     public bool CanTakeDamage()
     {
+        return
+
+            CheckTrueForTakeDamage();
+
+    }
+
+    private bool CheckTrueForTakeDamage()
+    {
         return (
-            turroController.turroState != EnemyState.Idle ||
-            turroController.turroState != EnemyState.Shoot ||
-            turroController.turroState != EnemyState.Move);
+        turroState == EnemyState.Idle ||
+        turroState == EnemyState.Move ||
+        turroState == EnemyState.Shoot ||
+        turroState == EnemyState.Melee
+        );
     }
 
     private IEnumerator DamageCooldownRoutine()
-{
-    isTakingDamage = true;
-    yield return new WaitForSeconds(damageCooldown);
-    isTakingDamage = false;
-}
+    {
+        isTakingDamage = true;
+        yield return new WaitForSeconds(damageCooldown);
+        isTakingDamage = false;
+    }
+
+    private void OnModelTurroDead()
+    {
+
+    }
 }

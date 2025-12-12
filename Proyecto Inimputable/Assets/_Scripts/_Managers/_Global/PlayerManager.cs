@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private PlayerPresenter playerPresenter;
 
+    public event Action DisablePlayer;
+    public event Action EnablePlayer;
+    public event Action TeleportStatePlayer;
+
+    public event Action<Vector2> SendInputDataToPlayerPresenter;
+
     void Awake()
     {
         if (instance == null)
@@ -16,7 +23,13 @@ public class PlayerManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
         else Destroy(gameObject);
+    }
+
+    void Start()
+    {
         SubscribeToGameManagerEvents();
+        SubscribeToGameplayManagerEvents();
+        SubscribeToMoveAndAimCanvasEvents();
     }
 
     private void SubscribeToGameManagerEvents()
@@ -24,6 +37,19 @@ public class PlayerManager : MonoBehaviour
         gameManager.GameExecute += OnGameExecute;
         gameManager.GameplayStart += OnGameplayStart;
     }
+
+    private void SubscribeToGameplayManagerEvents()
+    {
+        GameplayManager.instance.EnablePlayer += EnablePlayerGameObject;
+        GameplayManager.instance.DisablePlayer += DisablePlayerGameObject;
+        GameplayManager.instance.TeleportStatePlayer += OnTeleportStatePlayer;
+    }
+
+    private void SubscribeToMoveAndAimCanvasEvents()
+    {
+        MovAndAimCanvas.Instance.InputDataRequest += ProcessInputDataRequest;
+    }
+
 
     private void OnGameExecute()
     {
@@ -37,22 +63,33 @@ public class PlayerManager : MonoBehaviour
 
     private void DisablePlayerGameObject()
     {
-        playerPresenter.gameObject.SetActive(false);
+        DisablePlayer?.Invoke();
     }
 
     private void EnablePlayerGameObject()
     {
-        playerPresenter.gameObject.SetActive(true);
+        EnablePlayer?.Invoke();
     }
 
-    public void GetPlayerPosition()
+    private void OnTeleportStatePlayer()
     {
-        //Transform position = playerPresenter.GetPlayerPosition();
+        
     }
 
-    public void GetPlayerRotation()
+    private void ProcessInputDataRequest(Vector2 amount)
     {
-        //
+        SendMovementInputDataToPlayer(amount);
+    }
+
+    public void SendMovementInputDataToPlayer(Vector2 amount)
+    {
+        SendInputDataToPlayerPresenter?.Invoke(amount);
+    }
+
+    public bool CanPlayerProcessInput()
+    {
+        if (playerPresenter.IsPlayerActive()) return true;
+        else return false;
     }
 
 

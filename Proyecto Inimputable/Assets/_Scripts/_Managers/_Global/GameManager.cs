@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,9 +19,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private PlayerManager playerManager;
-    [SerializeField] private GameObject playerRoot;
-    [SerializeField] private CharacterController playerCC;
-    [SerializeField] private PlayerPresenter playerPresenter;
+    
+
+    public PlayerPresenter playerPresenter;
     [SerializeField] private UIPlayerStats uiPlayerStats;
 
     [Header("Level Loader")]
@@ -37,6 +35,7 @@ public class GameManager : MonoBehaviour
     public event Action GameplayPause;
     public event Action GameplayResume;
     public event Action GameplayExit;
+    public event Action GameRetry;
     public event Action GameplayShowControls;
 
     public event Action ShowGameplayDefaultCanvas;
@@ -53,26 +52,21 @@ public class GameManager : MonoBehaviour
 
     public event Action GameOver;
 
-    public bool IsGamePaused => currentGameState == GlobalState.PausedGameplay || currentGameState == GlobalState.MainMenu;
-
-    private bool gameplay_loaded = false;
+    public bool IsGamePaused => currentGameState == GlobalState.PausedGameplay || currentGameState == GlobalState.MainMenu || currentGameState == GlobalState.GameOver;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
     }
 
     void Start()
     {
-        SubscribeToAudioListeners();
-        SubscribeToCallbacks();
-        SubscribeToPlayerEvents();
-        SubscribeToCanvasManagerEvents();
+        SubscribeToAllEvents();
         GameStartMode();
         cameraManager.SwitchToMenuCamera();
         currentGameState = GlobalState.FromExecute;
@@ -96,9 +90,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GlobalState.Gameplay:
                 ResumeTime();
+                GameplayResume?.Invoke();
                 break;
             case GlobalState.PausedGameplay:
                 FreezeTime();
+                break;
+            case GlobalState.GameOver:
+                FreezeTime();
+                EnableInput(); // CRITICAL: Input must be enabled for UI interaction!
                 break;
         }
     }
@@ -133,6 +132,7 @@ public class GameManager : MonoBehaviour
     {
         DisableInput();
     }
+    
     public void EnableInput()
     {
         inputManager.gameObject.SetActive(true);
@@ -143,6 +143,13 @@ public class GameManager : MonoBehaviour
         inputManager.gameObject.SetActive(false);
     }
 
+    private void SubscribeToAllEvents()
+    {
+        SubscribeToAudioListeners();
+        SubscribeToCallbacks();
+        SubscribeToPlayerEvents();
+        SubscribeToCanvasManagerEvents();
+    }
     private void SubscribeToAudioListeners()
     {
         menuManager.InteractionSoundMenu += OnInteractionSoundMenuRequest;
@@ -160,7 +167,6 @@ public class GameManager : MonoBehaviour
     {
         playerPresenter.Alive += OnPlayerAlive;
         playerPresenter.Dead += OnPlayerDead;
-        playerPresenter.TakeDamage += OnPlayerTakeDamage;
     }
 
     private void SubscribeToCanvasManagerEvents()
@@ -203,8 +209,37 @@ public class GameManager : MonoBehaviour
 
     private void OnGameplayLoaded()
     {
-        gameplay_loaded = true;
+        currentGameState = GlobalState.Gameplay; // Explicitly set to Gameplay
+        ManageGlobalState(currentGameState);     // Ensure Time flows and Input is ready
         FadeOutScreen();
+
+        // TELEPORT PLAYER TO START / CURRENT OBJECTIVE
+        if (ObjectiveManager.Instance != null && playerPresenter != null)
+        {
+             Transform spawnPoint = ObjectiveManager.Instance.GetRespawnPoint();
+             Vector3 respawnPos = spawnPoint != null ? spawnPoint.position : Vector3.zero;
+             Quaternion respawnRot = spawnPoint != null ? spawnPoint.rotation : Quaternion.identity;
+
+             var playerData = playerPresenter.GetComponent<PlayerData>();
+             if (playerData != null)
+             {
+                 // Use Revive to reset health/stats too, which is appropriate for a fresh start
+                 playerData.Revive(respawnPos, respawnRot);
+             }
+        }
+        
+        // RESET ETERNAL WORLD STATE (Doors, Interactables)
+        ResetWorld();
+    }
+
+    private void ResetWorld()
+    {
+        // Find all doors and reset them to Default state
+        Door[] doors = FindObjectsOfType<Door>();
+        foreach (var door in doors)
+        {
+            if (door != null) door.DefaultStateDoor();
+        }
     }
 
     private void OnMenuManagerActivateInputs()
@@ -220,11 +255,89 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerAlive(){ }
 
-    private void OnPlayerDead(){ }
+    private void OnPlayerDead()
+    {
+        currentGameState = GlobalState.GameOver;
+        ManageGlobalState(currentGameState);
 
-    private void OnPlayerTakeDamage(){ }
+        // Show Game Over UI via GameplayMenuCanvas
+        if (GameplayMenuCanvas.instance != null)
+        {
+            GameplayMenuCanvas.instance.SetLoseState();
+            GameplayMenuCanvas.instance.gameObject.SetActive(true); // Ensure canvas is active
+        }
+    }
 
-    public void PlayerDead(){ }
+    public void RetryGame()
+    {
+        // 1. Reset Global Logic
+        // Explicitly set state to Gameplay to unfreeze time and unlock Gameplay inputs
+        currentGameState = GlobalState.Gameplay;
+        ManageGlobalState(currentGameState);
+        
+        EnableInput();
+        if (canvasManager != null) canvasManager.ClearFingerRoles(); // Prevent stale inputs
+        // UI Hiding is handled by the button click in GameplayMenuCanvas or here if preferred
+        if (GameplayMenuCanvas.instance != null) 
+            GameplayMenuCanvas.instance.gameObject.SetActive(false);
+
+        // 2. Reset Weapons (Visual & Stats)
+        if (WeaponController.instance != null) WeaponController.instance.ResetWeapons();
+
+        // 3. Reset Objectives (Timer & Difficulty)
+        if (ObjectiveManager.Instance != null)
+        {
+            ObjectiveManager.Instance.ResetCurrentObjective();
+            
+            // 4. Get Spawn Point
+            Transform spawnPoint = ObjectiveManager.Instance.GetRespawnPoint();
+            Vector3 respawnPos = spawnPoint != null ? spawnPoint.position : Vector3.zero;
+            Quaternion respawnRot = spawnPoint != null ? spawnPoint.rotation : Quaternion.identity;
+
+            // 5. Revive Player
+            if (playerPresenter != null) 
+            {
+                 var playerData = playerPresenter.GetComponent<PlayerData>();
+                 if (playerData != null)
+                 {
+                     playerData.Revive(respawnPos, respawnRot);
+                 }
+            }
+        }
+
+        // 6. Notify Retry Listeners (Ammo/Health)
+        GameRetry?.Invoke();
+    }
+
+    public void QuitToMenu()
+    {
+        ResumeTime();
+        // Prevent stale inputs during transition
+        if (canvasManager != null) canvasManager.ClearFingerRoles(); 
+
+        // 1. Reset Game Logic (Objectives, etc)
+        GameplayExit?.Invoke(); // Notifies ObjectiveManager to reset index
+        if (SurvivalDifficultyManager.Instance != null) SurvivalDifficultyManager.Instance.ResetDifficulty();
+        if (Spawner.instance != null) Spawner.instance.ClearAllActiveEnemies();
+        if (WeaponController.instance != null) WeaponController.instance.ResetWeapons();
+
+        // 2. Hide Gameplay UI
+        if (GameplayMenuCanvas.instance != null) GameplayMenuCanvas.instance.gameObject.SetActive(false);
+        if (UICanvas.Instance != null) UICanvas.Instance.SetActiveCanvas(false);
+        if (PlayerActionsCanvas.Instance != null) PlayerActionsCanvas.Instance.gameObject.SetActive(false);
+        
+        // Ensure CanvasManager resets to Menu context
+        if (CanvasManager.Instance != null) CanvasManager.Instance.ResetToMainMenu();
+
+        // 3. Switch Camera
+        if (cameraManager != null) cameraManager.SwitchToMenuCamera();
+
+        // 4. Trigger Menu Flow (Logo -> Menu)
+        if (MenuManager.instance != null)
+        {
+            MenuManager.instance.ReturnToMainMenuDirectly();
+        }
+    }
 
     private void FreezeTime()
     {
@@ -236,30 +349,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public IEnumerator DoDoorTransition(Door linkedDoor)
-    {
-        FadeInScreen();
-        DisableInput();
-        HideAllCanvas();
-        GameManager.instance.TriggerDoorTransitionSound();
-        playerCC.enabled = false;
-        playerRoot.transform.SetPositionAndRotation(
-            linkedDoor.GetPlayerSpawnPosition(),
-            linkedDoor.GetSpawnRotation()
-        );
-        Debug.Log($"{linkedDoor.GetPlayerSpawnPosition()}, {linkedDoor.GetSpawnRotation()}");
-        playerCC.enabled = true;
-        yield return new WaitForSeconds(0.5f);
-        EnableInput();
-        FadeOutScreen();
-        ShowAllCanvas();
-    }
 
-    private void HideAllCanvas()
+    public void HideAllCanvas()
     {
         HideGameplayDefaultCanvas?.Invoke();
     }
-    private void ShowAllCanvas()
+    public void ShowAllCanvas()
     {
         ShowGameplayDefaultCanvas?.Invoke();
     }
@@ -272,6 +367,18 @@ public class GameManager : MonoBehaviour
     public void SetGameOver()
     {
         GameOver?.Invoke();
+    }
+
+    public void SetWinGame()
+    {
+        currentGameState = GlobalState.GameOver; // Pauses game and enables input
+        ManageGlobalState(currentGameState);
+
+        if (GameplayMenuCanvas.instance != null)
+        {
+            GameplayMenuCanvas.instance.SetWinState();
+            GameplayMenuCanvas.instance.gameObject.SetActive(true);
+        }
     }
 
     public void PlayerMovementSound()

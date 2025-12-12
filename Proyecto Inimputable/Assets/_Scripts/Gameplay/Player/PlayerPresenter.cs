@@ -1,5 +1,6 @@
-using System;
 using UnityEngine;
+using System;
+
 
 public class PlayerPresenter : Player
 {
@@ -9,9 +10,11 @@ public class PlayerPresenter : Player
     public event Action Dead;
     public event Action Alive;
 
+    public event Action<Vector2> SendInputData;
+
 
     [SerializeField] private GameplayManager gameplayManager;
-    [SerializeField] private PlayerData playerData; // model
+    [SerializeField] private PlayerData playerData;
     [SerializeField] private WeaponController weaponController; // view
     [SerializeField] private MovementGameObjectMessager movementGameObjectMessager;
 
@@ -20,6 +23,7 @@ public class PlayerPresenter : Player
     void Start()
     {
         SubscribeToGameManagerEvents();
+        SubscribeToPlayerManagerEvents();
         SubscribeToPlayerEvents();
         ManagePlayerState(playerState);
     }
@@ -30,10 +34,19 @@ public class PlayerPresenter : Player
         gameplayManager.DisablePlayer += OnDisablePlayer;
     }
 
+    private void SubscribeToPlayerManagerEvents()
+    {
+        PlayerManager.instance.EnablePlayer += OnEnablePlayer;
+        PlayerManager.instance.DisablePlayer += OnDisablePlayer;
+        PlayerManager.instance.SendInputDataToPlayerPresenter += SendInputDataToPlayerData;
+    }
+
     private void SubscribeToPlayerEvents()
     {
         movementGameObjectMessager.MovementSoundRequest += OnMovementSoundRequest;
     }
+    
+
 
     private void OnEnablePlayer()
     {
@@ -61,6 +74,7 @@ public class PlayerPresenter : Player
                 PlayerDisabledMode();
                 break;
             case PlayerState.StartFromGameplay:
+                PlayerEnabledMode();
                 break;
         }
     }
@@ -79,12 +93,30 @@ public class PlayerPresenter : Player
 
     private void PlayerDisabledMode()
     {
-        //
+        playerData.SetPlayerPhysicalState(false);
+        weaponController.enabled = false;
+    }
+
+    private void PlayerEnabledMode()
+    {
+        playerData.SetPlayerPhysicalState(true);
+        weaponController.enabled = true;
     }
 
     public void PlayerDead()
     {
         Dead.Invoke();
+    }
+
+    public void SendInputDataToPlayerData(Vector2 amount)
+    {
+        SendInputData(amount);
+    }
+
+    public bool IsPlayerActive()
+    {
+        if (playerState == PlayerState.Disabled) return false;
+        else return true;
     }
 
 }

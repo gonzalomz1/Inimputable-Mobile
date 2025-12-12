@@ -14,16 +14,28 @@ public class ObjectPooler : MonoBehaviour
     public static ObjectPooler Instance;
 
     public List<Pool> pools;
+
+    [SerializeField] private GameObject objectPoolsHolder;
+
     private Dictionary<string, Queue<GameObject>> poolDictionary;
 
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
+
 
         foreach (Pool pool in pools)
         {
@@ -32,6 +44,7 @@ public class ObjectPooler : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
+                obj.transform.SetParent(objectPoolsHolder.transform);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -87,5 +100,19 @@ public class ObjectPooler : MonoBehaviour
         }
 
         obj.SetActive(false);
+    }
+
+    public void DeactivateAllPooledObjects()
+    {
+        foreach (var poolQueue in poolDictionary.Values)
+        {
+            foreach (var obj in poolQueue)
+            {
+                if (obj.activeInHierarchy)
+                {
+                    obj.SetActive(false);
+                }
+            }
+        }
     }
 }

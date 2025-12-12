@@ -5,5 +5,6 @@ public enum GlobalState
     Loading,
     Gameplay,
     PausedGameplay,
-    DefaultMenu
+    DefaultMenu,
+    GameOver
 }

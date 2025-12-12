@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class PlayerData : Player
 {
     [Header("Player Presenter")]
     [SerializeField] private PlayerPresenter playerPresenter;
+    [Header("Player Movement")]
+    [SerializeField] private PlayerMovement playerMovement;
 
     [Header("Flags")]
     public bool isDashing = false;
@@ -32,9 +35,18 @@ public class PlayerData : Player
 
     public UIPlayerStats uIPlayerStats;
 
+    public event Action<Vector2, float, float, float> InputProcessed;
+
     void Start()
     {
         sensitivityY = sensitivityX * ySensitivityRatio;
+
+        SubscribeToPlayerPresenterEvents();
+    }
+
+    private void SubscribeToPlayerPresenterEvents()
+    {
+        playerPresenter.SendInputData += OnPlayerPresenterSendInputDataEvent;
     }
 
     public void TakeDamage(int damage)
@@ -47,6 +59,50 @@ public class PlayerData : Player
         {
             playerPresenter.PlayerDead();
         }
+    }
+
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        Debug.Log($"[PlayerData] Healed {amount} HP. Current: {currentHealth}/{maxHealth}");
+        
+        if (uIPlayerStats != null)
+        {
+             uIPlayerStats.SetBarCurrentValue(uIPlayerStats.healthBar, currentHealth);
+        }
+        else
+        {
+            Debug.LogError("[PlayerData] uIPlayerStats reference is NULL! Cannot update Health Bar.");
+        }
+    }
+
+    public void Revive(Vector3 position, Quaternion rotation)
+    {
+        currentHealth = maxHealth;
+        isAimAssistActive = false;
+        
+        // Update UI
+        if (uIPlayerStats != null)
+            uIPlayerStats.SetBarCurrentValue(uIPlayerStats.healthBar, currentHealth);
+
+        // Reset Position
+        // Note: CharacterController or NavMeshAgent might override position if enabled.
+        // Safe bet: disable movement script temporarily or just set transform if using Rigidbody/Transform.
+        // Assuming Transform based on project type (Mobile).
+        if (playerMovement != null)
+        {
+            playerMovement.Teleport(position, rotation);
+        }
+        else
+        {
+            transform.position = position;
+            transform.rotation = rotation;
+        }
+
+        // Reset Input
+        currentMoveInput = Vector2.zero;
+        
+        Debug.Log("[PlayerData] Player Revived at " + position);
     }
 
     public bool IsPlayerDead()
@@ -64,5 +120,21 @@ public class PlayerData : Player
     {
         if (maxHealth <= 0) return 0f;
         return Mathf.Clamp01((float)currentHealth / maxHealth);
+    }
+
+    private void OnPlayerPresenterSendInputDataEvent(Vector2 amount)
+    {
+        ModifyMovementAmount(amount);
+    }
+
+    public void ModifyMovementAmount(Vector2 amount)
+    {
+        currentMoveInput = amount;
+        InputProcessed?.Invoke(amount, moveSpeed, aimX, aimY);
+    }
+
+    public void SetPlayerPhysicalState(bool isEnabled)
+    {
+        playerMovement.enabled = isEnabled;
     }
 }

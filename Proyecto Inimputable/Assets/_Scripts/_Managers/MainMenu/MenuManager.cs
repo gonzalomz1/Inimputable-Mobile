@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+   public static MenuManager instance;
+
    public MenuFlowState currentMenuFlowState { get; private set; }
    public MenuState currentMenuState { get; private set; }
 
@@ -38,6 +40,14 @@ public class MenuManager : MonoBehaviour
 
    void Awake()
    {
+
+      if (instance == null)
+      {
+         instance = this;
+         DontDestroyOnLoad(gameObject);
+      }
+      else Destroy(gameObject);
+
       SubscribeToGameManagerEvents();
       SubscribeToCameraControllerEvents();
       SubscribeToMenuScreenEvents();
@@ -179,10 +189,36 @@ public class MenuManager : MonoBehaviour
    public void FromExecuteGameStart()
    {
       print("MainMenu: from execute called.");
+      // Ensure Fader is Clear
+      if (screenFader != null && screenFader.gameObject.activeInHierarchy) screenFader.FadeOut();
+      
+      EnableMenuStuff();
+
       currentMenuFlowState = MenuFlowState.Logo;
       currentMenuState = MenuState.Disable;
       ManageState(currentMenuFlowState);
       ManageMenuState(currentMenuState);
+   }
+
+   public void ReturnToMainMenuDirectly()
+   {
+      Debug.Log("MainMenu: Returning directly to Main Menu.");
+      
+      // 1. Reset Visuals
+      if (screenFader != null && screenFader.gameObject.activeInHierarchy) screenFader.FadeOut();
+      EnableMenuStuff();
+
+      // 2. Set States to "Ready"
+      currentMenuFlowState = MenuFlowState.Menu;
+      currentMenuState = MenuState.MainMenu;
+
+      // 3. Apply States
+      if (cameraController != null) cameraController.SetDefaultAngle(); // FORCE DEFAULT ANGLE
+
+      ManageMenuState(currentMenuState);      // Sets UI/Input
+
+      // 4. Ensure Audio Loop
+      StartMenuLoopSong();
    }
 
    void SetSplashScreenLogoMode()
@@ -397,6 +433,19 @@ public class MenuManager : MonoBehaviour
       HideBottleInWorld();
    }
 
+   private void EnableMenuStuff()
+   {
+       ShowTitle();
+       ShowBottleInWorld();
+   }
 
-   
+   private void ShowTitle()
+   {
+       if (title != null) title.gameObject.SetActive(true);
+   }
+
+   private void ShowBottleInWorld()
+   {
+       if (basement != null) basement.ShowBottle();
+   }
 }

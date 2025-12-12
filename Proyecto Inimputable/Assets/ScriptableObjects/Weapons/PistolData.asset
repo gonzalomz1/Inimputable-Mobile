@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Pistol
   fireRate: 0.4
   damage: 15
-  maxAmmo: 60
+  maxAmmo: 120
   clipSize: 12
   isAutomatic: 0
   weaponType: 1

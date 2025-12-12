@@ -64,4 +64,9 @@ public class CameraManager : MonoBehaviour
     {
         SwitchToGameplayCamera();
     }
+
+    public Camera GetPlayerGameplayCamera()
+    {
+        return gameplayCamera;
+    }
 }

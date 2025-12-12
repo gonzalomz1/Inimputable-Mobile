@@ -16,7 +16,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject mainMenuControls;
     [Header("Gameplay Canvases")]
     public GameplayMenuCanvas gameplayMenuCanvas;
-    public ActionCanvas actionCanvas;
+    public PlayerActionsCanvas PlayerActionsCanvas;
     public MovAndAimCanvas movAndAimCanvas;
     public UICanvas uICanvas;
 
@@ -24,6 +24,11 @@ public class CanvasManager : MonoBehaviour
 
     public event Action PauseGameplay;  
     public event Action ResumeGameplay;
+
+    public void ClearFingerRoles()
+    {
+        fingerRoles.Clear();
+    }
 
     public event Action RequestShowControlsToGameplayMenuCanvas;
     public event Action RequestHideControlsToGameplayMenuCanvas;
@@ -66,7 +71,7 @@ public class CanvasManager : MonoBehaviour
 
     void SubscribeToActionCanvasEvents()
     {
-        actionCanvas.pauseRequest += OnActionCanvasPauseRequest;
+        PlayerActionsCanvas.pauseRequest += OnActionCanvasPauseRequest;
     }
     void OnGameExecute()
     {
@@ -80,12 +85,11 @@ public class CanvasManager : MonoBehaviour
 
     void OnGameplayPause()
     {
-        ShowGameplayMenu();
+        PauseMode();
     }
 
     void ShowGameplayMenu()
     {
-        
         gameplayMenuCanvas.gameObject.SetActive(true);
     }
 
@@ -114,7 +118,7 @@ public class CanvasManager : MonoBehaviour
     void OnShowGameplayDefaultCanvas()
     {
         gameplayMenuCanvas.gameObject.SetActive(false);
-        actionCanvas.gameObject.SetActive(true);
+        PlayerActionsCanvas.gameObject.SetActive(true);
         uICanvas.gameObject.SetActive(true);
         movAndAimCanvas.gameObject.SetActive(true);
     }
@@ -122,7 +126,7 @@ public class CanvasManager : MonoBehaviour
     void OnHideGameplayDefaultCanvas()
     {
         gameplayMenuCanvas.gameObject.SetActive(false);
-        actionCanvas.gameObject.SetActive(false);
+        PlayerActionsCanvas.gameObject.SetActive(false);
         uICanvas.gameObject.SetActive(false);
         movAndAimCanvas.gameObject.SetActive(false);
     }
@@ -130,7 +134,7 @@ public class CanvasManager : MonoBehaviour
 
     void OnActionCanvasPauseRequest()
     {
-        ShowGameplayMenu();
+        PauseMode();
         PauseGameplay?.Invoke();
     }
 
@@ -144,7 +148,7 @@ public class CanvasManager : MonoBehaviour
     {
         mainMenuCanvas.gameObject.SetActive(false);
         gameplayMenuCanvas.gameObject.SetActive(false);
-        actionCanvas.gameObject.SetActive(false);
+        PlayerActionsCanvas.gameObject.SetActive(false);
         movAndAimCanvas.gameObject.SetActive(false);
         uICanvas.gameObject.SetActive(false);
     }
@@ -152,10 +156,18 @@ public class CanvasManager : MonoBehaviour
     private void DisableAllExceptMainMenu()
     {
         mainMenuCanvas.gameObject.SetActive(true);
+        // Ensure Main Menu Buttons are visible (might have been hidden by Controls/Options)
+        if (mainMenuButtons != null) mainMenuButtons.gameObject.SetActive(true);
+        
         gameplayMenuCanvas.gameObject.SetActive(false);
-        actionCanvas.gameObject.SetActive(false);
+        PlayerActionsCanvas.gameObject.SetActive(false);
         movAndAimCanvas.gameObject.SetActive(false);
         uICanvas.gameObject.SetActive(false);
+    }
+
+    public void ResetToMainMenu()
+    {
+        DisableAllExceptMainMenu();
     }
 
     private void DisableMainMenuStuff()
@@ -170,7 +182,7 @@ public class CanvasManager : MonoBehaviour
 
     void ShowOnlyGameplayStuff()
     {
-        actionCanvas.gameObject.SetActive(true);
+        PlayerActionsCanvas.gameObject.SetActive(true);
         movAndAimCanvas.gameObject.SetActive(true);
         uICanvas.gameObject.SetActive(true);
     }
@@ -232,7 +244,7 @@ public class CanvasManager : MonoBehaviour
             return;
         }
         if (GameManager.instance.IsGamePaused) return;
-        if (actionCanvas.HandleTouch(finger, out role))
+        if (PlayerActionsCanvas.HandleTouch(finger, out role))
         {
             fingerRoles[finger.index] = role;
             //Debug.Log($"Finger asignado a {role}.");
@@ -278,7 +290,7 @@ public class CanvasManager : MonoBehaviour
 
         if (role == FingerRole.Action)
         {
-            actionCanvas.HandleFingerUp(finger);
+            PlayerActionsCanvas.HandleFingerUp(finger);
         }
 
         //Debug.Log($"Removing: {finger.index}");

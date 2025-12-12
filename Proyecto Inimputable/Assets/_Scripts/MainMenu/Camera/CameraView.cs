@@ -6,7 +6,7 @@ public class CameraView : MonoBehaviour
 
     void Awake()
     {
-        if (animator) animator = GetComponent<Animator>();
+        if (animator == null) animator = GetComponent<Animator>();
     }
 
     public void SetTvClipAngle()
@@ -25,5 +25,10 @@ public class CameraView : MonoBehaviour
     public void FromCreditsToMainMenu()
     {
         animator.SetTrigger("CreditsToMainMenu");
+    }
+
+    public void SetDefaultAngle()
+    {
+        animator.Play("Default"); 
     }
 }

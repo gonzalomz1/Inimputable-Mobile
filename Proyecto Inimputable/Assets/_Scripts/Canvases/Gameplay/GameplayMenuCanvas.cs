@@ -13,22 +13,75 @@ public class GameplayMenuCanvas : MonoBehaviour
     public static GameplayMenuCanvas instance;
     [Header("Canvas Manager")]
     [SerializeField] private CanvasManager canvasManager;
-    [Header("Pause")]
+    
+    [Header("Values")]
     [SerializeField] private Slider sensitivitySlider;
     private Vector2 startValueSensSldr;
-    [SerializeField] private GameObject controlsButton;
-    [SerializeField] private GameObject exitButton;
-    [Header("Game Over")]
-    [SerializeField] private TextMeshProUGUI loseText;
-    [SerializeField] private TextMeshProUGUI winText;
-    public Button playAgainButton;
-    [Header("Contexts")]
-    [SerializeField] private GameObject gameplayControls;
-    [SerializeField] private GameObject pausePanel;
-    [SerializeField] private GameObject gameOverContext;
+    
+    [Header("Shared Context")]
+    [Tooltip("The parent container for both Pause and Game Over panels")]
+    [SerializeField] private GameObject pausePanel; 
+    
+    [Header("Pause Context")]
     [SerializeField] private GameObject pauseContext;
+    [SerializeField] private GameObject gameplayControls;
+
+    [Header("Game Over Context")]
+    [SerializeField] private GameObject gameOverContext;
+    
     [Header("Fingers")]
     private Finger sensFinger;
+
+    // ... (Existing code) ...
+
+    public void SetLoseState()
+    {
+        SetActiveGameOver();
+    }
+
+    public void SetWinState()
+    {
+        SetActiveGameOver();
+    }
+
+    public void SetActiveGameOver()
+    {
+        if (pausePanel != null) pausePanel.SetActive(true);
+        gameOverContext.SetActive(true);
+        pauseContext.SetActive(false);
+    }
+
+    // New Button Methods for the duplicated panel
+    public void OnRetryPressed()
+    {
+        Debug.Log("OnRetryPressed");
+        if (GameManager.instance != null)
+        {
+            Debug.Log("Retry Game");
+            GameManager.instance.RetryGame();
+            gameObject.SetActive(false); 
+        }
+    }
+
+    public void OnMenuPressed()
+    {
+        Debug.Log("OnMenuPressed");
+        if (GameManager.instance != null)
+        {
+            Debug.Log("Quit to Menu");
+            GameManager.instance.QuitToMenu();
+        }
+    }
+    
+    // Alias methods if referenced by animations or events (Optional, keeping clean)
+    public void PlayAgain() => OnRetryPressed(); 
+    public void GoToMenu() => OnMenuPressed();
+
+    public void GameOver()
+    {
+        gameObject.SetActive(true);
+        SetActiveGameOver();
+    }
 
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
@@ -137,45 +190,13 @@ public class GameplayMenuCanvas : MonoBehaviour
     }
 
 
-
-    public void SetLoseState()
-    {
-        SetActiveGameOver();
-
-        loseText.gameObject.SetActive(true);
-        winText.gameObject.SetActive(false);
-    }
-
-    public void SetWinState()
-    {
-        SetActiveGameOver();
-
-        loseText.gameObject.SetActive(false);
-        winText.gameObject.SetActive(true);
-    }
-
-    public void SetActiveGameOver()
-    {
-        gameOverContext.SetActive(true);
-        pauseContext.SetActive(false);
-    }
-
+    
     public void SetActivePause()
     {
         gameObject.SetActive(true);
+        if (pausePanel != null) pausePanel.SetActive(true);
         gameOverContext.SetActive(false);
         pauseContext.SetActive(true);
-    }
-
-    public void PlayAgain()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void GameOver()
-    {
-        gameObject.SetActive(true);
-        SetActiveGameOver();
     }
 
     public void ExitMenu()

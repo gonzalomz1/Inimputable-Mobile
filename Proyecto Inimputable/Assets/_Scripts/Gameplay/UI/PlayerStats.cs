@@ -10,10 +10,18 @@ public class UIPlayerStats : MonoBehaviour
 
     public Gradient healthGradient;
     public Image healthFill;
+    public HealthBarJuice healthBarJuice;
 
     void Awake()
     {
         GameManager.instance.GameplayStart += OnGameplayStart;
+        
+        // Hide Player Health Background
+        Transform bg = healthBar.transform.Find("Background");
+        if (bg != null && bg.TryGetComponent(out Image bgImage))
+        {
+            bgImage.color = Color.clear;
+        }
     }
 
     void OnGameplayStart()
@@ -34,13 +42,20 @@ public class UIPlayerStats : MonoBehaviour
     public void SetBarMaxValue(Slider bar, int maxValue)
     {
         bar.maxValue = maxValue;
-        if (bar == healthBar) healthFill.color = healthGradient.Evaluate(1f);
+        if (bar == healthBar) 
+        {
+            healthFill.color = healthGradient.Evaluate(1f);
+        }
     }
 
     public void SetBarCurrentValue(Slider bar, int value)
     {
         bar.value = value;
-        if (bar == healthBar) healthFill.color = healthGradient.Evaluate(healthBar.normalizedValue);
+        if (bar == healthBar) 
+        {
+            healthFill.color = healthGradient.Evaluate(healthBar.normalizedValue);
+            if (healthBarJuice != null) healthBarJuice.UpdateHealth();
+        }
     }
 
 }
