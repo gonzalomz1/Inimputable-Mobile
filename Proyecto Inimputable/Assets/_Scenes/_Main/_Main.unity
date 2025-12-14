@@ -11434,7 +11434,7 @@ PrefabInstance:
     - target: {fileID: 4116203379023330586, guid: 4b417794ce5dc5e469b7d23b0198819c,
         type: 3}
       propertyPath: m_text
-      value: Version 1.0. Copyright Gonzalo Tomas Bogarin
+      value: Version 1.0.1. Copyright Gonzalo Tomas Bogarin
       objectReference: {fileID: 0}
     - target: {fileID: 4343637089190104769, guid: 4b417794ce5dc5e469b7d23b0198819c,
         type: 3}
