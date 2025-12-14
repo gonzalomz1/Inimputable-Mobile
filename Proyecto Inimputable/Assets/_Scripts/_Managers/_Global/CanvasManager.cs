@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -46,6 +47,13 @@ public class CanvasManager : MonoBehaviour
         SubscribeToMenuManagerEvents();
         SubscribeToGameplayMenuCanvasEvents();
         SubscribeToActionCanvasEvents();
+        
+        // Setup Adaptive UI for known canvases
+        SetupAdaptiveUI(mainMenuCanvas);
+        if (gameplayMenuCanvas != null) SetupAdaptiveUI(gameplayMenuCanvas.gameObject);
+        if (PlayerActionsCanvas != null) SetupAdaptiveUI(PlayerActionsCanvas.gameObject);
+        if (movAndAimCanvas != null) SetupAdaptiveUI(movAndAimCanvas.gameObject);
+        if (uICanvas != null) SetupAdaptiveUI(uICanvas.gameObject);
     }
 
     void SubscribeToGameManagerEvents()
@@ -296,6 +304,22 @@ public class CanvasManager : MonoBehaviour
         //Debug.Log($"Removing: {finger.index}");
         fingerRoles.Remove(finger.index);
         //Debug.Log($"Current Dictionary after change: {fingerRoles.Count} items");
+    }
+
+    private void SetupAdaptiveUI(GameObject obj)
+    {
+        if (obj == null) return;
+        
+        Canvas canvas = obj.GetComponent<Canvas>();
+        if (canvas == null) return; 
+
+        CanvasScaler scaler = obj.GetComponent<CanvasScaler>();
+        if (scaler == null) scaler = obj.AddComponent<CanvasScaler>();
+
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1920, 1080); 
+        scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+        scaler.matchWidthOrHeight = 0.5f;
     }
 
 }
