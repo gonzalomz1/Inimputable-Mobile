@@ -145,7 +145,6 @@ GameObject:
   - component: {fileID: 5360278291815749553}
   - component: {fileID: 1659331656562422239}
   - component: {fileID: 8612759892855045603}
-  - component: {fileID: 6050822463360924945}
   - component: {fileID: 399549183781759658}
   m_Layer: 6
   m_Name: Sprite
@@ -242,20 +241,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6050822463360924945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682973220865465635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6d0dc8c99539b544854ee78df69116d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 8685144542849780257}
-  isEnemy: 1
 --- !u!114 &399549183781759658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,7 +518,6 @@ MonoBehaviour:
   eventMessager: {fileID: 399549183781759658}
   pickups:
   - {fileID: 2012513717192094572, guid: ef23e5cd98315ef469f83055c21b354e, type: 3}
-  - {fileID: 4116336291818869870, guid: ff41fbe6cf98a6445ab2fc39dfe67f75, type: 3}
   dropChance: 0.559
   beginState: 0
   shootingDistance: 10
@@ -851,7 +835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 3581049700659397773}
   playerCamera: {fileID: 0}
-  healthBarJuice: {fileID: 2821337671934515850}
+  healthBarShake: {fileID: 0}
   positionOffset: {x: 0, y: 0.6, z: 0}
 --- !u!114 &2821337671934515850
 MonoBehaviour:

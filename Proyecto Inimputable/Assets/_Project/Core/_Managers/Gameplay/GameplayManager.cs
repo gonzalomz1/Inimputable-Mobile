@@ -30,8 +30,14 @@ public class GameplayManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
         else Destroy(gameObject);
+    }
+
+    void Start()
+    {
         SubscribeToGameManagerEvents();
         SubscribeToPlayerTeleporterEvents();
+        
+        ManageGameplayState(currentGameplayState);
     }
 
     void SubscribeToGameManagerEvents()
@@ -45,11 +51,6 @@ public class GameplayManager : MonoBehaviour
     {
         PlayerTeleporter.instance.DisablePlayerForTeleport += OnDisablePlayerForTeleport;
         PlayerTeleporter.instance.EnablePlayerAfterTeleport += OnEnablePlayerForTeleport;
-    }
-
-    private void Start()
-    {
-        ManageGameplayState(currentGameplayState);
     }
 
     private void ManageGameplayState(GameplayState state)

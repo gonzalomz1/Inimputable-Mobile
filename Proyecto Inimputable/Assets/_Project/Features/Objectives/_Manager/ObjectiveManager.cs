@@ -5,6 +5,11 @@ using UnityEngine;
 public class ObjectiveManager : MonoBehaviour
 {    
     public static ObjectiveManager Instance {get; private set;}
+
+    [Header("Game Manager")]
+    [SerializeField] private GameManager gameManager;
+
+    [Header("Objectives")]
     [SerializeField] private List <ObjectiveBase> _objectives;
     private int _currentIndex = -1;
     private bool _gameplayActive = false;
@@ -18,9 +23,9 @@ public class ObjectiveManager : MonoBehaviour
     public event Action<string> ObjectiveCompleted;
 
     [SerializeField] private Transform firstRoomEnemySpawnPoint;
-    public Transform room1SpawnPoint; // Asignar en Inspector (Entrada Sala 1)
-    public Transform room2SpawnPoint; // Asignar en Inspector (Entrada Sala 2)
-    public Transform pistolSpawnPoint; // Asignar en Inspector
+    public Transform room1SpawnPoint;
+    public Transform room2SpawnPoint;
+    public Transform pistolSpawnPoint;
 
     private void Awake()
     {
@@ -51,18 +56,18 @@ public class ObjectiveManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.instance.GameplayStart += OnGameplayStart;
-        GameManager.instance.GameplayPause += OnGameplayPause;
-        GameManager.instance.GameplayResume += OnGameplayResume;
-        GameManager.instance.GameplayExit += OnGameplayExit;
+        gameManager.GameplayStart += OnGameplayStart;
+        gameManager.GameplayPause += OnGameplayPause;
+        gameManager.GameplayResume += OnGameplayResume;
+        gameManager.GameplayExit += OnGameplayExit;
     }
 
     private void OnDisable()
     {
-        GameManager.instance.GameplayStart -= OnGameplayStart;
-        GameManager.instance.GameplayPause -= OnGameplayPause;
-        GameManager.instance.GameplayResume -= OnGameplayResume;
-        GameManager.instance.GameplayExit -= OnGameplayExit;
+        gameManager.GameplayStart -= OnGameplayStart;
+        gameManager.GameplayPause -= OnGameplayPause;
+        gameManager.GameplayResume -= OnGameplayResume;
+        gameManager.GameplayExit -= OnGameplayExit;
     }
 
     private void Update()

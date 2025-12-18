@@ -27,6 +27,10 @@ public class CameraManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
         else Destroy(gameObject);
+    }
+
+    private void Start()
+    {
         SubscribeToGameManagerEvents();
     }
 

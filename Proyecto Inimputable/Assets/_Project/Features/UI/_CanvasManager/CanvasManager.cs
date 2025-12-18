@@ -23,13 +23,13 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] private Dictionary<int, FingerRole> fingerRoles = new Dictionary<int, FingerRole>();
 
-    public event Action PauseGameplay;  
-    public event Action ResumeGameplay;
-
     public void ClearFingerRoles()
     {
         fingerRoles.Clear();
     }
+    
+    public event Action PauseGameplay;  
+    public event Action ResumeGameplay;
 
     public event Action RequestShowControlsToGameplayMenuCanvas;
     public event Action RequestHideControlsToGameplayMenuCanvas;
@@ -43,6 +43,10 @@ public class CanvasManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
         SubscribeToGameManagerEvents();
         SubscribeToMenuManagerEvents();
         SubscribeToGameplayMenuCanvasEvents();
@@ -163,6 +167,7 @@ public class CanvasManager : MonoBehaviour
 
     private void DisableAllExceptMainMenu()
     {
+        Debug.Log("Disabling all except main menu");
         mainMenuCanvas.gameObject.SetActive(true);
         // Ensure Main Menu Buttons are visible (might have been hidden by Controls/Options)
         if (mainMenuButtons != null) mainMenuButtons.gameObject.SetActive(true);

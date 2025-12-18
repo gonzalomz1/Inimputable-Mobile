@@ -47,7 +47,10 @@ public class MenuManager : MonoBehaviour
          DontDestroyOnLoad(gameObject);
       }
       else Destroy(gameObject);
+   }
 
+   void Start()
+   {
       SubscribeToGameManagerEvents();
       SubscribeToCameraControllerEvents();
       SubscribeToMenuScreenEvents();
@@ -92,7 +95,7 @@ public class MenuManager : MonoBehaviour
 
       PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
       pointerEventData.position = finger.screenPosition;
-
+      Debug.Log("PointerEventData: " + pointerEventData.position);
       List<RaycastResult> results = new List<RaycastResult>();
       raycaster.Raycast(pointerEventData, results);
 

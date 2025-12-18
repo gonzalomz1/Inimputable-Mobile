@@ -12,14 +12,18 @@ public class WeaponHolder3D : ItemBase
     [SerializeField] private SphereCollider sphereCollider;
     [SerializeField] private Rigidbody rigidBody;
 
+    [Header("Visuals")]
+    [SerializeField] private ShowcaseEffect showcaseEffect;
+
     public event Action weaponPickedup;
 
     void Awake()
     {
         if (!weaponDataSO) return;
-        if (!spriteRenderer) GetComponent<SpriteRenderer>();
-        if (!sphereCollider) GetComponent<SphereCollider>();
-        if (!rigidBody) GetComponent<Rigidbody>();
+        if (!showcaseEffect) showcaseEffect = GetComponent<ShowcaseEffect>();
+        if (!spriteRenderer) spriteRenderer = GetComponent<SpriteRenderer>();
+        if (!sphereCollider) sphereCollider = GetComponent<SphereCollider>();
+        if (!rigidBody) rigidBody = GetComponent<Rigidbody>();
     }
 
     void OnEnable()
@@ -27,8 +31,6 @@ public class WeaponHolder3D : ItemBase
         currentState = WeaponHolderState.Active;
         ManageState(currentState);
     }
-
-
 
 
     void OnTriggerEnter(Collider other)
@@ -78,4 +80,5 @@ public class WeaponHolder3D : ItemBase
                 break;
         }
     }
+
 }

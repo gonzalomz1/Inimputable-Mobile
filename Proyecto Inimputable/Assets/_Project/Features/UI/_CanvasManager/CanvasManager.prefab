@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4228238976345864113}
-  - component: {fileID: 1942049632189422305}
   m_Layer: 0
   m_Name: CanvasManager
   m_TagString: Untagged
@@ -37,27 +36,6 @@ Transform:
   - {fileID: 3680768281627810342}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1942049632189422305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 13252741051701639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a00999c89722a3c428d5b8f29ba2177a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
-  menuManager: {fileID: 0}
-  mainMenuCanvas: {fileID: 0}
-  mainMenuButtons: {fileID: 0}
-  mainMenuControls: {fileID: 0}
-  gameplayMenuCanvas: {fileID: 0}
-  actionCanvas: {fileID: 5469413637765095486}
-  movAndAimCanvas: {fileID: 6169361618762726418}
-  uICanvas: {fileID: 4801958962903563610}
 --- !u!1 &230032047836840177
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +310,9 @@ MonoBehaviour:
   interactableLayers:
     serializedVersion: 2
     m_Bits: 0
+  stopmLayer:
+    serializedVersion: 2
+    m_Bits: 0
   raycaster: {fileID: 6461463054678419922}
   eventSystem: {fileID: 0}
   weaponController: {fileID: 0}
@@ -585,15 +566,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasManager: {fileID: 0}
   sensitivitySlider: {fileID: 6861855042552505616}
-  controlsButton: {fileID: 0}
-  exitButton: {fileID: 0}
-  loseText: {fileID: 7990735158437947084}
-  winText: {fileID: 6140214656898628639}
-  playAgainButton: {fileID: 6074808266482306386}
-  gameplayControls: {fileID: 0}
   pausePanel: {fileID: 0}
-  gameOverContext: {fileID: 9057542654805855674}
   pauseContext: {fileID: 3211321331693666595}
+  gameplayControls: {fileID: 0}
+  gameOverContext: {fileID: 9057542654805855674}
   raycaster: {fileID: 1468360796749747626}
   eventSystem: {fileID: 0}
   playerData: {fileID: 0}
@@ -933,6 +909,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 3
   healthFill: {fileID: 6583061760666114336}
+  healthBarShake: {fileID: 0}
 --- !u!1 &1753046526423228874
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,8 +3967,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2060e1c5d74eaa46a72b2491a524ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   uIPlayerStats: {fileID: 5535520380748841642}
+  uIObjectiveText: {fileID: 0}
+  uIObjectiveTimer: {fileID: 0}
 --- !u!1 &8821809708409830668
 GameObject:
   m_ObjectHideFlags: 0

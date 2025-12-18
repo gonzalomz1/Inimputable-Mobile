@@ -9,7 +9,7 @@ public class EffectsManager : MonoBehaviour
     [Header("Game Manager")]
     [SerializeField] private GameManager gameManager;
 
-    void Awake()
+    void Start()
     {
         SubscribeToGameManagerEvents();
     }

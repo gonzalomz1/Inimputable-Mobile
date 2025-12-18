@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     [Header("Menu Clips")]
     [SerializeField] private AudioClip menuLoop;
     [SerializeField] private AudioClip menuInteractionSound;
-    [SerializeField] private AudioClip MainLoopTheme;
+    [SerializeField] private AudioClip GameplayLoop;
 
     [Header("Player Clips")]
     [SerializeField] private AudioClip pistolShoot;
@@ -29,19 +29,23 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] private AudioSource menuLoopAudioSource;
     [SerializeField] private AudioSource menuInteractionAudioSource;
-    [SerializeField] private AudioSource mainLoopThemeAudioSource;
+    [SerializeField] private AudioSource gameplayLoopAudioSource;
     [SerializeField] private AudioSource pistolShootAudioSource;
     [SerializeField] private AudioSource doorTransitionAudioSource;
     [SerializeField] private AudioSource playerStepSoundAudioSource;
 
     private void Awake()
-    {
+    {   
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else Destroy(gameObject);
+    }
+
+    private void Start()
+    {
         SubscribeToEvents();
     }
 
@@ -57,10 +61,10 @@ public class AudioManager : MonoBehaviour
             menuInteractionAudioSource.loop = false;
             menuInteractionAudioSource.playOnAwake = false;
         }
-        if (mainLoopThemeAudioSource != null)
+        if (gameplayLoopAudioSource != null)
         {
-            mainLoopThemeAudioSource.loop = true;
-            mainLoopThemeAudioSource.playOnAwake = false;
+            gameplayLoopAudioSource.loop = true;
+            gameplayLoopAudioSource.playOnAwake = false;
         }
         if (pistolShootAudioSource != null)
         {
@@ -122,10 +126,10 @@ public class AudioManager : MonoBehaviour
 
     private void StartMainLoopTheme()
     {
-        if (mainLoopThemeAudioSource.clip != MainLoopTheme)
-            mainLoopThemeAudioSource.clip = MainLoopTheme;
-        mainLoopThemeAudioSource.enabled = true;
-        mainLoopThemeAudioSource.Play();
+        if (gameplayLoopAudioSource.clip != GameplayLoop)
+            gameplayLoopAudioSource.clip = GameplayLoop;
+        gameplayLoopAudioSource.enabled = true;
+        gameplayLoopAudioSource.Play();
     }
 
     private void PlayPistolShootSound()
@@ -144,10 +148,10 @@ public class AudioManager : MonoBehaviour
 
     private void StopMainLoopTheme() 
     {
-        if (mainLoopThemeAudioSource != null)
+        if (gameplayLoopAudioSource != null)
         {
-             mainLoopThemeAudioSource.Stop();
-             mainLoopThemeAudioSource.enabled = false;
+             gameplayLoopAudioSource.Stop();
+             gameplayLoopAudioSource.enabled = false;
         }
     }
 

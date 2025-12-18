@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1502515703042481496}
-  - component: {fileID: 8218797996710360718}
+  - component: {fileID: 1385752114655292212}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8218797996710360718
+--- !u!114 &1385752114655292212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,19 +41,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 560988781098144470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 139e932dbed0d7b49b1c9cf5379a1b56, type: 3}
+  m_Script: {fileID: 11500000, guid: bdea459dddbf9ea4eaf11b7739e1a9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  currentMenuState: 0
-  splashScreen: {fileID: 0}
   basement: {fileID: 0}
-  menuCamera: {fileID: 0}
+  cameraController: {fileID: 0}
+  handsController: {fileID: 0}
+  title: {fileID: 0}
+  menuScreenCanvasRect: {fileID: 0}
   menuScreen: {fileID: 0}
-  textPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  splashScreen: {fileID: 0}
+  screenFader: {fileID: 0}
+  rawImageRect: {fileID: 0}
   raycaster: {fileID: 0}
   eventSystem: {fileID: 0}

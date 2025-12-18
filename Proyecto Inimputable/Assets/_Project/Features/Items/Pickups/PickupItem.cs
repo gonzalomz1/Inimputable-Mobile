@@ -9,18 +9,9 @@ public class PickupItem : MonoBehaviour
     public SpriteRenderer visualRenderer;
     public Sprite healthSprite;
     public Sprite ammoSprite;
+    [Header("Effect")]
+    public ShowcaseEffect ShowcaseEffect;
 
-    // Simple bobbing/rotating effect
-    public float rotationSpeed = 50f;
-    public float bobSpeed = 2f;
-    public float bobHeight = 0.2f;
-
-    private Vector3 startPos;
-
-    void OnEnable()
-    {
-        startPos = transform.position;
-    }
 
     public void Configure(PickupType newType)
     {
@@ -31,13 +22,6 @@ public class PickupItem : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // Simple visual feedback
-        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
-        float newY = startPos.y + Mathf.Sin(Time.time * bobSpeed) * bobHeight;
-        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-    }
 
     void OnTriggerEnter(Collider other)
     {
