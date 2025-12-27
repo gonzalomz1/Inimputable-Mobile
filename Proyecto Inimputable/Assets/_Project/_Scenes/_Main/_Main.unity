@@ -4870,6 +4870,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102646303}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1104227897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2359925444943301736, guid: e62733173ac5ae8418ad5303bd42128d,
+    type: 3}
+  m_PrefabInstance: {fileID: 498075302920739414}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0157274d42efb5049bbf073e30e683a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1113322580
 GameObject:
   m_ObjectHideFlags: 0
@@ -7439,6 +7451,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642681853}
   m_CullTransparentMesh: 1
+--- !u!114 &1658554362 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4506190418704012704, guid: e62733173ac5ae8418ad5303bd42128d,
+    type: 3}
+  m_PrefabInstance: {fileID: 498075302920739414}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053fb21fca4c21b41aaaeacf8c2064d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1659806041
 GameObject:
   m_ObjectHideFlags: 0
@@ -11732,9 +11756,24 @@ PrefabInstance:
       objectReference: {fileID: 930414768}
     - target: {fileID: 5317846469567032390, guid: e62733173ac5ae8418ad5303bd42128d,
         type: 3}
+      propertyPath: _objectives.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5317846469567032390, guid: e62733173ac5ae8418ad5303bd42128d,
+        type: 3}
       propertyPath: firstRoomEnemySpawnPoint
       value: 
       objectReference: {fileID: 1927903781}
+    - target: {fileID: 5317846469567032390, guid: e62733173ac5ae8418ad5303bd42128d,
+        type: 3}
+      propertyPath: _objectives.Array.data[3]
+      value: 
+      objectReference: {fileID: 1658554362}
+    - target: {fileID: 5317846469567032390, guid: e62733173ac5ae8418ad5303bd42128d,
+        type: 3}
+      propertyPath: _objectives.Array.data[4]
+      value: 
+      objectReference: {fileID: 1104227897}
     - target: {fileID: 6685405929267094327, guid: e62733173ac5ae8418ad5303bd42128d,
         type: 3}
       propertyPath: doorToEnter

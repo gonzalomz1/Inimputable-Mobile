@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6345581591620996651}
   - component: {fileID: 317713884678990108}
   - component: {fileID: 2057810652946757838}
+  - component: {fileID: -2300754671727510529}
   m_Layer: 16
   m_Name: PickupItem
   m_TagString: Pickup
@@ -124,6 +125,19 @@ MonoBehaviour:
   visualRenderer: {fileID: 6345581591620996651}
   healthSprite: {fileID: 21300000, guid: 8a6b3ef1b8fad0143a1249193f3573e4, type: 3}
   ammoSprite: {fileID: 21300000, guid: ea6af58aba52123439156a54f6006628, type: 3}
+  ShowcaseEffect: {fileID: -2300754671727510529}
+--- !u!114 &-2300754671727510529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012513717192094572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e280db0a32e69045ab70f9637e0dd1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   rotationSpeed: 50
   bobSpeed: 2
   bobHeight: 0.2

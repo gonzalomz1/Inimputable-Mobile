@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2925297388269924522}
   - component: {fileID: 1587254714914077600}
   - component: {fileID: 7250816843680542732}
+  - component: {fileID: 606201780201587751}
   m_Layer: 12
   m_Name: PISTOLitem
   m_TagString: Untagged
@@ -55,6 +56,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2644394369198660078}
   sphereCollider: {fileID: 1587254714914077600}
   rigidBody: {fileID: 7250816843680542732}
+  showcaseEffect: {fileID: 606201780201587751}
 --- !u!135 &1587254714914077600
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -103,6 +105,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &606201780201587751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6429069553455315174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e280db0a32e69045ab70f9637e0dd1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 50
+  bobSpeed: 2
+  bobHeight: 0.2
 --- !u!1 &8957892800276414423
 GameObject:
   m_ObjectHideFlags: 0

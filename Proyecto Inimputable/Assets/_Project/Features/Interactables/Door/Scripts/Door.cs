@@ -14,6 +14,7 @@ public class Door : MonoBehaviour, IInteractive
     [SerializeField] private Door linkedDoor;
 
     private bool isOpen = false;
+    public bool IsOpen => isOpen;
 
     public event Action doorOpenedTrigger;
 

@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 1659331656562422239}
   - component: {fileID: 8612759892855045603}
   - component: {fileID: 399549183781759658}
+  - component: {fileID: 5175159380309366015}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -209,7 +210,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1210838467, guid: 062e66fcc15a17f40a1e06271d478dd2, type: 3}
+  m_Sprite: {fileID: -876305806, guid: 09e8607de5886084288200c6e1cf4a4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -256,6 +257,20 @@ MonoBehaviour:
   turroController: {fileID: 8685144542849780257}
   turroModel: {fileID: 6175395082317482649}
   turroView: {fileID: 1395047745152863744}
+--- !u!114 &5175159380309366015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682973220865465635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e72fe2fee7e0244b88ae8fed8b8b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 8685144542849780257}
+  isEnemy: 1
 --- !u!1 &2026417154728056717
 GameObject:
   m_ObjectHideFlags: 0
